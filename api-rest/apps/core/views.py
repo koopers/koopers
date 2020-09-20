@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm
 from .models import Profile
+from django.http import JsonResponse
 # Create your views here.
 
 def testPanel(request):
@@ -15,20 +16,20 @@ def testPanel(request):
   )
 
 def loginView(request):
-  if request.method == 'POST':
+    if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request,username=username,password=password)
+        user = authenticate(request, username=username, password=password)
         if user:
-            login(request,user)
-            return redirect('core:test')
+            login(request, user)
+            return JsonResponse({'is_admin': request.user.profile.is_admin})
         else:
-            return render(request, 'login.html',{'error':'Invalid username or password'})
-  return render(
-    request=request,
-    template_name='login.html',
-    context={}
-  )
+            return JsonResponse({"message":"Invalidad username or password"})
+    return render(
+        request=request,
+        template_name='login.html',
+        context={}
+    )
 
 @login_required
 def logoutView(request):
