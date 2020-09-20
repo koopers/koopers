@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # My apps
     'apps.core',
     'apps.api',
+    #Third party apps
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
