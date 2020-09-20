@@ -20,9 +20,8 @@ from .views import *
 app_name = 'core'
 
 urlpatterns = [
-    path('login/', loginView, name='login'),
-    path('signup/', signup, name='signup'),
-    path('logout/', logoutView, name='logout'),
+    path('auth/signin/', loginView, name='login'),
+    path('auth/signup/', signup, name='signup'),
+    path('auth/logout/', logoutView, name='logout'),
     path('test/', testPanel, name='test'),
-
 ]

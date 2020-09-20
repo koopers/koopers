@@ -4,10 +4,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
   """Model definition for Profile."""
-  ROLE_CHOICES = [
-    ('Administrator', 'Administratorx'),
-    ('Maintainer', 'Maintainerx'),
-  ]
+
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   is_admin = models.BooleanField(default=False)
   updated = models.DateTimeField(auto_now=True)
@@ -15,10 +12,9 @@ class Profile(models.Model):
 
   class Meta:
     """Meta definition for Profile."""
-
     verbose_name = 'Profile'
     verbose_name_plural = 'Profiles'
 
   def __str__(self):
     """Unicode representation of Profile."""
-    pass
+    return self.user
