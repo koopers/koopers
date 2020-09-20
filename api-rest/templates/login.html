@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% block content %}
+
+    <div class="container-fluid">
+      <div class="row vh-100">
+        <div class="offset-md-3 col-md-6 my-auto border p-5 shadow">
+          
+          {% if error %}
+          <div class="alert alert-danger text-center">{{error}}</div>
+          {% endif %}
+
+          <h1 class="text-center font-weight-bold">Iniciar sesión</h1>
+          <form action="" method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <small class="text-muted">Correo electrónico</small>
+              <input
+                type="email"
+                name="username"
+                placeholder="Correo electrónico"
+                class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+              />
+              <div class="invalid-feedback">
+                {% for error in form.username.errors %} {{error}} {% endfor %}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <small class="text-muted">Contraseña</small>
+              <input
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+                class="form-control"
+              />
+              <div class="invalid-feedback">
+                {% for error in form.password.errors %} {{ error }} {% endfor%}
+              </div>
+            </div>
+
+            <div class="form-group text-center">
+              <button class="btn-block btn btn-primary" type="submit">
+                Iniciar sesión
+              </button>
+              <small>
+                ¿Aún no estás registrado?
+                <a href="{% url 'core:signup' %}">Crear cuenta</a>
+              </small>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endblock content %}
+  </body>
+</html>
