@@ -22,7 +22,7 @@ class Profile(models.Model):
 class Category(models.Model):
     """Model definition for Category."""
     title = models.CharField(max_length=50)
-    slug = models.SlugField()
+    slug = models.SlugField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     class Meta:
@@ -64,7 +64,7 @@ class Site(models.Model):
         verbose_name_plural = 'Sites'
     def __str__(self):
         """Unicode representation of Site."""
-        pass
+        return self.title
 
 class TrackedSite(models.Model):
     """Model definition for TrackedSite."""
@@ -79,17 +79,22 @@ class TrackedSite(models.Model):
         verbose_name_plural = 'TrackedSites'
     def __str__(self):
         """Unicode representation of TrackedSite."""
-        pass
+        return '{0} - {1}'.format(self.site_id,self.category_id,self.path_url)
 
 def upload_screenshot(instance, filename):
     filename_base, filename_ext = os.path.splitext(filename)
     return 'schreenshots/{0}/{1}%Y%m%d{2}'.format(instance.tracked_site, filename_base, filename_ext)
 class Screenshot(models.Model):
     """Model definition for Screenshot."""
+    SCREEN_SIZE_CHOICES = (
+        ('Mobile', 'Mobile'),
+        ('Tablet', 'Tablet'),
+        ('Desktop', 'Desktop'),
+    )
     tracked_site = models.ForeignKey(TrackedSite, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to=upload_screenshot)
     title = models.CharField(max_length=200)
-    screen_size = models.CharField(max_length=200)
+    screen_size = models.CharField(max_length=200, choices=SCREEN_SIZE_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     class Meta:

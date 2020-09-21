@@ -20,6 +20,16 @@ from .views import *
 app_name = 'api'
 
 urlpatterns = [
-    path('users/', ProfileList.as_view(), name='users'),
-    path('users/<int:pk>', ProfileDetail.as_view(), name='user-details'),
+    path('users/', ListProfileView.as_view(), name='users'),
+    path('users/<int:pk>', ProfileDetailView.as_view(), name='user-detail'),
+    path('categories/', ListCategoryView.as_view(), name='categories'),
+    path('categories/<int:pk>', CategoryDetailView.as_view(), name='category-detail'),
+    path('screenshots/', ListScreenshotView.as_view(), name='screenshots'),
+    path('screenshots/<int:pk>', ScreenshotDetailView.as_view(), name='screenshot-detail'),
+    path('sites/', ListSiteView.as_view(), name='sites'),
+    path('sites/<int:pk>', SiteDetailView.as_view(), name='site-detail'),
+    path('tracked-sites/', ListTrackedSiteView.as_view(), name='tracked-sites'),
+    path('tracked-sites/<int:pk>', TrackedSiteDetailView.as_view(), name='tracked-site-detail'),
+    path('suggested-sites/', ListSuggestedSiteView.as_view(), name='suggested-sites'),
+    path('suggested-sites/<int:pk>', SuggestedSiteDetailView.as_view(), name='suggested-site-detail'),
 ]
