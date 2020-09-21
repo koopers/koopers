@@ -21,5 +21,5 @@ app_name = 'api'
 
 urlpatterns = [
     path('users/', ProfileList.as_view(), name='users'),
-    path('users/<int:pk>', ProfileDetail.as_view(), name='user-detail'),
+    path('users/<int:pk>', ProfileDetail.as_view(), name='user-details'),
 ]
