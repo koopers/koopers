@@ -6,11 +6,11 @@ To start contributing, it is recommended that you [fork this repository](https:/
 
 ## Sync Your Fork with the Original Repo
 
-It is important to keep your repo in sync with the original repo no make sure you're working always with the latest changes, here's some simple steps you can follow to keep your fork always up to date
+It is important to keep your repo in sync with the original repo to make sure you're working always with the latest changes, here's some simple steps you can follow to keep your fork always up to date:
 
 ```bash
 # Add a new remote upstream repository (this is necessary only the first time)
-git remote add upstream https://github.com/koopers/koopers/.git
+git remote add upstream https://github.com/koopers/koopers.git
 
 # Sync your fork
 git fetch upstream
