@@ -1,0 +1,64 @@
+@import "../../../../variables"
+
+.Alert
+  max-width: 40%
+  max-height: 17%
+  top: 10px
+  margin-left: 34%
+  display: block
+  z-index: 10000
+  min-width: 12%
+  width: auto
+  position: absolute
+
+  &__text-area
+    padding: 10px
+    max-width: 100%
+    width: auto
+    font-weight: 600
+    color: $light-color
+
+  &__area
+    display: flex
+    justify-content: space-between
+
+  &__div
+    border-radius: 5px
+    box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.5)
+    margin-bottom: 10px
+    background: #ffffff
+
+    &--info
+      background: $secondary-color
+
+    &--error
+      background: $danger-color
+
+    &--success
+      background: $success-color
+
+  &__close-area
+    width: 45px
+    padding-left: 10px
+    border-radius: 0 4px 4px 0
+    cursor: pointer
+    display: flex
+    justify-content: center
+    align-items: center
+
+    fa-icon
+      color: $light-color
+
+  &__icon-area
+    width: 60px
+    text-align: center
+    border-radius: 4px 0px 0px 4px
+    display: flex
+    justify-content: center
+    align-items: center
+
+    fa-icon
+      vertical-align: middle
+      width: 20px
+      height: 20px
+      color: $light-color
