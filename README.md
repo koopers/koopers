@@ -1,4 +1,4 @@
-# Koopers 
+# Koopers
 ![Koopers](https://img.shields.io/badge/status-in%20progress-yellow)
 
 << Descripción: Esta sección debe ser breve, pero también responder la siguiente pregunta ¿Qué problema resuelve este proyecto? >>
@@ -22,7 +22,8 @@
 << Cómo hacer las pruebas >>
 
 # Contribute
-<< Si alguien quiere agregar o mejorar algo, lo invito a colaborar directamente en este repositorio: challenge-javascript-05 >>
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 # Authors
 1. Fulanito
@@ -34,5 +35,3 @@ The MIT license (MIT)
 
 # Thanks (optional)
 << Thanks to ... >>
-
-
