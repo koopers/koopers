@@ -1,0 +1,4 @@
+<button type="button" class="btn" [ngClass]="type" (click)="onClickButton($event)">
+  <span *ngIf="!isIcon">{{label}}</span>
+  <ng-content></ng-content>
+</button>

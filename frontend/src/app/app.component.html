@@ -1,5 +1,47 @@
 <h1>Koopers</h1>
-
 <router-outlet></router-outlet>
-
 <koopers-alerts></koopers-alerts>
+
+
+<a href="http://localhost:8000/auth/signin">Login</a>
+
+<app-button label='Default' type='default'></app-button>
+<app-button label='Primary' type='primary'></app-button>
+<app-button label='Secondary' type='secondary'></app-button>
+<app-button label='Danger' type='danger'></app-button>
+<app-button label='Success' type='success'></app-button>
+
+
+<app-button type='primary' isIcon>
+  <div>
+    <fa-icon [icon]="faSearch"></fa-icon>
+  </div>
+</app-button>
+
+
+<app-button type='secondary' isIcon>
+  <div>
+    <fa-icon [icon]="faCheckCircle"></fa-icon>
+  </div>
+</app-button>
+
+<app-button type='secondary' isIcon>
+  <div>
+    <fa-icon [icon]="faEdit"></fa-icon>
+  </div>
+</app-button>
+
+
+<app-button type='danger' isIcon>
+  <div>
+    <fa-icon [icon]="faTrash"></fa-icon>
+  </div>
+</app-button>
+
+<app-button type='secondary' isIcon>
+  <div>
+    <fa-icon [icon]="faPlus"></fa-icon>
+  </div>
+</app-button>
+
+
