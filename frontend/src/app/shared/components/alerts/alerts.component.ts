@@ -1,11 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {faCheckCircle, faTimesCircle, faTimes, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import { AlertsService } from '../../../core/services/alerts/alerts.service';
+import { Subscription } from 'rxjs';
 
 export interface AlertModel {
-  title: string;
   message: string;
   type: string;
 }
+
+export const SUCCESS_TYPE = 'success';
+export const INFO_TYPE = 'info';
+export const ERROR_TYPE = 'error';
 
 @Component({
   selector: 'koopers-alerts',
@@ -17,46 +22,40 @@ export class AlertsComponent implements OnInit, OnDestroy {
   faTimesCircle = faTimesCircle;
   faTimes = faTimes;
   faInfoCircle = faInfoCircle;
+  success_type = SUCCESS_TYPE;
+  info_type = INFO_TYPE;
+  error_type = ERROR_TYPE;
 
-  alerts: AlertModel[] = [
-    {
-      title: 'Success',
-      message: 'El sitio se ha creado exitosamente',
-      type: 'success'
-    },
-    {
-      title: 'Info',
-      message: 'Verifica los datos y vuelve a intentarlo',
-      type: 'info'
-    },
-    {
-      title: 'Error',
-      message: 'Algo salio mal, testing',
-      type: 'error'
-    }
-  ]
+  alerts: AlertModel[] = []
 
-  constructor() { }
+  alertsSubs: Subscription;
+
+  constructor(private alertService: AlertsService) { }
 
   ngOnInit(): void {
+    this.alertsSubs = this.alertService.showAlert.subscribe((alerts) => {
+      this.alerts = alerts;
+
+      setTimeout(() => {
+        this.alerts.forEach(alert => this.closeAlert(alert))
+      }, 15000)
+    })
   }
 
   ngOnDestroy() {
+    this.alertsSubs.unsubscribe();
   }
 
   closeAlert(alert: AlertModel) {
-    const index = this.alerts.indexOf(alert);
-    if(index != -1) {
-      this.alerts.splice(index, 1)
-    }
+    this.alertService.onAlertClosed(alert)
   }
 
   checkClass(alert: AlertModel)  {
-    if (alert.type === 'success') {
+    if (alert.type === this.success_type) {
       return 'Alert__div--success';
     }
 
-    if (alert.type === 'info') {
+    if (alert.type === this.info_type) {
       return 'Alert__div--info';
     }
 
