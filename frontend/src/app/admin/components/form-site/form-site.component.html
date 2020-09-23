@@ -18,10 +18,6 @@
     </div>
   </form>
 
-  <button type="button">
-    Cancelar
-  </button>
-  <button type="button" (click)="onSave()">
-    Enviar
-  </button>
+  <app-button label='Cancelar' type='danger'></app-button>
+  <app-button label='Enviar' type='success' (click)="onSave()"></app-button>
 </div>
