@@ -1,65 +1,56 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import {faCheckCircle, faTimesCircle, faTimes, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
-import { AlertsService } from '../../../core/services/alerts/alerts.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-
-export interface AlertModel {
-  message: string;
-  type: string;
-}
-
-export const SUCCESS_TYPE = 'success';
-export const INFO_TYPE = 'info';
-export const ERROR_TYPE = 'error';
+import {
+  Alert,
+  ERROR_TYPE,
+  INFO_TYPE,
+  SUCCESS_TYPE,
+} from '../../../core/models/alerts';
+import { AlertsService } from '../../../core/services/alerts/alerts.service';
 
 @Component({
-  selector: 'koopers-alerts',
+  selector: 'app-alerts',
   templateUrl: './alerts.component.html',
-  styleUrls: ['./alerts.component.sass']
+  styleUrls: ['./alerts.component.sass'],
 })
 export class AlertsComponent implements OnInit, OnDestroy {
-  faCheckCircle = faCheckCircle;
-  faTimesCircle = faTimesCircle;
-  faTimes = faTimes;
-  faInfoCircle = faInfoCircle;
-  success_type = SUCCESS_TYPE;
-  info_type = INFO_TYPE;
-  error_type = ERROR_TYPE;
+  successType = SUCCESS_TYPE;
+  infoType = INFO_TYPE;
+  errorType = ERROR_TYPE;
 
-  alerts: AlertModel[] = []
+  alerts: Alert[] = [];
 
   alertsSubs: Subscription;
 
-  constructor(private alertService: AlertsService) { }
+  constructor(private alertService: AlertsService) {}
 
   ngOnInit(): void {
     this.alertsSubs = this.alertService.showAlert.subscribe((alerts) => {
       this.alerts = alerts;
 
       setTimeout(() => {
-        this.alerts.forEach(alert => this.closeAlert(alert))
-      }, 15000)
-    })
+        this.alerts.forEach((alert) => this.closeAlert(alert));
+      }, 15000);
+    });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.alertsSubs.unsubscribe();
   }
 
-  closeAlert(alert: AlertModel) {
-    this.alertService.onAlertClosed(alert)
+  closeAlert(alert: Alert): void {
+    this.alertService.onAlertClosed(alert);
   }
 
-  checkClass(alert: AlertModel)  {
-    if (alert.type === this.success_type) {
+  checkClass(alert: Alert): string {
+    if (alert.type === SUCCESS_TYPE) {
       return 'Alert__div--success';
     }
 
-    if (alert.type === this.info_type) {
+    if (alert.type === INFO_TYPE) {
       return 'Alert__div--info';
     }
 
     return 'Alert__div--error';
   }
-
 }

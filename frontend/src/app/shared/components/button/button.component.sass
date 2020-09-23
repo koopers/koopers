@@ -1,3 +1,5 @@
+@import "../../../../variables"
+
 .btn 
   padding: 10px 25px
   position: relative
@@ -7,21 +9,22 @@
   border-radius: 5px
   outline: none
   cursor: pointer
-  margin: 10px
+  margin: 10px 0
+  margin-right: 10px 
   &.default 
-    background: #FDFCFC
-    color: #0F0B15
+    background: $light-color
+    color: $dark-color
   &.primary 
-    background: #2D51A3
-    color: #FDFCFC
+    background: $primary-color
+    color: $light-color
   &.secondary
-    background: #3590D5
-    color: #FDFCFC
+    background: $secondary-color
+    color: $light-color
   &.danger
-    background: #C04317
-    color: #FDFCFC
+    background: $danger-color
+    color: $light-color
   &.success
-    background: #529191
-    color: #FDFCFC
+    background: $success-color
+    color: $light-color
 
 
