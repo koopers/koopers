@@ -92,8 +92,8 @@ class Screenshot(models.Model):
         ('Desktop', 'Desktop'),
     )
     tracked_site = models.ForeignKey(TrackedSite, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to=upload_screenshot)
-    title = models.CharField(max_length=200)
+    photo = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     screen_size = models.CharField(max_length=200, choices=SCREEN_SIZE_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

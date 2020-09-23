@@ -30,14 +30,14 @@ class SiteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TrackedSerializer(serializers.ModelSerializer):
-    site_id = SiteSerializer(many=False)
-    category_id = CategorySerializer(many=False)
+    # site_id = SiteSerializer(many=False)
+    # category_id = CategorySerializer(many=False)
     class Meta:
         model = TrackedSite
         fields = '__all__'
 
 class ScreenshotSerializer(serializers.ModelSerializer):
-    tracked_site = TrackedSerializer(many=False)
+    # tracked_site = TrackedSerializer(many=False)
     class Meta:
         model = Screenshot
         fields = '__all__'
