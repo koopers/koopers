@@ -2,15 +2,15 @@
   <div class="Alert__div {{checkClass(alert)}}" *ngFor="let alert of alerts">
     <div class="Alert__area">
       <div class="Alert__icon-area">
-        <fa-icon *ngIf="alert.type === successType" icon="checkCircle"></fa-icon>
-        <fa-icon *ngIf="alert.type === infoType" icon="infoCircle"></fa-icon>
-        <fa-icon *ngIf="alert.type === errorType" icon="timesCircle"></fa-icon>
+        <fa-icon *ngIf="alert.type === successType" icon="check-circle"></fa-icon>
+        <fa-icon *ngIf="alert.type === infoType" icon="info-circle"></fa-icon>
+        <fa-icon *ngIf="alert.type === errorType" icon="times-circle"></fa-icon>
       </div>
       <div class="Alert__text-area" (click)="closeAlert(alert)">
         {{alert.message}}
       </div>
       <div class="Alert__close-area" (click)="closeAlert(alert)">
-        <fa-icon icon="timesCircle"></fa-icon>
+        <fa-icon icon="times-circle"></fa-icon>
       </div>
     </div>
   </div>
