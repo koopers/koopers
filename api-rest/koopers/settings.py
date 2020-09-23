@@ -150,4 +150,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 USE_X_FORWARDED_HOST = True # Necesario para el proxy
 USE_X_FORWARDED_PORT = True # Necesario para el proxy
-# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https") # Necesario para HTTPS
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https") # Necesario para HTTPS
