@@ -13,11 +13,13 @@
     </div>
 
     <div class="form-group">
-      <label class="form-group__label" for="email">Email</label>
-      <input class="form-group__input" type="email" id="email" formControlName="email">
+      <label class="form-group__label" for="email">Disponible</label>
+      <p-inputSwitch formControlName="Available"></p-inputSwitch>
     </div>
   </form>
 
-  <app-button label='Cancelar' type='danger'></app-button>
-  <app-button label='Enviar' type='success' (click)="onSave()"></app-button>
+  <div class="action-btns">
+    <app-button label='Cancelar' type='default' (click)="goBack()"></app-button>
+    <app-button label='Enviar' type='primary' (click)="onSave()"></app-button>
+  </div>
 </div>

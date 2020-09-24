@@ -3,21 +3,8 @@ from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 import os
-# Create your models here.
 
-class Profile(models.Model):
-    """Model definition for Profile."""
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_admin = models.BooleanField(default=False)
-    updated = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(auto_now_add=True)
-    class Meta:
-        """Meta definition for Profile."""
-        verbose_name = 'Profile'
-        verbose_name_plural = 'Profiles'
-    def __str__(self):
-        """Unicode representation of Profile."""
-        return self.user
+# Create your models here.
 
 class Category(models.Model):
     """Model definition for Category."""
@@ -92,8 +79,8 @@ class Screenshot(models.Model):
         ('Desktop', 'Desktop'),
     )
     tracked_site = models.ForeignKey(TrackedSite, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to=upload_screenshot)
-    title = models.CharField(max_length=200)
+    photo = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     screen_size = models.CharField(max_length=200, choices=SCREEN_SIZE_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

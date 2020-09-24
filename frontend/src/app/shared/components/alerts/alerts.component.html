@@ -1,5 +1,9 @@
-<div *ngIf="alerts.length > 0" class="Alert">
-  <div class="Alert__div {{checkClass(alert)}}" *ngFor="let alert of alerts">
+<div *ngIf="alerts.length > 0" class="Alert" [@closeAlerts]="alerts.length > 0">
+  <div
+    class="Alert__div {{checkClass(alert)}}"
+    *ngFor="let alert of alerts"
+    [@openAlert]="notification != null"
+  >
     <div class="Alert__area">
       <div class="Alert__icon-area">
         <fa-icon *ngIf="alert.type === successType" icon="check-circle"></fa-icon>

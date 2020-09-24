@@ -1,4 +1,4 @@
-export interface Sites {
+export interface Site {
   id: string;
   title: string;
   url: string;
