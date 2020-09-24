@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class SitesService {
   constructor(private http: HttpClient) {}
 
-  getUser(): Observable<{}> {
-    return this.http.get('/auth/user/');
+  getSites(): Observable<{}> {
+    return this.http.get(`${environment.url_api}/api/sites`);
   }
 }

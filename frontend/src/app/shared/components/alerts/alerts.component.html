@@ -1,18 +1,17 @@
 <div *ngIf="alerts.length > 0" class="Alert">
   <div class="Alert__div {{checkClass(alert)}}" *ngFor="let alert of alerts">
     <div class="Alert__area">
-        <div class="Alert__icon-area">
-            <fa-icon *ngIf="alert.type === 'success'" [icon]="faCheckCircle"></fa-icon>
-            <fa-icon *ngIf="alert.type === 'info'" [icon]="faInfoCircle"></fa-icon>
-            <fa-icon *ngIf="alert.type === 'error'" [icon]="faTimesCircle"></fa-icon>
-        </div>
-        <div class="Alert__text-area" (click)="closeAlert(alert)">
-            {{alert.title}}
-            <em>{{alert.message}}</em>
-        </div>
-        <div class="Alert__close-area" (click)="closeAlert(alert)">
-            <fa-icon [icon]="faTimes"></fa-icon>
-        </div>
+      <div class="Alert__icon-area">
+        <fa-icon *ngIf="alert.type === successType" icon="check-circle"></fa-icon>
+        <fa-icon *ngIf="alert.type === infoType" icon="info-circle"></fa-icon>
+        <fa-icon *ngIf="alert.type === errorType" icon="times-circle"></fa-icon>
+      </div>
+      <div class="Alert__text-area" (click)="closeAlert(alert)">
+        {{alert.message}}
+      </div>
+      <div class="Alert__close-area" (click)="closeAlert(alert)">
+        <fa-icon icon="times-circle"></fa-icon>
+      </div>
     </div>
   </div>
 </div>

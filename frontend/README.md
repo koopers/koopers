@@ -8,8 +8,4 @@ info about frontend...
 
 # How to Collaborate
 
-  - Fork the project
-  - Create your branch `git checkout -b feature/frontend/your-changes`
-  - Merge from frontend
-  - Do your changes
-  - Make your PR to frontend
+Please refer to [CONTRIBUTING.md](/CONTRIBUTING.md) to learn how to help with this project.

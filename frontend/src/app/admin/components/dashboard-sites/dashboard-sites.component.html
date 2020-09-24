@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Sitios</h1>
+  <app-button label='Nuevo' type='primary' [routerLink]="['/admin/sites/new']"></app-button>
+
+  <p-table [value]="sites">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="title">Nombre <p-sortIcon field="title"></p-sortIcon>
+        </th>
+        <th>URL</th>
+        <th>Disponible</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-site>
+      <tr>
+        <td>{{site.title}}</td>
+        <td>{{site.url}}</td>
+        <td>{{site.available}}</td>
+        <td>
+          <app-button type='secondary' isIcon [routerLink]="['/admin/sites', site.id]">
+            <fa-icon icon="edit"></fa-icon>
+          </app-button>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
