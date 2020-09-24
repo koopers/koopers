@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import {slideAlert, closeAllAlerts} from './alerts.animations';
 import {
   Alert,
   ERROR_TYPE,
@@ -12,6 +13,10 @@ import { AlertsService } from '../../../core/services/alerts/alerts.service';
   selector: 'app-alerts',
   templateUrl: './alerts.component.html',
   styleUrls: ['./alerts.component.sass'],
+  animations: [
+    slideAlert(),
+    closeAllAlerts()
+  ]
 })
 export class AlertsComponent implements OnInit, OnDestroy {
   successType = SUCCESS_TYPE;
