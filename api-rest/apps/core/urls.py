@@ -20,9 +20,5 @@ from .views import *
 app_name = 'core'
 
 urlpatterns = [
-    path('auth/user/', userInfoView, name='user'),
-    path('auth/signin/', loginView, name='login'),
-    path('auth/signup/', signup, name='signup'),
-    path('auth/logout/', logoutView, name='logout'),
-    path('test/', testPanel, name='test'),
+    #path('auth/logout/', LogoutUserView.as_view(), name='logout'),
 ]

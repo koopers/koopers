@@ -3,16 +3,17 @@ from ..core.models import *
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
-
-class ProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer(many=False)
-
-    class Meta:
-        model = Profile
-        fields = ['id', 'user', 'is_admin', 'updated', 'created']
+        fields = ('username', 'password','is_staff')
+        extra_kwargs = {'password':{'write_only':True}}
+    
+    def create(self, validated_data):
+        user = User(username=validated_data['username'], is_staff=validated_data['is_staff'])
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
