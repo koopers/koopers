@@ -31,10 +31,17 @@
             <fa-icon icon="edit"></fa-icon>
           </app-button>
 
-          <app-button type='danger' isIcon [routerLink]="['/admin/sites', site.id]">
+          <app-button type='danger' isIcon (click)="confirmDelete()">
             <fa-icon icon="trash"></fa-icon>
           </app-button>
       </tr>
     </ng-template>
   </p-table>
 </div>
+
+<p-confirmDialog #cd header="Borrar Sitio" icon="pi pi-exclamation-triangle">
+  <p-footer>
+      <app-button label='Cancelar' type='default' (click)="cd.reject()"></app-button>
+      <app-button label='Eliminar' type='danger' (click)="cd.accept()"></app-button>
+  </p-footer>
+</p-confirmDialog>
