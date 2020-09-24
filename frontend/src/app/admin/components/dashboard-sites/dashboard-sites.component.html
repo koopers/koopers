@@ -2,7 +2,7 @@
   <h1>Sitios</h1>
 
   <div class="button-wrapper">
-    <app-button label='Nuevo' type='primary' [routerLink]="['/admin/sites/new']"></app-button>
+    <app-button label='Nuevo' btn='primary' [routerLink]="['/admin/sites/new']"></app-button>
   </div>
 
   <p-table [value]="sites">
@@ -24,14 +24,14 @@
           </a>
         </td>
         <td>
-          <app-active-column [active]="site.available" ></app-active-column>
+          <app-active-column [active]="site.available"></app-active-column>
         </td>
         <td>
-          <app-button type='secondary' isIcon [routerLink]="['/admin/sites', site.id]">
+          <app-button btn='secondary' isIcon [routerLink]="['/admin/sites', site.id]">
             <fa-icon icon="edit"></fa-icon>
           </app-button>
 
-          <app-button type='danger' isIcon (click)="confirmDelete()">
+          <app-button btn='danger' isIcon (click)="confirmDelete()">
             <fa-icon icon="trash"></fa-icon>
           </app-button>
       </tr>
@@ -41,7 +41,7 @@
 
 <p-confirmDialog #cd header="Borrar Sitio" icon="pi pi-exclamation-triangle">
   <p-footer>
-      <app-button label='Cancelar' type='default' (click)="cd.reject()"></app-button>
-      <app-button label='Eliminar' type='danger' (click)="cd.accept()"></app-button>
+    <app-button label='Cancelar' btn='default' (click)="cd.reject()"></app-button>
+    <app-button label='Eliminar' btn='danger' (click)="cd.accept()"></app-button>
   </p-footer>
 </p-confirmDialog>
