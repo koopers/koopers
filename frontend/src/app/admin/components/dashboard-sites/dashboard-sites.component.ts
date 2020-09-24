@@ -28,7 +28,7 @@ export class DashboardSitesComponent implements OnInit {
           "id": 3,
           "title": "Washington Post",
           "url": "https://www.washingtonpost.com/",
-          "available": true,
+          "available": false,
           "created": "2020-09-21T12:55:51.647464-05:00",
           "updated": "2020-09-21T12:55:51.647464-05:00"
       },

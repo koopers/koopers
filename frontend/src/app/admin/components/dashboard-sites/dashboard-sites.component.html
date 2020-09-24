@@ -1,6 +1,9 @@
 <div class="container">
   <h1>Sitios</h1>
-  <app-button label='Nuevo' type='primary' [routerLink]="['/admin/sites/new']"></app-button>
+
+  <div class="button-wrapper">
+    <app-button label='Nuevo' type='primary' [routerLink]="['/admin/sites/new']"></app-button>
+  </div>
 
   <p-table [value]="sites">
     <ng-template pTemplate="header">
@@ -15,11 +18,21 @@
     <ng-template pTemplate="body" let-site>
       <tr>
         <td>{{site.title}}</td>
-        <td>{{site.url}}</td>
-        <td>{{site.available}}</td>
+        <td>
+          <a class="site-link" [href]="site.url" target="_blank">
+            {{site.url}}
+          </a>
+        </td>
+        <td>
+          <app-active-column [active]="site.available" ></app-active-column>
+        </td>
         <td>
           <app-button type='secondary' isIcon [routerLink]="['/admin/sites', site.id]">
             <fa-icon icon="edit"></fa-icon>
+          </app-button>
+
+          <app-button type='danger' isIcon [routerLink]="['/admin/sites', site.id]">
+            <fa-icon icon="trash"></fa-icon>
           </app-button>
       </tr>
     </ng-template>
