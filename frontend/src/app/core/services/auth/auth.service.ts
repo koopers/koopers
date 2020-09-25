@@ -28,11 +28,13 @@ export class AuthService {
     );
   }
 
-  logout() {}
+  logout(): void {
+    return this.tokenService.deleteTokens();
+  }
 
-  refreshToken() {
+  refreshToken(): Observable<any> {
     return this.http
-      .post(`${environment.url_api}/auth/signin/refresh`, {})
+      .post(`${environment.url_api}/auth/signin/refresh/`, {})
       .pipe(
         tap((response) => {
           console.log('refreshToken -> response', response);
@@ -42,7 +44,6 @@ export class AuthService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.log('error', error);
     return throwError(error);
   }
 }
