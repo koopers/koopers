@@ -72,7 +72,6 @@ class ProfileDetailView(APIView):
         return Response(data)
 
 class UserCreateView(generics.CreateAPIView):
-    permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
 
 class UserInfoView(APIView):
