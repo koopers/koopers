@@ -14,7 +14,7 @@ export class SitesService {
     return of(
       [
         {
-            "id": "1",
+            "id": 1,
             "title": "El universal",
             "url": "https://www.eluniversal.com.co/",
             "available": true,
@@ -22,7 +22,7 @@ export class SitesService {
             "updated": "2020-09-21T12:54:09.759990-05:00"
         },
         {
-            "id": "2",
+            "id": 2,
             "title": "New York Times",
             "url": "https://www.nytimes.com/es/",
             "available": true,
@@ -30,7 +30,7 @@ export class SitesService {
             "updated": "2020-09-21T12:55:01.239635-05:00"
         },
         {
-            "id": "3",
+            "id": 3,
             "title": "Washington Post",
             "url": "https://www.washingtonpost.com/",
             "available": false,

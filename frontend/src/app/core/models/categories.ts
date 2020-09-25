@@ -1,8 +1,7 @@
-export interface Site {
+export interface Category {
   id: number;
   title: string;
-  url: string;
-  available: boolean;
+  slug: string;
   created: string;
   updated: string;
 }
