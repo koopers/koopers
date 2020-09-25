@@ -10,6 +10,7 @@ export class ButtonComponent implements OnInit {
   @Input() btn: string;
   @Input() type = 'button';
   @Input() isIcon: false;
+  @Input() disabled: false;
   @Output() clickButton: EventEmitter<string> = new EventEmitter();
 
   constructor() {}
