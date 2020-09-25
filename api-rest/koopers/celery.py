@@ -23,7 +23,7 @@ def debug_task(self):
 
 app.conf.beat_schedule = {
     "add-every-minute-contrab": {
-        "task": "sum_two_numbers",
+        "task": "get_tracket_sites",
         "schedule": crontab()
     },
     # "add-every-minute-contrab": {
