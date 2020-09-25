@@ -5,11 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
   constructor() {}
-  saveToken(name: string, token: string): void {
-    sessionStorage.setItem(name, token);
+  saveToken(token: string): void {
+    sessionStorage.setItem('token', token);
   }
 
-  getToken(name: string): string {
-    return sessionStorage.getItem(name);
+  saveRefreshToken(tokenRefresh: string): void {
+    sessionStorage.setItem('token-refresh', tokenRefresh);
+  }
+
+  getToken(): string {
+    return sessionStorage.getItem('token');
+  }
+
+  getRefreshToken(): string {
+    return sessionStorage.getItem('refresh-token');
   }
 }

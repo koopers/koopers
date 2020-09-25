@@ -22,13 +22,23 @@ export class AuthService {
     return this.http.post(`${environment.url_api}/auth/signin/`, user).pipe(
       catchError(this.handleError),
       tap((data: { access: string; refresh: string }) => {
-        console.log('data', data);
-        const token = data.access;
-        const tokenRefresh = data.refresh;
-        this.tokenService.saveToken('token', token);
-        this.tokenService.saveToken('token_refresh', tokenRefresh);
+        this.tokenService.saveToken(data.access);
+        this.tokenService.saveRefreshToken(data.refresh);
       })
     );
+  }
+
+  logout() {}
+
+  refreshToken() {
+    return this.http
+      .post(`${environment.url_api}/auth/signin/refresh`, {})
+      .pipe(
+        tap((response) => {
+          console.log('refreshToken -> response', response);
+        }),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
