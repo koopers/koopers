@@ -28,7 +28,7 @@ urlpatterns = [
     # path('auth/logout/', LogoutUserView.as_view(), name='logout'),
     
     path('users/', ListProfileView.as_view(), name='users'),
-    path('users/<int:pk>', ProfileDetailView.as_view(), name='user-detail'),
+    path('users/<int:pk>', UserDetailView.as_view(), name='user-detail'),
     path('categories/', ListCategoryView.as_view(), name='categories'),
     path('categories/<int:pk>', CategoryDetailView.as_view(), name='category-detail'),
     path('screenshots/', ListScreenshotView.as_view(), name='screenshots'),
