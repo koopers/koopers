@@ -18,7 +18,7 @@ export class DashboardSitesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.sitesService.getSites().subscribe((sites:any) => this.sites = sites)
+    this.sitesService.getSites().subscribe(sites => this.sites = sites)
   }
 
   confirmDelete() {

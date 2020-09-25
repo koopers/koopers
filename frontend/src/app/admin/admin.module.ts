@@ -22,9 +22,11 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardSitesComponent } from './components/dashboard-sites/dashboard-sites.component';
 import { FormSiteComponent } from './components/form-site/form-site.component';
 import { ActiveColumnComponent } from './components/active-column/active-column.component';
+import { DashboardCategoriesComponent } from './components/dashboard-categories/dashboard-categories.component';
+import { FormCategoryComponent } from './components/form-category/form-category.component';
 
 @NgModule({
-  declarations: [DashboardSitesComponent, FormSiteComponent, ActiveColumnComponent],
+  declarations: [DashboardSitesComponent, FormSiteComponent, ActiveColumnComponent, DashboardCategoriesComponent, FormCategoryComponent],
   imports: [
     CommonModule,
     TableModule,
