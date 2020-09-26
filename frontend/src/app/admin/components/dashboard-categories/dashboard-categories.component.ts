@@ -27,7 +27,7 @@ export class DashboardCategoriesComponent implements OnInit {
       accept: () => {
           //Actual logic to perform a confirmation
       }
-  });
+    });
   }
 
 }

@@ -3,13 +3,13 @@
 
   <form [formGroup]="categoryForm">
     <div class="form-group">
-      <label class="form-group__label" for="name">Título</label>
-      <input class="form-group__input" type="text" id="name" formControlName="title">
+      <label class="form-group__label" for="title">Título</label>
+      <input class="form-group__input" type="text" id="title" formControlName="title">
     </div>
   </form>
 
-  <div class="action-btns">
-    <app-button label='Cancelar' btn='danger' (click)="goBack()"></app-button>
-    <app-button label='Enviar' btn='success' (click)="onSave()"></app-button>
+  <div class="flex-justify-end">
+    <app-button label='Cancelar' btn='default' (click)="goBack()"></app-button>
+    <app-button label='Guardar' btn='primary' (click)="onSave()"></app-button>
   </div>
 </div>
