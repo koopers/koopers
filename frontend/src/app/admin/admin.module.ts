@@ -28,7 +28,15 @@ import { DashboardUsersComponent } from './components/dashboard-users/dashboard-
 import { FormUserComponent } from './components/form-user/form-user.component';
 
 @NgModule({
-  declarations: [DashboardSitesComponent, FormSiteComponent, ActiveColumnComponent, DashboardCategoriesComponent, FormCategoryComponent, DashboardUsersComponent, FormUserComponent],
+  declarations: [
+    DashboardSitesComponent,
+    FormSiteComponent,
+    ActiveColumnComponent,
+    DashboardCategoriesComponent,
+    FormCategoryComponent,
+    DashboardUsersComponent,
+    FormUserComponent
+  ],
   imports: [
     CommonModule,
     TableModule,

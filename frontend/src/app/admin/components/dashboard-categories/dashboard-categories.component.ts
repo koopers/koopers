@@ -10,7 +10,10 @@ import {Category} from '../../../core/models/categories';
   providers: [ConfirmationService]
 })
 export class DashboardCategoriesComponent implements OnInit {
-  categories: Category[] = []
+  categories: Category[] = [];
+  TITLE_HEADER = 'Título';
+  DATE_HEADER = 'Fecha de creación';
+  ACTIONS_HEADER = 'Acciones';
 
   constructor(
     private categoriesService: CategoriesService,

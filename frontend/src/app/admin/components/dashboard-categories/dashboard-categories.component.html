@@ -5,20 +5,36 @@
     <app-button label='Nueva' btn='primary' [routerLink]="['/admin/categories/new']"></app-button>
   </div>
 
-  <p-table [value]="categories">
+  <p-table
+    [value]="categories"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} entradas"
+    [rowsPerPageOptions]="[10,25,50]"
+    styleClass="p-datatable-responsive-demo"
+    >
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="title">Título <p-sortIcon field="title"></p-sortIcon>
+        <th pSortableColumn="title">{{TITLE_HEADER}} <p-sortIcon field="title"></p-sortIcon>
         </th>
-        <th>Fecha de creación</th>
-        <th>Acciones</th>
+        <th>{{DATE_HEADER}}</th>
+        <th>{{ACTIONS_HEADER}}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-category>
       <tr>
-        <td>{{category.title}}</td>
-        <td>{{category.created | date:"dd/MM/yyyy"}}</td>
         <td>
+          <span class="p-column-title">{{TITLE_HEADER}}</span>
+          {{category.title}}
+        </td>
+        <td>
+          <span class="p-column-title">{{DATE_HEADER}}</span>
+          {{category.created | date:"dd/MM/yyyy"}}
+        </td>
+        <td>
+          <span class="p-column-title">{{ACTIONS_HEADER}}</span>
+
           <app-button btn='secondary' isIcon [routerLink]="['/admin/categories', category.id]">
             <fa-icon icon="edit"></fa-icon>
           </app-button>

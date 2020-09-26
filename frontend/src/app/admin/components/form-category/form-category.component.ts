@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
+import { CategoriesService } from 'src/app/core/services/categories/categories.service';
 
 @Component({
   selector: 'app-form-category',
@@ -14,6 +15,7 @@ export class FormCategoryComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private alertsService: AlertsService,
+    private categoryService: CategoriesService,
     private location: Location
   ) { }
 
@@ -24,12 +26,16 @@ export class FormCategoryComponent implements OnInit {
   }
 
   onSave(): void {
-    console.log('Values: ', this.categoryForm.value);
-    this.alertsService.handleSuccessAlert('Categoría creada exitosamente!');
+    this.categoryService
+    .createCategory(this.categoryForm.value)
+    .subscribe((category) => {
+      this.alertsService.handleSuccessAlert('Categoría creada exitosamente!');
+      this.goBack();
+    });
   }
 
   goBack(): void {
-    this.location.back()
+    this.location.back();
   }
 
 }
