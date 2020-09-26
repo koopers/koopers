@@ -24,11 +24,11 @@ export class DashboardCategoriesComponent implements OnInit {
     this.categoriesService.getCategories().subscribe(categories => this.categories = categories)
   }
 
-  confirmDelete() {
+  confirmDelete(category: Category) {
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
-          //Actual logic to perform a confirmation
+          this.categoriesService.deleteCategory(category.id);
       }
     });
   }

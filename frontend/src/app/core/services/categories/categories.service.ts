@@ -13,13 +13,19 @@ export class CategoriesService {
 
   getCategories(): Observable<Category[]> {
     return this.http
-      .get<Category[]>(`${environment.url_api}/categories`)
+      .get<Category[]>(`${environment.url_api}/categories/`)
       .pipe(catchError(this.handleError));
   }
 
   createCategory(body: {title: string}): Observable<Category> {
     return this.http
     .post<Category>(`${environment.url_api}/categories/`, body)
+    .pipe(catchError(this.handleError));
+  }
+
+  deleteCategory(id: number): Observable<Category> {
+    return this.http
+    .delete<Category>(`${environment.url_api}/categories/${id}`)
     .pipe(catchError(this.handleError));
   }
 
