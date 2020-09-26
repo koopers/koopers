@@ -1,25 +1,27 @@
 <div class="container">
-  <h1>Categorías</h1>
+  <h1>Usuarios</h1>
 
   <div class="flex-justify-end">
-    <app-button label='Nueva' btn='primary' [routerLink]="['/admin/categories/new']"></app-button>
+    <app-button label='Nuevo' btn='primary' [routerLink]="['/admin/users/new']"></app-button>
   </div>
 
-  <p-table [value]="categories">
+  <p-table [value]="users">
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="title">Título <p-sortIcon field="title"></p-sortIcon>
+        <th pSortableColumn="title">Username <p-sortIcon field="title"></p-sortIcon>
         </th>
+        <th>Tipo</th>
         <th>Fecha de creación</th>
         <th>Acciones</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-category>
+    <ng-template pTemplate="body" let-user>
       <tr>
-        <td>{{category.title}}</td>
-        <td>{{category.created | date:"dd/MM/yyyy"}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.is_staff}}</td>
+        <td>{{user.created | date:"dd/MM/yyyy"}}</td>
         <td>
-          <app-button btn='secondary' isIcon [routerLink]="['/admin/categories', category.id]">
+          <app-button btn='secondary' isIcon [routerLink]="['/admin/users', user.id]">
             <fa-icon icon="edit"></fa-icon>
           </app-button>
 
@@ -31,7 +33,7 @@
   </p-table>
 </div>
 
-<p-confirmDialog #cd header="Borrar Categoría" icon="pi pi-exclamation-triangle">
+<p-confirmDialog #cd header="Borrar Usuario" icon="pi pi-exclamation-triangle">
   <p-footer>
     <app-button label='Cancelar' btn='default' (click)="cd.reject()"></app-button>
     <app-button label='Eliminar' btn='danger' (click)="cd.accept()"></app-button>

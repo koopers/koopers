@@ -24,9 +24,11 @@ import { FormSiteComponent } from './components/form-site/form-site.component';
 import { ActiveColumnComponent } from './components/active-column/active-column.component';
 import { DashboardCategoriesComponent } from './components/dashboard-categories/dashboard-categories.component';
 import { FormCategoryComponent } from './components/form-category/form-category.component';
+import { DashboardUsersComponent } from './components/dashboard-users/dashboard-users.component';
+import { FormUserComponent } from './components/form-user/form-user.component';
 
 @NgModule({
-  declarations: [DashboardSitesComponent, FormSiteComponent, ActiveColumnComponent, DashboardCategoriesComponent, FormCategoryComponent],
+  declarations: [DashboardSitesComponent, FormSiteComponent, ActiveColumnComponent, DashboardCategoriesComponent, FormCategoryComponent, DashboardUsersComponent, FormUserComponent],
   imports: [
     CommonModule,
     TableModule,

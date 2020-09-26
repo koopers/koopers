@@ -4,6 +4,8 @@ import {DashboardSitesComponent} from './components/dashboard-sites/dashboard-si
 import {FormSiteComponent} from './components/form-site/form-site.component';
 import { DashboardCategoriesComponent } from './components/dashboard-categories/dashboard-categories.component';
 import { FormCategoryComponent } from './components/form-category/form-category.component';
+import { DashboardUsersComponent } from './components/dashboard-users/dashboard-users.component';
+import { FormUserComponent } from './components/form-user/form-user.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,15 @@ const routes: Routes = [
   },
   {
     path: 'categories/:id', component: FormCategoryComponent
+  },
+  {
+    path: 'users', component: DashboardUsersComponent
+  },
+  {
+    path: 'users/new', component: FormUserComponent
+  },
+  {
+    path: 'users/:id', component: FormUserComponent
   }
 ];
 
