@@ -15,29 +15,13 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { AlertsComponent } from './components/alerts/alerts.component';
-<<<<<<< HEAD
 import { HeaderComponent } from './components/header/header.component';
-
-@NgModule({
-  declarations: [
-    AlertsComponent,
-    HeaderComponent],
-  imports: [
-    CommonModule,
-    FontAwesomeModule
-  ],
-  exports: [
-    AlertsComponent,
-    HeaderComponent
-  ]
-=======
 import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-  declarations: [AlertsComponent, ButtonComponent],
+  declarations: [AlertsComponent, ButtonComponent, HeaderComponent],
   imports: [CommonModule, FontAwesomeModule],
-  exports: [AlertsComponent, ButtonComponent],
->>>>>>> f98271654281f8e9a6790ca0569335426fb098c9
+  exports: [AlertsComponent, ButtonComponent, HeaderComponent],
 })
 export class SharedModule {
   constructor(library: FaIconLibrary) {
