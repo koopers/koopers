@@ -33,11 +33,11 @@ class ListCategoryView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class ListProfileView(APIView):
+class ListUsersView(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
         profiles = User.objects.all()
-        data = ProfileSerializer(profiles, many=True).data
+        data = UserSerializer(profiles, many=True).data
         return Response(data)
 
 class TrackedSiteDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -64,11 +64,11 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class ProfileDetailView(APIView):
+class UserDetailView(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request, pk):
-        profile = get_object_or_404(Profile, pk=pk)
-        data = ProfileSerializer(profile).data
+        user = get_object_or_404(User, pk=pk)
+        data = ProfileSerializer(user).data
         return Response(data)
 
 class UserCreateView(generics.CreateAPIView):
