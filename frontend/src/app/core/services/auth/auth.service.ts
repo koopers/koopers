@@ -34,10 +34,10 @@ export class AuthService {
 
   refreshToken(): Observable<any> {
     return this.http
-      .post(`${environment.url_api}/auth/signin/refresh/`, {})
+      .post(`${environment.url_api}/auth/signin/refresh/`, {refresh: this.tokenService.getRefreshToken()})
       .pipe(
-        tap((response) => {
-          console.log('refreshToken -> response', response);
+        tap((data: { access: string }) => {
+          this.tokenService.saveToken(data.access);
         }),
         catchError(this.handleError)
       );

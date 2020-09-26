@@ -10,7 +10,10 @@ import {Category} from '../../../core/models/categories';
   providers: [ConfirmationService]
 })
 export class DashboardCategoriesComponent implements OnInit {
-  categories: Category[] = []
+  categories: Category[] = [];
+  TITLE_HEADER = 'Título';
+  DATE_HEADER = 'Fecha de creación';
+  ACTIONS_HEADER = 'Acciones';
 
   constructor(
     private categoriesService: CategoriesService,
@@ -21,11 +24,11 @@ export class DashboardCategoriesComponent implements OnInit {
     this.categoriesService.getCategories().subscribe(categories => this.categories = categories)
   }
 
-  confirmDelete() {
+  confirmDelete(category: Category) {
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
-          //Actual logic to perform a confirmation
+          this.categoriesService.deleteCategory(category.id);
       }
     });
   }

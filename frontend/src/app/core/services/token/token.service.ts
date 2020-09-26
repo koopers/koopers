@@ -18,7 +18,7 @@ export class TokenService {
   }
 
   getRefreshToken(): string {
-    return sessionStorage.getItem('refresh-token');
+    return sessionStorage.getItem('token-refresh');
   }
 
   deleteTokens(): void {

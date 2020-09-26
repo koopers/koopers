@@ -17,10 +17,11 @@ import {
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AlertsComponent, ButtonComponent, HeaderComponent],
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, RouterModule],
   exports: [AlertsComponent, ButtonComponent, HeaderComponent],
 })
 export class SharedModule {
