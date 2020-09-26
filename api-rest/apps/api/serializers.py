@@ -3,16 +3,17 @@ from ..core.models import *
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
-
-class ProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer(many=False)
-
-    class Meta:
-        model = Profile
-        fields = ['id', 'user', 'is_admin', 'updated', 'created']
+        fields = ('username', 'password','is_staff')
+        extra_kwargs = {'password':{'write_only':True}}
+    
+    def create(self, validated_data):
+        user = User(username=validated_data['username'], is_staff=validated_data['is_staff'])
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,14 +31,14 @@ class SiteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TrackedSerializer(serializers.ModelSerializer):
-    site_id = SiteSerializer(many=False)
-    category_id = CategorySerializer(many=False)
+    # site_id = SiteSerializer(many=False)
+    # category_id = CategorySerializer(many=False)
     class Meta:
         model = TrackedSite
         fields = '__all__'
 
 class ScreenshotSerializer(serializers.ModelSerializer):
-    tracked_site = TrackedSerializer(many=False)
+    # tracked_site = TrackedSerializer(many=False)
     class Meta:
         model = Screenshot
         fields = '__all__'

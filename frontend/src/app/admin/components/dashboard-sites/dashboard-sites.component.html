@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>Sitios</h1>
+
+  <div class="button-wrapper">
+    <app-button label='Nuevo' btn='primary' [routerLink]="['/admin/sites/new']"></app-button>
+  </div>
+
+  <p-table [value]="sites">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="title">Nombre <p-sortIcon field="title"></p-sortIcon>
+        </th>
+        <th>URL</th>
+        <th>Disponible</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-site>
+      <tr>
+        <td>{{site.title}}</td>
+        <td>
+          <a class="site-link" [href]="site.url" target="_blank">
+            {{site.url}}
+          </a>
+        </td>
+        <td>
+          <app-active-column [active]="site.available"></app-active-column>
+        </td>
+        <td>
+          <app-button btn='secondary' isIcon [routerLink]="['/admin/sites', site.id]">
+            <fa-icon icon="edit"></fa-icon>
+          </app-button>
+
+          <app-button btn='danger' isIcon (click)="confirmDelete()">
+            <fa-icon icon="trash"></fa-icon>
+          </app-button>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-confirmDialog #cd header="Borrar Sitio" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <app-button label='Cancelar' btn='default' (click)="cd.reject()"></app-button>
+    <app-button label='Eliminar' btn='danger' (click)="cd.accept()"></app-button>
+  </p-footer>
+</p-confirmDialog>

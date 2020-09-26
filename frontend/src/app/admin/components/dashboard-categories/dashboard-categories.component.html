@@ -1,0 +1,39 @@
+<div class="container">
+  <h1>Categorías</h1>
+
+  <div class="button-wrapper">
+    <app-button label='Nueva' btn='primary' [routerLink]="['/admin/categories/new']"></app-button>
+  </div>
+
+  <p-table [value]="categories">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="title">Título <p-sortIcon field="title"></p-sortIcon>
+        </th>
+        <th>Fecha de creación</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-category>
+      <tr>
+        <td>{{category.title}}</td>
+        <td>{{category.created | date:"dd/MM/yyyy"}}</td>
+        <td>
+          <app-button btn='secondary' isIcon [routerLink]="['/admin/categories', category.id]">
+            <fa-icon icon="edit"></fa-icon>
+          </app-button>
+
+          <app-button btn='danger' isIcon (click)="confirmDelete()">
+            <fa-icon icon="trash"></fa-icon>
+          </app-button>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-confirmDialog #cd header="Borrar Categoría" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <app-button label='Cancelar' btn='default' (click)="cd.reject()"></app-button>
+    <app-button label='Eliminar' btn='danger' (click)="cd.accept()"></app-button>
+  </p-footer>
+</p-confirmDialog>

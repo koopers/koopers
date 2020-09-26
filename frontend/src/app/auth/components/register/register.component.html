@@ -1,0 +1,26 @@
+<section class="register">
+  <h2>Registro</h2>
+  <div class="register__container">
+    <form class="form" [formGroup]="form" (ngSubmit)="register($event)">
+      <div class="form-group">
+        <label class="form-group__label" for="email">Email</label>
+        <input class="form-group__input" type="text" id="email" formControlName="email">
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="password">Password</label>
+        <input class="form-group__input" type="password" id="password" formControlName="password">
+      </div>
+      <div class="form-group isAdmin">
+        <label class="form-group__label" for="isAdmin">Admin</label>
+        <p-inputSwitch formControlName="isAdmin"></p-inputSwitch>
+      </div>
+      <div class="form-group text">
+        <p>Si ya tiene cuenta, inicie sesión <a [routerLink]="['/auth/login']" routerLinkActive="active">aquí</a> </p>
+      </div>
+      <div class="button-group">
+        <app-button label='Cancelar' type='button' btn="danger" (click)="goBack()"></app-button>
+        <app-button label='Registrarse' [disabled]="this.form.invalid" type='submit' btn="success"></app-button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<button [type]="type" class="btn" [ngClass]="btn" (click)="onClickButton($event)" [disabled]="disabled">
+  <span *ngIf="!isIcon">{{label}}</span>
+  <ng-content></ng-content>
+</button>
+
+<!-- <app-button label='Default' btn='default'></app-button>
+<app-button label='Secondary' btn='secondary'></app-button>
+<app-button label='Danger' btn='danger'></app-button>
+<app-button label='Success' btn='success'></app-button>
+
+
+<app-button btn='primary' isIcon>
+  <fa-icon icon="search"></fa-icon>
+</app-button>
+
+<app-button btn='secondary' isIcon>
+  <fa-icon icon="check-circle"></fa-icon>
+</app-button>
+
+<app-button btn='secondary' isIcon>
+  <fa-icon icon="edit"></fa-icon>
+</app-button>
+
+<app-button btn='danger' isIcon>
+  <fa-icon icon="trash"></fa-icon>
+</app-button>
+
+<app-button btn='secondary' isIcon>
+  <fa-icon icon="plus"></fa-icon>
+</app-button> -->
