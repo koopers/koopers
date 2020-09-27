@@ -1,33 +1,39 @@
 <header class="header-login-signup">
 
-	<div class="header-limiter">
+  <div class="header-limiter">
 
-		<div class="logo"><a>
-      <img src=".././../../../assets/img/Kooper.png">
-    </a></div>
+    <div class="logo"><a>
+        <img src=".././../../../assets/img/Kooper.png">
+      </a></div>
 
-		<nav>
-			<a [routerLink]="['/']" [routerLinkActive]="['selected']" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-			<a [routerLink]="['/admin/sites']" [routerLinkActive]="['selected']">Sitios</a>
-			<a [routerLink]="['/admin/categories']" [routerLinkActive]="['selected']">Categorías</a>
-			<a [routerLink]="['/admin/users']" [routerLinkActive]="['selected']">Usuarios</a>
-			<a href="/">About us</a>
-		</nav>
+    <nav>
+      <a [routerLink]="['/']" [routerLinkActive]="['selected']" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a *ngIf="user" [routerLink]="['/admin/sites']" [routerLinkActive]="['selected']">Sitios</a>
+      <a *ngIf="user" [routerLink]="['/admin/categories']" [routerLinkActive]="['selected']">Categorías</a>
+      <a *ngIf="user && manteiner" [routerLink]="['/admin/users']" [routerLinkActive]="['selected']">Usuarios</a>
+      <a href="/">About us</a>
+    </nav>
 
-		<ul><li><form action="" class="search-bar">
-			<input type="search" name="search" pattern=".*\S.*" required>
-			<button class="search-btn" type="submit">
-				<span>Search</span>
-			</button>
-		</form></li>
-			<li>
-				<a [routerLink]="['/auth/login']">Login</a>
-			</li>
-			<li>
-				<app-button label='Sign up' btn='primary' [routerLink]="['/auth/register']"></app-button>
-			</li>
-		</ul>
+    <ul>
+      <li>
+        <form action="" class="search-bar">
+          <input class="input-form" type="search" name="search" pattern=".*\S.*" required>
+          <button class="search-btn" type="submit">
+            <span>Search</span>
+          </button>
+        </form>
+      </li>
+      <li *ngIf="!user">
+        <a [routerLink]="['/auth/login']">Login</a>
+      </li>
+      <li *ngIf="!user">
+        <a class="register" [routerLink]="['/auth/register']">Signup</a>
+      </li>
+      <li *ngIf="user">
+        <app-button label='Logout' btn='primary' (click)="logout()"></app-button>
+      </li>
+    </ul>
 
-	</div>
+  </div>
 
 </header>
