@@ -26,6 +26,9 @@ import { DashboardCategoriesComponent } from './components/dashboard-categories/
 import { FormCategoryComponent } from './components/form-category/form-category.component';
 import { DashboardUsersComponent } from './components/dashboard-users/dashboard-users.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
+import { DashboardTrackedSitesComponent } from './components/dashboard-tracked-sites/dashboard-tracked-sites.component';
+import { FormTrackedSitesComponent } from './components/form-tracked-sites/form-tracked-sites.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -35,13 +38,16 @@ import { FormUserComponent } from './components/form-user/form-user.component';
     DashboardCategoriesComponent,
     FormCategoryComponent,
     DashboardUsersComponent,
-    FormUserComponent
+    FormUserComponent,
+    DashboardTrackedSitesComponent,
+    FormTrackedSitesComponent
   ],
   imports: [
     CommonModule,
     TableModule,
     InputSwitchModule,
     ConfirmDialogModule,
+    DropdownModule,
     ReactiveFormsModule,
     AdminRoutingModule,
     SharedModule,

@@ -6,6 +6,8 @@ import { DashboardCategoriesComponent } from './components/dashboard-categories/
 import { FormCategoryComponent } from './components/form-category/form-category.component';
 import { DashboardUsersComponent } from './components/dashboard-users/dashboard-users.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
+import { DashboardTrackedSitesComponent } from './components/dashboard-tracked-sites/dashboard-tracked-sites.component';
+import { FormTrackedSitesComponent } from './components/form-tracked-sites/form-tracked-sites.component';
 
 const routes: Routes = [
   {
@@ -34,6 +36,15 @@ const routes: Routes = [
   },
   {
     path: 'users/:id', component: FormUserComponent
+  },
+  {
+    path: 'sections', component: DashboardTrackedSitesComponent
+  },
+  {
+    path: 'sections/new', component: FormTrackedSitesComponent
+  },
+  {
+    path: 'sections/:id', component: FormTrackedSitesComponent
   }
 ];
 
