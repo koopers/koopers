@@ -35,7 +35,7 @@ export class DashboardSitesComponent extends BaseComponent implements OnInit {
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
-        this.sitesService.deleteSite(site.id)
+        this.sitesService.delete(site.id)
         .pipe(
           takeUntil(this.unsubscribe$)
         )
@@ -48,7 +48,7 @@ export class DashboardSitesComponent extends BaseComponent implements OnInit {
   }
 
   private getData() {
-    this.sitesService.getSites()
+    this.sitesService.getAll()
     .pipe(
       takeUntil(this.unsubscribe$)
     )

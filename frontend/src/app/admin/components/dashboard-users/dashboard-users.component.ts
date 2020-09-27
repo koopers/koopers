@@ -18,7 +18,7 @@ export class DashboardUsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.usersService.getUsers().subscribe(users => this.users = users)
+    this.usersService.getAll().subscribe(users => this.users = users);
   }
 
   confirmDelete() {
