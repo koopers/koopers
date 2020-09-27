@@ -25,7 +25,7 @@
     <div *ngFor="let control of categories.controls; index as i">
       <div class="form-group-row">
         <input class="form-group-row__input mr-1" type="text" [formControl]="categories.controls[i]">
-        <app-button isIcon btn='danger' (click)="removeCategory(i)">
+        <app-button isIcon btn='danger m-0' (click)="removeCategory(i)">
           <fa-icon icon="trash"></fa-icon>
         </app-button>
       </div>
