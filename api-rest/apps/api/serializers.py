@@ -2,6 +2,23 @@ from rest_framework import serializers
 from ..core.models import *
 from django.contrib.auth.models import User
 
+class CustomCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['title']
+
+class CustomSiteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Site
+        fields = ['title','url']
+
+class CustomTrackedSerializer(serializers.ModelSerializer):
+    site_id = CustomSiteSerializer(many=False)
+    category_id = CustomCategorySerializer(many=False)
+    class Meta:
+        model = TrackedSite
+        fields = ['category_id','path_url','created','site_id']
+
 class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -38,7 +55,7 @@ class TrackedSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ScreenshotSerializer(serializers.ModelSerializer):
-    # tracked_site = TrackedSerializer(many=False)
+    tracked_site = CustomTrackedSerializer(many=False)
     class Meta:
         model = Screenshot
         fields = '__all__'
