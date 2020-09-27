@@ -23,10 +23,6 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log(
-      "AuthInterceptor -> request.url.includes('refresh-token')",
-      request.url.includes('refresh-token')
-    );
     if (request.url.includes('refresh-token')) {
       return next.handle(this.addRefreshToken(request));
     }
@@ -38,12 +34,13 @@ export class AuthInterceptor implements HttpInterceptor {
           return this.authService.refreshToken().pipe(
             switchMap(() => next.handle(this.addToken(request))),
             catchError((msg) => {
+              const route = this.router.routerState.snapshot.url;
               if (
-                msg === 'Token has expired' ||
-                msg === 'Missing Authorization Header'
+                msg.error.refresh[0] === 'This field may not be null.' &&
+                route === '/admin/sites'
               ) {
                 this.authService.logout();
-                this.router.navigate(['/login']);
+                this.router.navigate(['/auth/login']);
               }
               return throwError(msg);
             })
