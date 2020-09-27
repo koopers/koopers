@@ -6,7 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('username', 'password','is_staff')
+        fields = ['id','username','is_staff', 'date_joined']
         extra_kwargs = {'password':{'write_only':True}}
     
     def create(self, validated_data):
@@ -38,7 +38,25 @@ class TrackedSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ScreenshotSerializer(serializers.ModelSerializer):
-    # tracked_site = TrackedSerializer(many=False)
+    tracked_site = TrackedSerializer(many=False)
+    
+    class Meta:
+        model = Screenshot
+        fields = '__all__'
+
+class CustomCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['title']
+
+class CustomTrackedSerializer(serializers.ModelSerializer):
+    category_id = CustomCategorySerializer(many=False)
+    class Meta:
+        model = TrackedSite
+        fields = ['category_id']
+
+class MostRecentCoversSerializer(serializers.ModelSerializer):
+    tracked_site = CustomTrackedSerializer(many=False)
     class Meta:
         model = Screenshot
         fields = '__all__'

@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 class ListScreenshotView(generics.ListCreateAPIView):
-    queryset = Screenshot.objects.all()
+    queryset = Screenshot.objects.all().order_by("-created")
     serializer_class = ScreenshotSerializer
 
 class ListTrackedSiteView(generics.ListCreateAPIView):
@@ -91,3 +91,16 @@ class LogoutUserView(APIView):
             "message":"You've been logged out succesfully."
         }
         return Response(content)
+
+class MostRecentCovers(generics.ListAPIView):
+    queryset = Screenshot.objects.all()
+    serializer_class = MostRecentCoversSerializer
+
+@api_view(['GET'])
+def searchCovers(request, pk):
+    
+    return Response({
+        "pk":pk,
+        "initial_date": int(request.GET.get("idate")),
+        "final_date": int(request.GET.get("fdate")),
+    })

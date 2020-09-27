@@ -25,18 +25,28 @@ urlpatterns = [
     path('auth/signin/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/signin/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/signup/', UserCreateView.as_view(), name='users-create'),
-    # path('auth/logout/', LogoutUserView.as_view(), name='logout'),
     
     path('users/', ListUsersView.as_view(), name='users'),
     path('users/<int:pk>', UserDetailView.as_view(), name='user-detail'),
+    
     path('categories/', ListCategoryView.as_view(), name='categories'),
     path('categories/<int:pk>', CategoryDetailView.as_view(), name='category-detail'),
+    
     path('screenshots/', ListScreenshotView.as_view(), name='screenshots'),
     path('screenshots/<int:pk>', ScreenshotDetailView.as_view(), name='screenshot-detail'),
+    
     path('sites/', ListSiteView.as_view(), name='sites'),
     path('sites/<int:pk>', SiteDetailView.as_view(), name='site-detail'),
+    
     path('tracked-sites/', ListTrackedSiteView.as_view(), name='tracked-sites'),
     path('tracked-sites/<int:pk>', TrackedSiteDetailView.as_view(), name='tracked-site-detail'),
+    
     path('suggested-sites/', ListSuggestedSiteView.as_view(), name='suggested-sites'),
     path('suggested-sites/<int:pk>', SuggestedSiteDetailView.as_view(), name='suggested-site-detail'),
+
+    # Portadas principales más recientes de noticias
+    path('recent-covers/', MostRecentCovers.as_view(), name='recent-covers'),
+    # Search covers
+    path('search/<int:pk>', searchCovers, name='search-covers'),
+
 ]
