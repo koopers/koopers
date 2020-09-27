@@ -1,6 +1,17 @@
+.vscode/
+# Virtuale Environment
 .venv
+.env
+
+# Django
 *.pyc
 __pycache__/
 media/
-.vscode/
-.env
+
+# Celery
+celerybeat-schedule.bak
+celerybeat-schedule.dat
+celerybeat-schedule.dir
+
+# Database
+db.sqlite3

@@ -33,7 +33,7 @@ class ListCategoryView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class ListUsersView(APIView):
+class ListProfileView(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
         profiles = User.objects.all()
@@ -64,11 +64,11 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class UserDetailView(APIView):
+class ProfileDetailView(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request, pk):
-        user = get_object_or_404(User, pk=pk)
-        data = ProfileSerializer(user).data
+        profile = get_object_or_404(Profile, pk=pk)
+        data = UserSerializer(profile).data
         return Response(data)
 
 class UserCreateView(generics.CreateAPIView):
