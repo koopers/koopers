@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService} from 'primeng/api';
 import {CategoriesService} from '../../../core/services/categories/categories.service';
+import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
 import {Category} from '../../../core/models/categories';
+import {BaseComponent} from '../../../core/interfaces/base.component';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard-categories',
@@ -9,7 +12,7 @@ import {Category} from '../../../core/models/categories';
   styleUrls: ['./dashboard-categories.component.sass'],
   providers: [ConfirmationService]
 })
-export class DashboardCategoriesComponent implements OnInit {
+export class DashboardCategoriesComponent extends BaseComponent implements OnInit {
   categories: Category[] = [];
   TITLE_HEADER = 'Título';
   DATE_HEADER = 'Fecha de creación';
@@ -17,20 +20,38 @@ export class DashboardCategoriesComponent implements OnInit {
 
   constructor(
     private categoriesService: CategoriesService,
-    private confirmationService: ConfirmationService
-  ) { }
+    private confirmationService: ConfirmationService,
+    private alertsService: AlertsService,
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
-    this.categoriesService.getCategories().subscribe(categories => this.categories = categories)
+    this.getData();
   }
 
   confirmDelete(category: Category) {
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
-          this.categoriesService.deleteCategory(category.id);
+          this.categoriesService.deleteCategory(category.id)
+          .pipe(
+            takeUntil(this.unsubscribe$)
+          )
+          .subscribe((response) => {
+            this.alertsService.handleSuccessAlert('Categoría eliminada exitosamente!');
+            this.getData();
+          });
       }
     });
+  }
+
+  private getData() {
+    this.categoriesService.getCategories()
+    .pipe(
+      takeUntil(this.unsubscribe$)
+    )
+    .subscribe(categories => this.categories = categories);
   }
 
 }

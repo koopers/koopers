@@ -1,5 +1,8 @@
 <div class="container">
-  <h1>Nueva Categoría</h1>
+  <h1>
+    <span *ngIf="!currentCategory">Nueva Categoría</span>
+    <span *ngIf="currentCategory">Editar Categoría</span>
+  </h1>
 
   <form [formGroup]="categoryForm">
     <div class="form-group">
