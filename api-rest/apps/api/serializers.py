@@ -48,8 +48,8 @@ class SiteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TrackedSerializer(serializers.ModelSerializer):
-    # site_id = SiteSerializer(many=False)
-    # category_id = CategorySerializer(many=False)
+    site_id = CustomSiteSerializer(many=False)
+    category_id = CustomCategorySerializer(many=False)
     class Meta:
         model = TrackedSite
         fields = '__all__'
