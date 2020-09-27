@@ -29,6 +29,8 @@ import { FormUserComponent } from './components/form-user/form-user.component';
 import { DashboardTrackedSitesComponent } from './components/dashboard-tracked-sites/dashboard-tracked-sites.component';
 import { FormTrackedSitesComponent } from './components/form-tracked-sites/form-tracked-sites.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { FormSuggestedSitesComponent } from './components/form-suggested-sites/form-suggested-sites.component';
+import { DashboardSuggestedSitesComponent } from './components/dashboard-suggested-sites/dashboard-suggested-sites.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { DropdownModule } from 'primeng/dropdown';
     DashboardUsersComponent,
     FormUserComponent,
     DashboardTrackedSitesComponent,
-    FormTrackedSitesComponent
+    FormTrackedSitesComponent,
+    FormSuggestedSitesComponent,
+    DashboardSuggestedSitesComponent
   ],
   imports: [
     CommonModule,

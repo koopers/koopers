@@ -8,8 +8,10 @@
 
     <nav>
       <a [routerLink]="['/']" [routerLinkActive]="['selected']" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-      <a *ngIf="user" [routerLink]="['/admin/sites']" [routerLinkActive]="['selected']">Sitios</a>
       <a *ngIf="user" [routerLink]="['/admin/categories']" [routerLinkActive]="['selected']">Categorías</a>
+      <a *ngIf="user" [routerLink]="['/admin/sites']" [routerLinkActive]="['selected']">Sitios</a>
+      <a *ngIf="user" [routerLink]="['/admin/sections']" [routerLinkActive]="['selected']">Secciones</a>
+      <a *ngIf="user" [routerLink]="['/admin/proposals']" [routerLinkActive]="['selected']">Propuestas</a>
       <a *ngIf="user && manteiner" [routerLink]="['/admin/users']" [routerLinkActive]="['selected']">Usuarios</a>
       <a href="/">About us</a>
     </nav>
