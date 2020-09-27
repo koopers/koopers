@@ -21,8 +21,8 @@
 
       img
         
-        width:545
-        height:40px
+        width: 545
+        height: 40px
 
     a
       color: $dark-color
@@ -67,11 +67,16 @@
         &:hover
           opacity: 1
 
+        a 
+          &.register
+            color: $light-color
+        
         &:last-child a
           font-weight: bold
           background-color: $secondary-color
           padding: 10px 15px
           border-radius: 3px
+        
 
 /* Logo
 
@@ -151,13 +156,7 @@ body
 .search-bar
   width: 100%
 
-  input
-    &:focus, &:valid
-      width: 100%
-
-    &:focus, &:not(:focus) + .search-btn:focus
-      outline: transparent
-
+  .input-form 
     background: transparent
     border-radius: 1.5em
     box-shadow: 0 0 0 0.4em #171717 inset
@@ -168,6 +167,24 @@ body
     -moz-appearance: none
     appearance: none
 
+  input
+    &:focus, &:valid
+      width: 100%
+      
+    
+
+    &:focus, &:not(:focus) + .search-btn:focus
+      outline: transparent
+      background: transparent
+      border-radius: 1.5em
+      box-shadow: 0 0 0 0.4em #171717 inset
+      padding: 0.75em
+      transform: translate(0.5em, 0.5em) scale(0.5)
+      transform-origin: 100% 0
+      -webkit-appearance: none
+      -moz-appearance: none
+      appearance: none
+
     &::-webkit-search-decoration
       -webkit-appearance: none
 
@@ -177,10 +194,10 @@ body
       box-shadow: 0 0 0 0.1em #d9d9d9 inset
       transform: scale(1)
 
-  margin: auto
+      margin: auto
   
-  justify-content: center
-  max-width: 30em
+      justify-content: center
+      max-width: 30em
 
 .search-btn
   background: #171717

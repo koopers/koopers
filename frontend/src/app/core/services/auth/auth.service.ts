@@ -11,6 +11,12 @@ import { TokenService } from '../token/token.service';
 export class AuthService {
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
+  getUser(): Observable<any> {
+    return this.http
+      .get(`${environment.url_api}/auth/user/`)
+      .pipe(catchError(this.handleError));
+  }
+
   register(user): Observable<any> {
     console.log('AuthService -> constructor -> user', user);
     return this.http
@@ -34,7 +40,9 @@ export class AuthService {
 
   refreshToken(): Observable<any> {
     return this.http
-      .post(`${environment.url_api}/auth/signin/refresh/`, {refresh: this.tokenService.getRefreshToken()})
+      .post(`${environment.url_api}/auth/signin/refresh/`, {
+        refresh: this.tokenService.getRefreshToken(),
+      })
       .pipe(
         tap((data: { access: string }) => {
           this.tokenService.saveToken(data.access);
