@@ -5,33 +5,47 @@
     <app-button label='Nuevo' btn='primary' [routerLink]="['/admin/sites/new']"></app-button>
   </div>
 
-  <p-table [value]="sites">
+  <p-table
+    [value]="sites"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} entradas"
+    [rowsPerPageOptions]="[10,25,50]"
+    styleClass="p-datatable-responsive-demo"
+  >
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="title">Nombre <p-sortIcon field="title"></p-sortIcon>
+        <th pSortableColumn="title">{{TITLE_HEADER}} <p-sortIcon field="title"></p-sortIcon>
         </th>
-        <th>URL</th>
-        <th>Disponible</th>
-        <th>Acciones</th>
+        <th>{{URL_HEADER}}</th>
+        <th>{{AVAILABLE_HEADER}}</th>
+        <th>{{ACTIONS_HEADER}}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-site>
       <tr>
-        <td>{{site.title}}</td>
         <td>
+          <span class="p-column-title">{{TITLE_HEADER}}</span>
+          {{site.title}}
+        </td>
+        <td>
+          <span class="p-column-title">{{URL_HEADER}}</span>
           <a class="site-link" [href]="site.url" target="_blank">
             {{site.url}}
           </a>
         </td>
         <td>
+          <span class="p-column-title">{{AVAILABLE_HEADER}}</span>
           <app-active-column [active]="site.available"></app-active-column>
         </td>
         <td>
+          <span class="p-column-title">{{ACTIONS_HEADER}}</span>
           <app-button btn='secondary' isIcon [routerLink]="['/admin/sites', site.id]">
             <fa-icon icon="edit"></fa-icon>
           </app-button>
 
-          <app-button btn='danger' isIcon (click)="confirmDelete()">
+          <app-button btn='danger' isIcon (click)="confirmDelete(site)">
             <fa-icon icon="trash"></fa-icon>
           </app-button>
       </tr>

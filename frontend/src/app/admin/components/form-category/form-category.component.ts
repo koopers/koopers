@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
 import { CategoriesService } from 'src/app/core/services/categories/categories.service';
-import { BaseComponent } from 'src/app/shared/interfaces/base.component';
+import { BaseComponent } from 'src/app/core/interfaces/base.component';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Category } from 'src/app/core/models/categories';

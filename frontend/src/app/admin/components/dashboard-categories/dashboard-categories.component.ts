@@ -3,7 +3,7 @@ import {ConfirmationService} from 'primeng/api';
 import {CategoriesService} from '../../../core/services/categories/categories.service';
 import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
 import {Category} from '../../../core/models/categories';
-import {BaseComponent} from '../../../shared/interfaces/base.component';
+import {BaseComponent} from '../../../core/interfaces/base.component';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
