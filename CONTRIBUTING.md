@@ -14,8 +14,8 @@ git remote add upstream https://github.com/koopers/koopers.git
 
 # Sync your fork
 git fetch upstream
-git checkout master
-git merge upstream/master
+git checkout develop
+git merge upstream/develop
 ```
 
 ## Git(Hub) Workflow
