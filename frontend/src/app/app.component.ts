@@ -21,6 +21,24 @@ export class AppComponent implements OnInit {
   faPlus = faPlus;
   faEdit = faEdit;
 
+  coverCardDemo = {
+    title: 'El Universal',
+    description: 'Cover',
+    date: '2020-09-28',
+    href: '#',
+    image_src_mobile: 'https://via.placeholder.com/153x122',
+    image_src_tablet: 'https://via.placeholder.com/153x122',
+    image_src_desktop: 'https://via.placeholder.com/153x122',
+  };
+
+  siteCardDemo = {
+    title: 'El Universal',
+    href: '#',
+    image_src_mobile: 'https://via.placeholder.com/153x122',
+    image_src_tablet: 'https://via.placeholder.com/153x122',
+    image_src_desktop: 'https://via.placeholder.com/153x122',
+  };
+
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}

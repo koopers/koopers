@@ -15,22 +15,20 @@ import {
   faTimesCircle,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
-import { ButtonModule } from 'primeng/button';
-import { SidebarModule } from 'primeng/sidebar';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { ButtonComponent } from './components/button/button.component';
+import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [AlertsComponent, ButtonComponent, HeaderComponent],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    RouterModule,
-    SidebarModule,
-    ButtonModule,
+  declarations: [
+    AlertsComponent,
+    ButtonComponent,
+    CardComponent,
+    HeaderComponent,
   ],
-  exports: [AlertsComponent, ButtonComponent, HeaderComponent],
+  imports: [CommonModule, FontAwesomeModule, RouterModule],
+  exports: [AlertsComponent, ButtonComponent, CardComponent, HeaderComponent],
 })
 export class SharedModule {
   constructor(library: FaIconLibrary) {

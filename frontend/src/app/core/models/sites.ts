@@ -4,5 +4,10 @@ export interface Site {
   url: string;
   available: boolean;
   created: string;
-  updated: string;
+  updated?: string;
+  screenshots: {
+    mobile_url: string;
+    tablet_url: string;
+    desktop_url: string;
+  };
 }
