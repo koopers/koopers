@@ -4,5 +4,5 @@ export interface Site {
   url: string;
   available: boolean;
   created: string;
-  updated: string;
+  updated?: string;
 }
