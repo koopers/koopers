@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services/auth/auth.service';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,13 @@ import { AuthService } from '@core/services/auth/auth.service';
 export class HeaderComponent implements OnInit {
   user = false;
   manteiner = false;
-  constructor(private authService: AuthService, private router: Router) {}
+  visible: boolean;
+  screenWidth: number;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private primengConfig: PrimeNGConfig
+  ) {}
 
   ngOnInit(): void {
     this.authService.getUser().subscribe((user) => {
@@ -19,11 +26,14 @@ export class HeaderComponent implements OnInit {
       }
       this.user = true;
     });
+    this.primengConfig.ripple = true;
   }
 
   logout(): void {
     this.authService.logout();
     this.user = false;
+    this.visible = false;
     this.router.navigate(['/']);
   }
+
 }

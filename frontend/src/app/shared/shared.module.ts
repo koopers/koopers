@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import {
   FaIconLibrary,
   FontAwesomeModule,
@@ -14,14 +15,21 @@ import {
   faTimesCircle,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
 import { AlertsComponent } from './components/alerts/alerts.component';
-import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
-import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [AlertsComponent, ButtonComponent, HeaderComponent],
-  imports: [CommonModule, FontAwesomeModule, RouterModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    RouterModule,
+    SidebarModule,
+    ButtonModule,
+  ],
   exports: [AlertsComponent, ButtonComponent, HeaderComponent],
 })
 export class SharedModule {

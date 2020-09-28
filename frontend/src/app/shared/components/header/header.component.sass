@@ -1,127 +1,82 @@
 @import "../../../../variables"
 
-.header-login-signup
+.header
   background-color: $light-color
   box-shadow: 0 1px 1px #ccc
   padding: 20px 40px
   height: 80px
-  color: #ffffff
-  box-sizing: border-box
+  color:  $light-color
+  @media screen and ( max-width: 768px )
+    display: flex
+    justify-content: space-between
 
-
-  .header-limiter
-    max-width: 1200
-    
+  &__limiter
+    display: flex    
+    justify-content: space-between
     margin: 0 auto
 
     .logo
-      float: left
-      margin: 0
-      
+      width: 120px  
 
       img
-        
-        width: 545
-        height: 40px
-
-    a
-      color: $dark-color
-      text-decoration: none
-
+        width: 100%
+  &__content
+    display: flex
+    justify-content: space-between
+    align-items: center
     nav
-      font-family: $font-title
-      line-height: 40px
-     
-      float: left
-      margin: 0 0 0 60px
-      padding: 0
-
-      a
-        font-size: 18px
-        display: inline-block
-        padding: 0 10px
-        opacity: 0.9
-        text-decoration: none
-        line-height: 1
-
-        &:hover
-          opacity: 1
-
-        &.selected
-          color: #608bd2
-
-  
-
-    ul
-      font-family: $font-title
-      list-style: none
-      padding: 0
+      margin-left: 20px
+      ul
+        display: flex
+        list-style: none
+      @media screen and ( max-width: 768px  )
+        display: none
+    a
+      color: $dark-color 
+      text-decoration: none
       line-height: 1
-      float: right
+      margin-left: 10px
+      &.selected
+          color: #608bd2
+      &.register
+        color: $light-color
+        background-color: $secondary-color
+        padding: 10px 15px
+        border-radius: 3px
+p-button
+  .p-button
+    background: transparent !important
 
-      li
-        display: inline-block
-        margin-left: 15px
-        opacity: 0.9
+p-sidebar
+  .title
+    padding-bottom: 5px
+    margin-bottom: 20px
+    box-shadow: 0 1px 1px #ccc
 
-        &:hover
-          opacity: 1
-
-        a 
-          &.register
-            color: $light-color
-        
-        &:last-child a
-          font-weight: bold
+  ul 
+    list-style: none
+    li 
+      margin-bottom: 10px
+      &:last-of-type 
+        margin-top: 20px
+      a 
+        color: $dark-color
+        text-decoration: none
+        &.register
+          color: $light-color
           background-color: $secondary-color
           padding: 10px 15px
           border-radius: 3px
-        
+          margin: 10px 0
+        &.selected
+          color: #608bd2
 
-/* Logo
+@media screen and ( min-width: 769px) 
+  p-button
+    display: none
+    
 
-/* The navigation links
-
-/* Login/Sign up buttons
-
-/* The sign up button
-
-/* Making the header responsive
-
-@media all and (max-width: 600px)
-  .header-login-signup
-    padding: 25px
-    height: 85px
-
-    .header-limiter
-      h1
-        float: none
-        margin: -8px 0 2px
-        text-align: center
-        font-size: 24px
-        line-height: 1
-
-      nav
-        margin: 0
-        float: none
-
-        li a
-          font-size: 13px
-
-      ul
-        display: none
-
-/* For the headers to look good, be sure to reset the margin and padding of the body
-
-
-*
-  border: 0
-  box-sizing: border-box
-  margin: 0
-  padding: 0
-
-:root
-  font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320))
+  
 
 body, button, input
   font-family: 1em $font-title
