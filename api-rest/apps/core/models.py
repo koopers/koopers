@@ -71,19 +71,17 @@ class TrackedSite(models.Model):
 def upload_screenshot(instance, filename):
     filename_base, filename_ext = os.path.splitext(filename)
     return 'schreenshots/{0}/{1}%Y%m%d{2}'.format(instance.tracked_site, filename_base, filename_ext)
+
 class Screenshot(models.Model):
     """Model definition for Screenshot."""
-    SCREEN_SIZE_CHOICES = (
-        ('Mobile', 'Mobile'),
-        ('Tablet', 'Tablet'),
-        ('Desktop', 'Desktop'),
-    )
+    
     tracked_site = models.ForeignKey(TrackedSite, on_delete=models.CASCADE)
-    photo = models.CharField(max_length=255)
-    title = models.CharField(max_length=255)
-    screen_size = models.CharField(max_length=200, choices=SCREEN_SIZE_CHOICES)
+    mobile_url = models.CharField(max_length=255, blank=True, null=True)
+    tablet_url = models.CharField(max_length=255, blank=True, null=True)
+    desktop_url = models.CharField(max_length=255, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
     class Meta:
         """Meta definition for Screenshot."""
         verbose_name = 'Screenshot'
