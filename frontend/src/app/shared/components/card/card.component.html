@@ -1,12 +1,14 @@
 <article class="c-card">
-  <a class="c-card__link" [href]="href">
+  <a class="c-card__link" [href]="item.href">
     <div class="c-card__image-wrapper">
       <h3 class="c-card__title">{{ item.title }}</h3>
-      <img class="c-card__image" [src]="imageSrc" alt="" />
+      <img class="c-card__image" [src]="item.image_src_mobile" alt="" />
     </div>
-    <p class="c-card__description">{{ description }}</p>
-    <time class="c-card__date" [attr.datetime]="item.updated">{{
-      item.updated | date: 'short'
+    <p *ngIf="item.description" class="c-card__description">
+      {{ item.description }}
+    </p>
+    <time *ngIf="item.date" class="c-card__date" [attr.datetime]="item.date">{{
+      item.date | date: 'short'
     }}</time>
   </a>
 </article>
