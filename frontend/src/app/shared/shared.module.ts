@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import {
   FaIconLibrary,
   FontAwesomeModule,
@@ -15,13 +16,17 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { AlertsComponent } from './components/alerts/alerts.component';
-import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
-import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [AlertsComponent, ButtonComponent, CardComponent, HeaderComponent],
+  declarations: [
+    AlertsComponent,
+    ButtonComponent,
+    CardComponent,
+    HeaderComponent,
+  ],
   imports: [CommonModule, FontAwesomeModule, RouterModule],
   exports: [AlertsComponent, ButtonComponent, CardComponent, HeaderComponent],
 })
