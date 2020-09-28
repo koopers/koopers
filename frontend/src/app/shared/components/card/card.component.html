@@ -5,8 +5,8 @@
       <img class="c-card__image" [src]="imageSrc" alt="" />
     </div>
     <p class="c-card__description">{{ description }}</p>
-    <time class="c-card__date" [dateTime]="item.updated">{{
-      item.updated
+    <time class="c-card__date" [attr.datetime]="item.updated">{{
+      item.updated | date: 'short'
     }}</time>
   </a>
 </article>
