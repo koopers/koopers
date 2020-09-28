@@ -11,7 +11,7 @@ export class UsersService {
 
   constructor() { }
 
-  getUsers(): Observable<User[]> {
+  getAll(): Observable<User[]> {
     return of(
       [
         {

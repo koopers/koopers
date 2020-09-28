@@ -37,7 +37,7 @@ export class FormSiteComponent extends BaseComponent implements OnInit {
     this.route.params.subscribe(params => {
       const {id} = params;
       if (id) {
-        this.sitesService.getSite(id)
+        this.sitesService.getOne(id)
         .pipe(
           takeUntil(this.unsubscribe$)
         ).subscribe(site => {
@@ -51,7 +51,7 @@ export class FormSiteComponent extends BaseComponent implements OnInit {
   onSave(): void {
     if (this.currentSite) {
       this.sitesService
-      .updateSite(
+      .update(
         this.currentSite.id,
         this.siteForm.value
       )
@@ -64,7 +64,7 @@ export class FormSiteComponent extends BaseComponent implements OnInit {
       });
     } else {
       this.sitesService
-      .createSite(this.siteForm.value)
+      .create(this.siteForm.value)
       .pipe(
         takeUntil(this.unsubscribe$)
       ).subscribe((site) => {

@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService} from 'primeng/api';
-import {SitesService} from '../../../core/services/sites/sites.service';
-import {Site} from '../../../core/models/sites';
+import {SuggestedSitesService} from '../../../core/services/suggested-sites/suggested-sites.service';
+import {SuggestedSite} from '../../../core/models/suggested-sites';
 import { BaseComponent } from 'src/app/core/interfaces/base.component';
 import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-dashboard-sites',
-  templateUrl: './dashboard-sites.component.html',
-  styleUrls: ['./dashboard-sites.component.sass'],
+  selector: 'app-dashboard-suggested-sites',
+  templateUrl: './dashboard-suggested-sites.component.html',
+  styleUrls: ['./dashboard-suggested-sites.component.sass'],
   providers: [ConfirmationService]
 })
-export class DashboardSitesComponent extends BaseComponent implements OnInit {
-  sites: Site[] = [];
+export class DashboardSuggestedSitesComponent extends BaseComponent implements OnInit {
+  suggestedSites: SuggestedSite[] = [];
   TITLE_HEADER = 'Título';
+  CATEGORIES_HEADER = 'Categorias';
   URL_HEADER = 'URL';
-  AVAILABLE_HEADER = 'Disponible';
   ACTIONS_HEADER = 'Acciones';
 
   constructor(
-    private sitesService: SitesService,
+    private sSitesService: SuggestedSitesService,
     private alertsService: AlertsService,
     private confirmationService: ConfirmationService
   ) {
@@ -31,16 +31,16 @@ export class DashboardSitesComponent extends BaseComponent implements OnInit {
     this.getData();
   }
 
-  confirmDelete(site: Site) {
+  confirmDelete(tSite: SuggestedSite) {
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
-        this.sitesService.delete(site.id)
+        this.sSitesService.delete(tSite.id)
         .pipe(
           takeUntil(this.unsubscribe$)
         )
         .subscribe((response) => {
-          this.alertsService.handleSuccessAlert('Sitio eliminado exitosamente!');
+          this.alertsService.handleSuccessAlert('Propuesta eliminada exitosamente!');
           this.getData();
         });
       }
@@ -48,11 +48,12 @@ export class DashboardSitesComponent extends BaseComponent implements OnInit {
   }
 
   private getData() {
-    this.sitesService.getAll()
+    this.sSitesService.getAll()
     .pipe(
       takeUntil(this.unsubscribe$)
     )
-    .subscribe(sites => this.sites = sites);
+    .subscribe(suggestedSites => this.suggestedSites = suggestedSites);
   }
+
 
 }
