@@ -25,8 +25,6 @@ urlpatterns = [
     path('auth/signin/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/signin/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/signup/', UserCreateView.as_view(), name='users-create'),
-    # path('auth/logout/', LogoutUserView.as_view(), name='logout'),
-    
     path('users/', ListUsersView.as_view(), name='users'),
     path('users/<int:pk>', UserDetailView.as_view(), name='user-detail'),
     path('categories/', ListCategoryView.as_view(), name='categories'),
@@ -39,4 +37,7 @@ urlpatterns = [
     path('tracked-sites/<int:pk>', TrackedSiteDetailView.as_view(), name='tracked-site-detail'),
     path('suggested-sites/', ListSuggestedSiteView.as_view(), name='suggested-sites'),
     path('suggested-sites/<int:pk>', SuggestedSiteDetailView.as_view(), name='suggested-site-detail'),
+    
+    # path('sites/', ListSiteView.as_view(), name='sites'),
+    
 ]

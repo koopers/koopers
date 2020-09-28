@@ -34,7 +34,7 @@ export class DashboardCategoriesComponent extends BaseComponent implements OnIni
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
-          this.categoriesService.deleteCategory(category.id)
+          this.categoriesService.delete(category.id)
           .pipe(
             takeUntil(this.unsubscribe$)
           )
@@ -47,7 +47,7 @@ export class DashboardCategoriesComponent extends BaseComponent implements OnIni
   }
 
   private getData() {
-    this.categoriesService.getCategories()
+    this.categoriesService.getAll()
     .pipe(
       takeUntil(this.unsubscribe$)
     )

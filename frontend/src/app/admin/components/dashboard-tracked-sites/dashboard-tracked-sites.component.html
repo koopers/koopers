@@ -1,0 +1,62 @@
+<div class="container">
+  <h1>Secciones</h1>
+
+  <div class="flex-justify-end">
+    <app-button label='Nueva' btn='primary' [routerLink]="['/admin/sections/new']"></app-button>
+  </div>
+
+  <p-table
+    [value]="trackedSites"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} entradas"
+    [rowsPerPageOptions]="[10,25,50]"
+    styleClass="p-datatable-responsive-demo"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="title">{{SITE_HEADER}} <p-sortIcon field="site_id"></p-sortIcon>
+        </th>
+        <th>{{CATEGORY_HEADER}}</th>
+        <th>{{URL_HEADER}}</th>
+        <th>{{ACTIONS_HEADER}}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-trackedSite>
+      <tr>
+        <td>
+          <span class="p-column-title">{{SITE_HEADER}}</span>
+          {{trackedSite.site_id}}
+        </td>
+        <td>
+          <span class="p-column-title">{{CATEGORY_HEADER}}</span>
+          {{trackedSite.category_id}}
+        </td>
+        <td>
+          <span class="p-column-title">{{URL_HEADER}}</span>
+          <a class="site-link" [href]="trackedSite.path_url" target="_blank">
+            {{trackedSite.path_url}}
+          </a>
+        </td>
+        <td>
+          <span class="p-column-title">{{ACTIONS_HEADER}}</span>
+          <app-button btn='secondary' isIcon [routerLink]="['/admin/sections', trackedSite.id]">
+            <fa-icon icon="edit"></fa-icon>
+          </app-button>
+
+          <app-button btn='danger' isIcon (click)="confirmDelete(trackedSite)">
+            <fa-icon icon="trash"></fa-icon>
+          </app-button>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-confirmDialog #cd header="Borrar Sección" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <app-button label='Cancelar' btn='default' (click)="cd.reject()"></app-button>
+    <app-button label='Eliminar' btn='danger' (click)="cd.accept()"></app-button>
+  </p-footer>
+</p-confirmDialog>
+

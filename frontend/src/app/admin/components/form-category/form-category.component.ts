@@ -35,7 +35,7 @@ export class FormCategoryComponent extends BaseComponent implements OnInit {
     this.route.params.subscribe(params => {
       const {id} = params;
       if (id) {
-        this.categoryService.getCategory(id)
+        this.categoryService.getOne(id)
         .pipe(
           takeUntil(this.unsubscribe$)
         )
@@ -50,7 +50,7 @@ export class FormCategoryComponent extends BaseComponent implements OnInit {
   onSave(): void {
     if (this.currentCategory) {
       this.categoryService
-      .updateCategory(
+      .update(
         this.currentCategory.id,
         this.categoryForm.value
       )
@@ -63,7 +63,7 @@ export class FormCategoryComponent extends BaseComponent implements OnInit {
       });
     } else {
       this.categoryService
-      .createCategory(this.categoryForm.value)
+      .create(this.categoryForm.value)
       .pipe(
         takeUntil(this.unsubscribe$)
       )
