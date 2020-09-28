@@ -1,281 +1,81 @@
 @import "../../../../variables"
 
-.header-login-signup
+.header
   background-color: $light-color
   box-shadow: 0 1px 1px #ccc
   padding: 20px 40px
   height: 80px
-  color: #ffffff
-  box-sizing: border-box
+  color:  $light-color
+  @media screen and ( max-width: 768px )
+    display: flex
+    justify-content: space-between
 
-
-  .header-limiter
-    max-width: 1200
-    
+  &__limiter
+    display: flex    
+    justify-content: space-between
     margin: 0 auto
 
     .logo
-      float: left
-      margin: 0
-      
+      width: 120px  
 
       img
-        
-        width: 545
-        height: 40px
-
-    a
-      color: $dark-color
-      text-decoration: none
-
+        width: 100%
+  &__content
+    display: flex
+    justify-content: space-between
+    align-items: center
     nav
-      font-family: $font-title
-      line-height: 40px
-     
-      float: left
-      margin: 0 0 0 60px
-      padding: 0
-
-      a
-        font-size: 18px
-        display: inline-block
-        padding: 0 10px
-        opacity: 0.9
-        text-decoration: none
-        line-height: 1
-
-        &:hover
-          opacity: 1
-
-        &.selected
-          color: #608bd2
-
-  
-
-    ul
-      font-family: $font-title
-      list-style: none
-      padding: 0
+      margin-left: 20px
+      ul
+        display: flex
+        list-style: none
+        align-items: center
+      @media screen and ( max-width: 768px  )
+        display: none
+    a
+      color: $dark-color 
+      text-decoration: none
       line-height: 1
-      float: right
+      margin-left: 10px
+      &.selected
+          color: #608bd2
+      &.register
+        color: $light-color
+        background-color: $secondary-color
+        padding: 10px 15px
+        border-radius: 3px
+p-button
+  .p-button
+    background: transparent !important
 
-      li
-        display: inline-block
-        margin-left: 15px
-        opacity: 0.9
+p-sidebar
+  .title
+    padding-bottom: 5px
+    margin-bottom: 20px
+    box-shadow: 0 1px 1px #ccc
 
-        &:hover
-          opacity: 1
-
-        a 
-          &.register
-            color: $light-color
-        
-        &:last-child a
-          font-weight: bold
+  ul 
+    list-style: none
+    li 
+      margin-bottom: 10px
+      &:last-of-type 
+        margin-top: 20px
+      a 
+        color: $dark-color
+        text-decoration: none
+        &.register
+          color: $light-color
           background-color: $secondary-color
           padding: 10px 15px
           border-radius: 3px
-        
+          margin: 10px 0
+        &.selected
+          color: #608bd2
 
-/* Logo
-
-/* The navigation links
-
-/* Login/Sign up buttons
-
-/* The sign up button
-
-/* Making the header responsive
-
-@media all and (max-width: 600px)
-  .header-login-signup
-    padding: 25px
-    height: 85px
-
-    .header-limiter
-      h1
-        float: none
-        margin: -8px 0 2px
-        text-align: center
-        font-size: 24px
-        line-height: 1
-
-      nav
-        margin: 0
-        float: none
-
-        li a
-          font-size: 13px
-
-      ul
-        display: none
-
-/* For the headers to look good, be sure to reset the margin and padding of the body
-
-
-*
-  border: 0
-  box-sizing: border-box
-  margin: 0
-  padding: 0
-
-:root
-  font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320))
-
-body, button, input
-  font-family: 1em $font-title
-  line-height: 1.5em
-
-body, input
-  color: #171717
-
-body, .search-bar
-  display: flex
-
-body
-  background: #f1f1f1
-  height: 100vh
-
-.search-bar input
-  transition: all 0.25s ease-out
-
-.search-btn
-  transition: all 0.25s ease-out
-
-  &:before, &:after
-    transition: all 0.25s ease-out
-
-.search-bar input, .search-btn
-  width: 3em
-  height: 3em
-
-.search-bar input:invalid:not(:focus), .search-btn
-  cursor: pointer
-
-.search-bar
-  width: 100%
-
-  .input-form 
-    background: transparent
-    border-radius: 1.5em
-    box-shadow: 0 0 0 0.4em #171717 inset
-    padding: 0.75em
-    transform: translate(0.5em, 0.5em) scale(0.5)
-    transform-origin: 100% 0
-    -webkit-appearance: none
-    -moz-appearance: none
-    appearance: none
-
-  input
-    &:focus, &:valid
-      width: 100%
-      
+@media screen and ( min-width: 769px) 
+  p-button
+    display: none
     
 
-    &:focus, &:not(:focus) + .search-btn:focus
-      outline: transparent
-      background: transparent
-      border-radius: 1.5em
-      box-shadow: 0 0 0 0.4em #171717 inset
-      padding: 0.75em
-      transform: translate(0.5em, 0.5em) scale(0.5)
-      transform-origin: 100% 0
-      -webkit-appearance: none
-      -moz-appearance: none
-      appearance: none
-
-    &::-webkit-search-decoration
-      -webkit-appearance: none
-
-    &:focus, &:valid
-      background: #fff
-      border-radius: 0.375em 0 0 0.375em
-      box-shadow: 0 0 0 0.1em #d9d9d9 inset
-      transform: scale(1)
-
-      margin: auto
   
-      justify-content: center
-      max-width: 30em
 
-.search-btn
-  background: #171717
-  border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0
-  padding: 0.75em
-  position: relative
-  transform: translate(0.25em, 0.25em) rotate(45deg) scale(0.25, 0.125)
-  transform-origin: 0 50%
-
-  &:before, &:after
-    content: ""
-    display: block
-    opacity: 0
-    position: absolute
-
-  &:before
-    border-radius: 50%
-    box-shadow: 0 0 0 0.2em #f1f1f1 inset
-    top: 0.75em
-    left: 0.75em
-    width: 1.2em
-    height: 1.2em
-
-  &:after
-    background: #f1f1f1
-    border-radius: 0 0.25em 0.25em 0
-    top: 51%
-    left: 51%
-    width: 0.75em
-    height: 0.25em
-    transform: translate(0.2em, 0) rotate(45deg)
-    transform-origin: 0 50%
-
-  span
-    display: inline-block
-    overflow: hidden
-    width: 1px
-    height: 1px
-
-/* Active state
-
-.search-bar input
-  &:focus + .search-btn, &:valid + .search-btn
-    background: #2762f3
-    border-radius: 0 0.375em 0.375em 0
-    transform: scale(1)
-
-  &:focus + .search-btn
-    &:before, &:after
-      opacity: 1
-
-  &:valid + .search-btn
-    &:before, &:after
-      opacity: 1
-
-  &:focus + .search-btn:hover
-    background: #0c48db
-
-  &:valid
-    + .search-btn:hover, &:not(:focus) + .search-btn:focus
-      background: #0c48db
-
-  &:focus + .search-btn:active, &:valid + .search-btn:active
-    transform: translateY(1px)
-
-@media screen and (prefers-color-scheme: dark)
-  body, input
-    color: #f1f1f1
-
-  body
-    background: #171717
-
-  .search-bar input
-    box-shadow: 0 0 0 0.4em #f1f1f1 inset
-
-    &:focus, &:valid
-      background: #3d3d3d
-      box-shadow: 0 0 0 0.1em #3d3d3d inset
-
-  .search-btn
-    background: #f1f1f1
