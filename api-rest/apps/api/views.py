@@ -109,7 +109,12 @@ def SearchView(request):
     for sshot in screenshots:
         aux = {}
         aux['id'] = sshot['id']
-        aux['tracked_site_id'] = sshot['tracked_site_id']
+        # tsite_id = sshot['tracked_site_id']
+        tsite = TrackedSite.objects.get(pk=sshot['tracked_site_id'])
+        aux['tracked_site_id'] = {
+            'title': tsite.site_id.title,
+            'category': tsite.category_id.title
+        }
         aux['mobile_url'] = sshot['mobile_url']
         aux['tablet_url'] = sshot['tablet_url']
         aux['desktop_url'] = sshot['desktop_url']
