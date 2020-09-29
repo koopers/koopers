@@ -26,8 +26,9 @@
       </div>
     </form>
   </div>
-  <div class="search__data">
+  <div class="search__data" *ngIf="sites">
     <h5>Sitios encontrados</h5>
+    <p *ngIf="sites.length === 0">No encontramos ningún resultado</p>
     <div class="search__data--content">
       <div *ngFor="let site of sites">
         <app-card [item]="site"></app-card>
