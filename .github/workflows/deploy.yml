@@ -24,6 +24,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
+      - run: cd ./frontend
       - run: npm install
       - run: npm run build
       - uses: actions/upload-artifact@v2
