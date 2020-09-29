@@ -79,6 +79,8 @@ class Screenshot(models.Model):
     mobile_url = models.CharField(max_length=255, blank=True, null=True)
     tablet_url = models.CharField(max_length=255, blank=True, null=True)
     desktop_url = models.CharField(max_length=255, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     created = models.DateField(auto_now_add=True, blank=True, null=True)
     updated = models.DateField(auto_now=True, blank=True, null=True)
 
