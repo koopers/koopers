@@ -26,4 +26,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
       this.screenshots = data;
     });
   }
+
+  search(event: Event) {
+    console.log("HomeComponent -> search -> event", event)
+    console.log('hola');
+  }
 }

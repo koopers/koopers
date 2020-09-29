@@ -1,0 +1,38 @@
+<section class="search">
+  <div class="search__container">
+    <form class="form" [formGroup]="form" (ngSubmit)="search($event)">
+      <div class="form-group">
+        <label class="form-group__label" for="site">Sitio</label>
+        <input class="form-group__input" type="text" id="site" formControlName="site">
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="categories">Categorias</label>
+        <select class="form-group__input" type="text" id="categories" formControlName="categories">
+          <option value="1">hola</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="startDate">Desde</label>
+        <p-calendar showIcon="true" [touchUI]="true" formControlName="startDate"></p-calendar>
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="endDate">Hasta</label>
+        <p-calendar showIcon="true" [touchUI]="true" formControlName="endDate" icon="pi pi-calendar"></p-calendar>
+      </div>
+      <div class="form-button">
+        <app-button btn='primary' isIcon [disabled]="form.invalid" type="submit">
+          <fa-icon icon="search"></fa-icon>
+        </app-button>
+      </div>
+    </form>
+  </div>
+  <div class="search__data" *ngIf="sites">
+    <h5>Sitios encontrados</h5>
+    <p *ngIf="sites.length === 0">No encontramos ningún resultado.</p>
+    <div class="search__data--content">
+      <div *ngFor="let site of sites">
+        <app-card [item]="site"></app-card>
+      </div>
+    </div>
+  </div>
+</section>
