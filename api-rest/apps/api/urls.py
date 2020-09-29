@@ -21,6 +21,8 @@ app_name = 'api'
 
 urlpatterns = [
     
+    path('add-sshot/', AddScreenshot, name='add-screenshot'),
+    path('search/', SearchView, name='search'),
     path('auth/user/', UserInfoView.as_view(), name='user'),
     path('auth/signin/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/signin/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
