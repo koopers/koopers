@@ -6,6 +6,7 @@ export interface Screenshot {
   tablet_url: string;
   tracked_site: {
     category_id: {
+      id?: number;
       title: string;
     }
     created: string;
