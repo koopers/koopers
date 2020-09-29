@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 class CustomCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['title']
+        fields = ['id','title']
 
 class CustomSiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Site
-        fields = ['title','url']
+        fields = ['id','title','url']
 
 class CustomTrackedSerializer(serializers.ModelSerializer):
     site_id = CustomSiteSerializer(many=False)
