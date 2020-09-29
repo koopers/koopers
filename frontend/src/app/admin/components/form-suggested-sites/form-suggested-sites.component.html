@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>
+    <span *ngIf="!currentSuggestedSite">Nueva Propuesta</span>
+    <span *ngIf="currentSuggestedSite">Editar Propuesta</span>
+  </h1>
+
+  <form [formGroup]="suggestedForm">
+    <div class="form-group">
+      <label class="form-group__label" for="title">Título</label>
+      <input class="form-group__input" type="text" id="title" formControlName="title">
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label" for="url">URL</label>
+      <input class="form-group__input" type="url" id="url" formControlName="url">
+    </div>
+
+    <div class="form-group-row mb-0">
+      <label class="form-group-row__label mr-1">Categorías</label>
+      <app-button isIcon btn='primary' (click)="addCategory()">
+        <fa-icon icon="plus"></fa-icon>
+      </app-button>
+    </div>
+
+    <div *ngFor="let control of categories.controls; index as i">
+      <div class="form-group-row">
+        <input class="form-group-row__input mr-1" type="text" [formControl]="categories.controls[i]">
+        <app-button isIcon btn='danger m-0' (click)="removeCategory(i)">
+          <fa-icon icon="trash"></fa-icon>
+        </app-button>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="flex-justify-end">
+    <app-button label='Cancelar' btn='default' (click)="goBack()"></app-button>
+    <app-button label='Guardar' btn='primary' (click)="onSave()"></app-button>
+  </div>
+</div>
+

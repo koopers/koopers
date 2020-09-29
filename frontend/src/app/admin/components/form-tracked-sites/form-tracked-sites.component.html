@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>
+    <span *ngIf="!currentTrackedSite">Nueva Sección</span>
+    <span *ngIf="currentTrackedSite">Editar Sección</span>
+  </h1>
+
+  <form [formGroup]="trackedSiteForm">
+    <div class="form-group">
+      <label class="form-group__label" for="path_url">URL</label>
+      <input class="form-group__input" type="text" id="path_url" formControlName="path_url">
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label" for="site_id">Sitio</label>
+      <p-dropdown [options]="sites" formControlName="site_id" id="site_id"></p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label" for="category_id">Categoría</label>
+      <p-dropdown [options]="categories" formControlName="category_id" id="category_id"></p-dropdown>
+    </div>
+  </form>
+
+  <div class="flex-justify-end">
+    <app-button label='Cancelar' btn='default' (click)="goBack()"></app-button>
+    <app-button label='Guardar' btn='primary' (click)="onSave()"></app-button>
+  </div>
+</div>
+

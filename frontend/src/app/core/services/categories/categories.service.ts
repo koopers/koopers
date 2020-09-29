@@ -11,31 +11,31 @@ import { catchError } from 'rxjs/operators';
 export class CategoriesService {
   constructor(private http: HttpClient) {}
 
-  getCategories(): Observable<Category[]> {
+  getAll(): Observable<Category[]> {
     return this.http
       .get<Category[]>(`${environment.url_api}/categories/`)
       .pipe(catchError(this.handleError));
   }
 
-  createCategory(body: {title: string}): Observable<Category> {
+  create(body: {title: string}): Observable<Category> {
     return this.http
     .post<Category>(`${environment.url_api}/categories/`, body)
     .pipe(catchError(this.handleError));
   }
 
-  getCategory(id: number): Observable<Category> {
+  getOne(id: number): Observable<Category> {
     return this.http
     .get<Category>(`${environment.url_api}/categories/${id}`)
     .pipe(catchError(this.handleError));
   }
 
-  updateCategory(id: number, body: {title: string}): Observable<Category> {
+  update(id: number, body: {title: string}): Observable<Category> {
     return this.http
     .put<Category>(`${environment.url_api}/categories/${id}`, body)
     .pipe(catchError(this.handleError));
   }
 
-  deleteCategory(id: number): Observable<Category> {
+  delete(id: number): Observable<Category> {
     return this.http
     .delete<Category>(`${environment.url_api}/categories/${id}`)
     .pipe(catchError(this.handleError));
