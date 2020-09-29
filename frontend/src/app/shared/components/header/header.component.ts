@@ -12,7 +12,6 @@ export class HeaderComponent implements OnInit {
   user = false;
   manteiner = false;
   visible: boolean;
-  screenWidth: number;
   constructor(
     private authService: AuthService,
     private router: Router,
