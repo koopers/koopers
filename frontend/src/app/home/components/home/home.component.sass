@@ -1,7 +1,7 @@
 @import "../../../../variables"
   
 .home 
-  padding: 20px
+  padding: 3rem 1.5rem
   &__container
     display: grid
     grid-template-columns: 20% 80%
@@ -9,12 +9,13 @@
     @media screen and ( max-width: 768px  )
       display: block
   &__sities
-    border-right: 0.5px solid $gray-color
+    border-right: 0.2px solid $gray-color
     margin: 0 auto
     padding-right: 10px
     @media screen and ( max-width: 768px  )
       border: none
     &--container
+      padding: 20px
       @media screen and ( max-width: 768px  )
         display: flex
         overflow-y: auto
@@ -23,5 +24,6 @@
         margin-right: 10px
   &__covers
     &--container
+      padding: 20px
       display: grid
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))

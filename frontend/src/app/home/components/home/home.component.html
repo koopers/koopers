@@ -1,7 +1,7 @@
 <section class="home">
   <div class="home__container">
     <aside class="home__sities">
-      <h5>Sitios</h5>
+      <h3>Sitios</h3>
       <div class="home__sities--container">
         <div class="home__sities--content" *ngFor="let site of sites">
           <app-card [item]="site"></app-card>
@@ -9,7 +9,7 @@
       </div>
     </aside>
     <section class="home__covers">
-      <h5>Portadas</h5>
+      <h3>Portadas</h3>
       <div class="home__covers--container">
         <div class="home__covers--content" *ngFor="let screenshot of screenshots">
           <app-card [item]="screenshot"></app-card>
