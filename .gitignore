@@ -1,2 +1,9 @@
 // Django virtual environment
 .venv
+*.pyc
+__pycache__/
+media/
+.vscode/
+.env
+celerybeat*
+db.sqlite3
