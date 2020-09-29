@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import logout
+from django.utils import timezone
 from rest_framework import generics
 from .serializers import *
 from ..core.models import *
@@ -19,7 +19,7 @@ class ListTrackedSiteView(generics.ListCreateAPIView):
     serializer_class = TrackedSerializer
 
 class ListSiteView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     queryset = Site.objects.all()
     serializer_class = SiteSerializer
 
@@ -29,7 +29,7 @@ class ListSuggestedSiteView(generics.ListCreateAPIView):
     serializer_class = SuggestedSiteSerializer
 
 class ListCategoryView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
@@ -91,3 +91,45 @@ class LogoutUserView(APIView):
             "message":"You've been logged out succesfully."
         }
         return Response(content)
+
+@api_view(['GET', 'POST'])
+def SearchView(request):
+
+    amount = 10
+    page = 0 if not request.GET.get('page') else int(request.GET.get('page'))
+    skip = page * amount
+    rows = skip + amount
+
+    start_date = timezone.datetime.fromtimestamp(int(request.GET.get('start_date')))
+    end_date = timezone.datetime.fromtimestamp(int(request.GET.get('end_date')))
+    date = start_date.date()
+    screenshots = Screenshot.objects.filter(created__lt=date).values()[skip:(skip+amount)]
+
+    result = []
+    for sshot in screenshots:
+        aux = {}
+        aux['id'] = sshot['id']
+        aux['tracked_site_id'] = sshot['tracked_site_id']
+        aux['mobile_url'] = sshot['mobile_url']
+        aux['tablet_url'] = sshot['tablet_url']
+        aux['desktop_url'] = sshot['desktop_url']
+        result.append(aux)
+
+    return Response({
+        'message': 'ok',
+        # 'results':screenshots
+        'result': result
+    })
+
+@api_view(['POST'])
+def AddScreenshot(request):
+    if request.method == 'POST':
+        
+        url = "https://static01.nyt.com/images/2020/05/24/reader-center/NYT-front-page-05-24-20/NYT-front-page-05-24-20-videoSixteenByNineJumbo1600-v2.jpg"
+        tsite = TrackedSite.objects.get(pk=6)
+        sshot = Screenshot(tracked_site=tsite, mobile_url=url, tablet_url=url, desktop_url=url)
+        sshot.save()
+        
+        return Response({
+            'message':'ok'
+        })

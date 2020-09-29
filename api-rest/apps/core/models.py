@@ -10,8 +10,8 @@ class Category(models.Model):
     """Model definition for Category."""
     title = models.CharField(max_length=50)
     slug = models.SlugField(blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateField(auto_now=True, blank=True, null=True)
     class Meta:
         """Meta definition for Category."""
         verbose_name = 'Category'
@@ -28,8 +28,8 @@ class SuggestedSite(models.Model):
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     categories = models.CharField(max_length=200)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateField(auto_now=True, blank=True, null=True)
     class Meta:
         """Meta definition for SuggestedSite."""
         verbose_name = 'SuggestedSite'
@@ -43,8 +43,8 @@ class Site(models.Model):
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     available = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateField(auto_now=True, blank=True, null=True)
     class Meta:
         """Meta definition for Site."""
         verbose_name = 'Site'
@@ -58,8 +58,8 @@ class TrackedSite(models.Model):
     site_id = models.ForeignKey(Site, on_delete=models.CASCADE)
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     path_url = models.CharField(max_length=200)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateField(auto_now=True, blank=True, null=True)
     class Meta:
         """Meta definition for TrackedSite."""
         verbose_name = 'TrackedSite'
@@ -79,8 +79,8 @@ class Screenshot(models.Model):
     mobile_url = models.CharField(max_length=255, blank=True, null=True)
     tablet_url = models.CharField(max_length=255, blank=True, null=True)
     desktop_url = models.CharField(max_length=255, blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateField(auto_now=True, blank=True, null=True)
 
     class Meta:
         """Meta definition for Screenshot."""
