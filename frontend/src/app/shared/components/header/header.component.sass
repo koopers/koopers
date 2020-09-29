@@ -30,6 +30,8 @@
         display: flex
         list-style: none
         align-items: center
+        li
+          margin-left: 10px
       @media screen and ( max-width: 768px  )
         display: none
     a
@@ -49,15 +51,19 @@ p-button
     background: transparent !important
 
 p-sidebar
+  .p-sidebar-content 
+    .p-sidebar .p-sidebar-close
+      height: auto
   .title
-    padding-bottom: 5px
-    margin-bottom: 20px
+    padding-bottom: 10px
     box-shadow: 0 1px 1px #ccc
 
   ul 
     list-style: none
+    margin: 20px
     li 
       margin-bottom: 10px
+      
       &:last-of-type 
         margin-top: 20px
       a 
