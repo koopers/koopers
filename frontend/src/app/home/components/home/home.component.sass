@@ -1,0 +1,27 @@
+@import "../../../../variables"
+  
+.home 
+  padding: 20px
+  &__container
+    display: grid
+    grid-template-columns: 20% 80%
+    gap: 20px
+    @media screen and ( max-width: 768px  )
+      display: block
+  &__sities
+    border-right: 0.5px solid $gray-color
+    margin: 0 auto
+    padding-right: 10px
+    @media screen and ( max-width: 768px  )
+      border: none
+    &--container
+      @media screen and ( max-width: 768px  )
+        display: flex
+        overflow-y: auto
+    &--content
+      @media screen and ( max-width: 768px )
+        margin-right: 10px
+  &__covers
+    &--container
+      display: grid
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
