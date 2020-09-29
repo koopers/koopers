@@ -1,15 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Site } from 'src/app/core/models/sites';
-
-interface CardItem {
-  title: string;
-  description?: string;
-  date?: string;
-  href: string;
-  image_src_mobile: string;
-  image_src_tablet: string;
-  image_src_desktop: string;
-}
+import { Screenshot } from '@core/models/screenshots';
+import { Site } from '@core/models/sites';
 
 @Component({
   selector: 'app-card',
@@ -17,7 +8,7 @@ interface CardItem {
   styleUrls: ['./card.component.sass'],
 })
 export class CardComponent implements OnInit {
-  @Input() item: CardItem;
+  @Input() item: Site & Screenshot;
   @Output() clickCard?: EventEmitter<string> = new EventEmitter();
 
   constructor() {}

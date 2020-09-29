@@ -1,14 +1,16 @@
 <article class="c-card">
-  <a class="c-card__link" [href]="item.href">
+  <a class="c-card__link" [routerLink]="['/detail/']">
     <div class="c-card__image-wrapper">
-      <h3 class="c-card__title">{{ item.title }}</h3>
-      <img class="c-card__image" [src]="item.image_src_mobile" alt="" />
+      <h6 *ngIf="!item.tracked_site" class="c-card__title">{{ item.title }}</h6>
+      <h6 class="c-card__title" *ngIf="item.tracked_site">{{ item.tracked_site.site_id.title }}</h6>
+
+      <img class="c-card__image" [src]="item.mobile_url || 'assets/img/no-image.png'" alt="" />
     </div>
-    <p *ngIf="item.description" class="c-card__description">
-      {{ item.description }}
+    <p *ngIf="item.tracked_site" class="c-card__description">
+      {{ item.tracked_site.category_id.title }}
     </p>
-    <time *ngIf="item.date" class="c-card__date" [attr.datetime]="item.date">{{
-      item.date | date: 'short'
+    <time *ngIf="item.tracked_site" class="c-card__date" [attr.datetime]="item.tracked_site.created">{{
+      item.tracked_site.created | date: 'short'
     }}</time>
   </a>
 </article>

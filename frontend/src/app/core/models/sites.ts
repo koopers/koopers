@@ -5,9 +5,5 @@ export interface Site {
   available: boolean;
   created: string;
   updated?: string;
-  screenshots: {
-    mobile_url: string;
-    tablet_url: string;
-    desktop_url: string;
-  };
 }
+
