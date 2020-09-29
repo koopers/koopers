@@ -1,5 +1,8 @@
 <div class="container">
-  <h1>Nuevo Usuario</h1>
+  <h1>
+    <span *ngIf="!currentUser">Nuevo Usuario</span>
+    <span *ngIf="currentUser">Editar Usuario</span>
+  </h1>
 
   <form [formGroup]="userForm">
     <div class="form-group">
