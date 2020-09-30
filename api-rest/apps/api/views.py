@@ -129,43 +129,50 @@ def SearchView(request):
     amount = 10
     skip = page * amount
     rows = skip + amount
-    input_site = request.GET.get('site_name') or Value('null')
-    input_category = request.GET.get('category_id')
 
-    sitio = request.GET.get('site')
-    categorias = request.GET.get('category_id')
-    fecha_inicio = request.GET.get('start_date')
-    fecha_fin = request.GET.get('end_date')
+    sites = request.GET.get('site_id').split(',')
+    categories = request.GET.get('category_id').split(',')
 
-    # Case 1: Site, no category, no date
-    # if sitio and not categorias and not fecha_inicio and not fecha_fin:
+    start_date = None if not request.GET.get('start_date') else timezone.datetime.fromtimestamp(int(request.GET.get('start_date')))
+    end_date = None if not request.GET.get('end_date') else timezone.datetime.fromtimestamp(int(request.GET.get('end_date')))
+
+
+    # Case 1: Site
+    if sites and not categories and not start_date and not end_date:
+        screenshots = Screenshot.objects.filter(tracked_site__site__in=sites).order_by('-created')[skip:(skip+amount)]
     
-    # Case 2: Site, category, no date
-    # if sitio and categorias and not fecha_inicio and not fecha_fin:
+    # Case 2: Site, category
+    elif sites and categories and not start_date and not end_date:
+        screenshots = Screenshot.objects.filter(tracked_site__site__in=sites, tracked_site__category_id__in=categories).order_by('-created')[skip:(skip+amount)]
     
-    # Case 3: Site, date, no category
-    # if sitio and not categorias and not fecha_inicio and not fecha_fin:
+    # Case 3: Site, date
+    elif sites and not categories and start_date and end_date:
+        screenshots = Screenshot.objects.filter(tracked_site__site__in=sites, created__range=(start_date, end_date)).order_by('-created')[skip:(skip+amount)]
+    
     # Case 4: Site, category, date
+    elif sites and categories and start_date and end_date:
+        screenshots = Screenshot.objects.filter(
+            tracked_site__site__in=sites,
+            tracked_site__category_id__in=categories,
+            created__range=(start_date, end_date)
+            ).order_by('-created')[skip:(skip+amount)]
+    
+    # Case 5: Category
+    elif categories and not sites and not start_date and not end_date:
+        screenshots = Screenshot.objects.filter(tracked_site__category_id__in=categories).order_by('-created')[skip:(skip+amount)]
+    
+    # Case 6: Category, date
+    elif categories and not sites and start_date and end_date:
+        screenshots = Screenshot.objects.filter(
+            tracked_site__category_id__in=categories,
+            created__range=(start_date, end_date)
+            ).order_by('-created')[skip:(skip+amount)]
 
-    # Case 5: Category, no site, no date
-    # Case 6: Category, site, no date
-    # Case 7: Category, date, no site
-    # Case 8: Category, site, date
-
-    # Case 9: Date, no site, no category
-    # Case 10: Date, site, no category
-    # Case 11: Date, category, no site
-    # Case 12: Date, site, category
-
-    start_date = timezone.datetime.fromtimestamp(int(request.GET.get('start_date')))
-    end_date   = timezone.datetime.fromtimestamp(int(request.GET.get('end_date')))
-
-
-    # screenshots = Screenshot.objects.filter(
-    #     Q(tracked_site__site_id__title__icontains = input_site) 
-    #     | Q(created__gte=start_date, created__lte=end_date)
-    #     | Q(tracked_site__category_id__id=input_category)
-    #     ).order_by('id')[skip:(skip+amount)]
+    # Case 7: Date
+    elif start_date and end_date and not sites and not categories:
+        screenshots = Screenshot.objects.filter(created__range=(start_date, end_date)).order_by('-created')[skip:(skip+amount)]
+    else:
+        screenshots = Screenshot.objects.all().order_by('-created')[skip:(skip+amount)]
 
     result = ScreenshotSerializer(screenshots, many=True)
     
