@@ -37,6 +37,24 @@
           </li>
           <li>
             <a
+              *ngIf="user"
+              [routerLink]="['/admin/proposals']"
+              [routerLinkActive]="['selected']"
+            >
+              Propuestas
+            </a>
+          </li>
+          <li>
+            <a
+              *ngIf="user"
+              [routerLink]="['/admin/sections']"
+              [routerLinkActive]="['selected']"
+            >
+              Secciones
+            </a>
+          </li>
+          <li>
+            <a
               *ngIf="user && manteiner"
               [routerLink]="['/admin/users']"
               [routerLinkActive]="['selected']"
@@ -111,6 +129,24 @@
       </li>
       <li>
         <a
+          *ngIf="user"
+          [routerLink]="['/admin/proposals']"
+          [routerLinkActive]="['selected']"
+        >
+          Propuestas
+        </a>
+      </li>
+      <li>
+        <a
+          *ngIf="user"
+          [routerLink]="['/admin/sections']"
+          [routerLinkActive]="['selected']"
+        >
+          Secciones
+        </a>
+      </li>
+      <li>
+        <a
           *ngIf="user && manteiner"
           [routerLink]="['/admin/users']"
           [routerLinkActive]="['selected']"
@@ -138,7 +174,7 @@
         ></app-button>
       </li>
     </ul>
-  </p-sidebar>  
+  </p-sidebar>
   <p-button
     type="button"
     (click)="visible = true"

@@ -41,15 +41,18 @@ export class FormSuggestedSitesComponent extends BaseComponent implements OnInit
         .pipe(
           takeUntil(this.unsubscribe$)
         ).subscribe(site => {
-          this.currentSuggestedSite = site;
-          this.suggestedForm.patchValue(site);
+          this.currentSuggestedSite = {...site, categories: JSON.parse(site.categories) };
+          this.suggestedForm.patchValue(this.currentSuggestedSite);
+          this.currentSuggestedSite.categories.forEach(category => {
+            this.addCategory(category);
+          });
         });
       }
     });
   }
 
-  addCategory(): void {
-    this.categories.push(new FormControl(''));
+  addCategory(value = ''): void {
+    this.categories.push(new FormControl(value));
   }
 
   removeCategory(index: number): void {
@@ -61,11 +64,14 @@ export class FormSuggestedSitesComponent extends BaseComponent implements OnInit
   }
 
   onSave(): void {
+    const values = this.suggestedForm.value;
+    values.categories = JSON.stringify(values.categories);
+
     if (this.currentSuggestedSite) {
       this.sSitesService
       .update(
         this.currentSuggestedSite.id,
-        this.suggestedForm.value
+        values
       )
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -75,16 +81,14 @@ export class FormSuggestedSitesComponent extends BaseComponent implements OnInit
         this.goBack();
       });
     } else {
-
-      console.log('Values: ', this.suggestedForm.value);
-      // this.sSitesService
-      // .create(this.suggestedForm.value)
-      // .pipe(
-      //   takeUntil(this.unsubscribe$)
-      // ).subscribe((site) => {
-      //   this.alertsService.handleSuccessAlert('Propuesta creada exitosamente!');
-      //   this.goBack();
-      // });
+      this.sSitesService
+      .create(values)
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      ).subscribe((site) => {
+        this.alertsService.handleSuccessAlert('Propuesta creada exitosamente!');
+        this.goBack();
+      });
     }
   }
 

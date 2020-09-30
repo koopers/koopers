@@ -5,27 +5,45 @@
     <app-button label='Nuevo' btn='primary' [routerLink]="['/admin/users/new']"></app-button>
   </div>
 
-  <p-table [value]="users">
+  <p-table 
+    [value]="users"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} entradas"
+    [rowsPerPageOptions]="[10,25,50]"
+    styleClass="p-datatable-responsive-demo"
+  >
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="title">Username <p-sortIcon field="title"></p-sortIcon>
+        <th pSortableColumn="username">{{USERNAME_HEADER}} <p-sortIcon field="username"></p-sortIcon>
         </th>
-        <th>Tipo</th>
-        <th>Fecha de creación</th>
-        <th>Acciones</th>
+        <th>{{TYPE_HEADER}}</th>
+        <th>{{DATE_HEADER}}</th>
+        <th>{{ACTIONS_HEADER}}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user>
       <tr>
-        <td>{{user.username}}</td>
-        <td>{{user.is_staff}}</td>
-        <td>{{user.created | date:"dd/MM/yyyy"}}</td>
         <td>
+          <span class="p-column-title">{{USERNAME_HEADER}}</span>
+          {{user.username}}
+        </td>
+        <td>
+          <span class="p-column-title">{{TYPE_HEADER}}</span>
+          {{user.is_staff}}
+        </td>
+        <td>
+          <span class="p-column-title">{{DATE_HEADER}}</span>
+          {{user.date_joined | date:"dd/MM/yyyy"}}
+        </td>
+        <td>
+          <span class="p-column-title">{{ACTIONS_HEADER}}</span>
           <app-button btn='secondary' isIcon [routerLink]="['/admin/users', user.id]">
             <fa-icon icon="edit"></fa-icon>
           </app-button>
 
-          <app-button btn='danger' isIcon (click)="confirmDelete()">
+          <app-button btn='danger' isIcon (click)="confirmDelete(user)">
             <fa-icon icon="trash"></fa-icon>
           </app-button>
       </tr>
