@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
@@ -44,16 +44,21 @@ export class FormUserComponent extends BaseComponent implements OnInit {
           this.currentUser = user;
           this.userForm.patchValue(user);
         });
+      } else {
+        this.addPasswordField(true);
       }
     });
   }
 
   onSave(): void {
     if (this.currentUser) {
+      const values = this.userForm.value;
+      delete values.password;
+
       this.usersService
       .update(
         this.currentUser.id,
-        this.userForm.value
+        values
       )
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -79,4 +84,11 @@ export class FormUserComponent extends BaseComponent implements OnInit {
     this.location.back();
   }
 
+  addPasswordField(checked: boolean): void {
+    if (checked) {
+      this.userForm.addControl('password', new FormControl('', [Validators.required]));
+    } else {
+      this.userForm.removeControl('password');
+    }
+  }
 }

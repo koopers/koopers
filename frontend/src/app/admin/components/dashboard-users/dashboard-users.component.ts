@@ -40,7 +40,7 @@ export class DashboardUsersComponent extends BaseComponent implements OnInit {
           takeUntil(this.unsubscribe$)
         )
         .subscribe((response) => {
-          this.alertsService.handleSuccessAlert('Categoría eliminada exitosamente!');
+          this.alertsService.handleSuccessAlert('Usuario eliminado exitosamente!');
           this.getData();
         });
       }

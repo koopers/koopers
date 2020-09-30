@@ -20,7 +20,7 @@ export class UsersService {
 
   create(body: {username: string, is_staff: boolean}): Observable<User> {
     return this.http
-    .post<User>(`${environment.url_api}/users/`, body)
+    .post<User>(`${environment.url_api}/auth/signup/`, body)
     .pipe(catchError(this.handleError));
   }
 
@@ -32,7 +32,7 @@ export class UsersService {
 
   update(id: number, body: {username: string, is_staff: boolean}): Observable<User> {
     return this.http
-    .put<User>(`${environment.url_api}/users/${id}`, body)
+    .patch<User>(`${environment.url_api}/users/${id}`, body)
     .pipe(catchError(this.handleError));
   }
 
