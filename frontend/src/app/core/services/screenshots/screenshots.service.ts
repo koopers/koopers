@@ -13,7 +13,7 @@ export class ScreenshotsService {
 
   getAll(): Observable<{}> {
     return this.http
-      .get<{}>(`${environment.url_api}/screenshots`)
+      .get<{}>(`${environment.url_api}/screenshots/`)
       .pipe(catchError(this.handleError));
   }
 
