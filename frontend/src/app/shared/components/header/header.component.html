@@ -9,12 +9,12 @@
       <nav>
         <ul>
           <li>
-            <a role="link" aria-label="Link a home"
+            <a role="link" aria-label="Link a Inicio"
               [routerLink]="['/']"
               [routerLinkActive]="['selected']"
               [routerLinkActiveOptions]="{ exact: true }"
             >
-              Home
+              Inicio
             </a>
           </li>
           <li>
@@ -36,7 +36,28 @@
             </a>
           </li>
           <li>
-            <a role="link" aria-label="Link a Usuarios"
+            <a
+              role="link" aria-label="Link a secciones"
+              *ngIf="user"
+              [routerLink]="['/admin/proposals']"
+              [routerLinkActive]="['selected']"
+            >
+              Propuestas
+            </a>
+          </li>
+          <li>
+            <a
+              role="link" aria-label="Link a secciones"
+              *ngIf="user"
+              [routerLink]="['/admin/sections']"
+              [routerLinkActive]="['selected']"
+            >
+              Secciones
+            </a>
+          </li>
+          <li>
+            <a
+            role="link" aria-label="Link a usuarios"
               *ngIf="user && manteiner"
               [routerLink]="['/admin/users']"
               [routerLinkActive]="['selected']"
@@ -110,7 +131,28 @@
         </a>
       </li>
       <li>
-        <a role="link" aria-label="Link a usuarios"
+        <a
+          role="link" aria-label="Link a propuestas"
+          *ngIf="user"
+          [routerLink]="['/admin/proposals']"
+          [routerLinkActive]="['selected']"
+        >
+          Propuestas
+        </a>
+      </li>
+      <li>
+        <a
+          role="link" aria-label="Link a secciones"
+          *ngIf="user"
+          [routerLink]="['/admin/sections']"
+          [routerLinkActive]="['selected']"
+        >
+          Secciones
+        </a>
+      </li>
+      <li>
+        <a
+          role="link" aria-label="Link a usuarios"
           *ngIf="user && manteiner"
           [routerLink]="['/admin/users']"
           [routerLinkActive]="['selected']"
@@ -138,7 +180,7 @@
         ></app-button>
       </li>
     </ul>
-  </p-sidebar>  
+  </p-sidebar>
   <p-button
     type="button"
     (click)="visible = true"

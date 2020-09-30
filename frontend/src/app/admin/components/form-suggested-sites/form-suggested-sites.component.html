@@ -4,6 +4,8 @@
     <span *ngIf="currentSuggestedSite">Editar Propuesta</span>
   </h1>
 
+  {{this.suggestedForm.value | json}}
+
   <form [formGroup]="suggestedForm">
     <div class="form-group">
       <label class="form-group__label" for="title">Título</label>

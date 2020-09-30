@@ -16,9 +16,10 @@
   >
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="title">{{SITE_HEADER}} <p-sortIcon field="site_id"></p-sortIcon>
+        <th pSortableColumn="site_id.title">{{SITE_HEADER}} <p-sortIcon field="site_id.title"></p-sortIcon>
         </th>
-        <th>{{CATEGORY_HEADER}}</th>
+        <th pSortableColumn="category_id.title">{{CATEGORY_HEADER}} <p-sortIcon field="category_id.title"></p-sortIcon>
+        </th>
         <th>{{URL_HEADER}}</th>
         <th>{{ACTIONS_HEADER}}</th>
       </tr>
@@ -27,11 +28,11 @@
       <tr>
         <td>
           <span class="p-column-title">{{SITE_HEADER}}</span>
-          {{trackedSite.site_id}}
+          {{trackedSite.site_id.title}}
         </td>
         <td>
           <span class="p-column-title">{{CATEGORY_HEADER}}</span>
-          {{trackedSite.category_id}}
+          {{trackedSite.category_id.title}}
         </td>
         <td>
           <span class="p-column-title">{{URL_HEADER}}</span>
