@@ -1,16 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { SharedModule } from '@shared/shared.module';
+import { DetailsComponent } from './components/details/details.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
 import { SitesRoutingModule } from './sites-routing.module';
-import { DetailsComponent } from './component/details/details.component';
-import { SearchComponent } from './components/search/search.component';
+
 
 
 @NgModule({
-  declarations: [DetailsComponent, SearchComponent],
+  declarations: [DetailsComponent, SearchPageComponent],
   imports: [
     CommonModule,
-    SitesRoutingModule
+    SitesRoutingModule,
+    SharedModule
   ]
 })
 export class SitesModule { }
