@@ -3,7 +3,7 @@
 .header
   background-color: $light-color
   box-shadow: 0 1px 1px #ccc
-  padding: 20px 40px
+  padding: 15px 40px
   height: 80px
   color:  $light-color
   @media screen and ( max-width: 768px )
@@ -16,7 +16,7 @@
     margin: 0 auto
 
     .logo
-      width: 120px  
+      width: 140px  
 
       img
         width: 100%
@@ -41,9 +41,9 @@
       margin-left: 10px
       &.selected
           color: #608bd2
-      &.register
+      &.login
         color: $light-color
-        background-color: $secondary-color
+        background-color: $primary-color
         padding: 10px 15px
         border-radius: 3px
 p-button
@@ -61,17 +61,20 @@ p-sidebar
   ul 
     list-style: none
     margin: 20px
+    hr
+      border-bottom: 0.5px solid #ccc
     li 
       margin-bottom: 10px
-      
+      &.inicio 
+        margin-top: 10px
       &:last-of-type 
         margin-top: 20px
       a 
         color: $dark-color
         text-decoration: none
-        &.register
+        &.login
           color: $light-color
-          background-color: $secondary-color
+          background-color: $primary-color
           padding: 10px 15px
           border-radius: 3px
           margin: 10px 0
