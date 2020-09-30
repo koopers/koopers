@@ -35,9 +35,27 @@ export class SearchComponent implements OnInit {
     this.sitesService.getAll().subscribe((data) => (this.sites = data));
   }
 
-  filterDate(startDate, endDate): void {
+  filterSites(site): void {
     this.filtersService
-      .filterByDates(startDate, endDate)
+      .filterBySites(site)
+      .subscribe((data) => (this.foundSites = data));
+  }
+
+  filterDate(site, startDate, endDate): void {
+    this.filtersService
+      .filterByDates(site, startDate, endDate)
+      .subscribe((data) => (this.foundSites = data));
+  }
+
+  filterCategories(site, categories): void {
+    this.filtersService
+      .filterByCategories(site, categories)
+      .subscribe((data) => (this.foundSites = data));
+  }
+
+  filterAll(site, categories, startDate, endDate): void {
+    this.filtersService
+      .filterByAll(site, categories, startDate, endDate)
       .subscribe((data) => (this.foundSites = data));
   }
 
@@ -50,16 +68,33 @@ export class SearchComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
+      const sitesId = value.site.map((data) => data.id).toString();
+      let categoriesId = value.categories;
       const startDate = this.formatedDate(value.startDate);
       const endDate = this.formatedDate(value.endDate);
 
-      if (startDate && endDate) {
-        this.filterDate(startDate, endDate);
-      } else {
-        const sitesId = value.site.map((data) => data.id);
-        const categoriesId = value.categories.map((data) => data.id);
-        console.log('SearchComponent -> search -> site_id', sitesId);
-        console.log('SearchComponent -> search -> categoriesId', categoriesId.toString());
+      if(categoriesId) {
+        categoriesId = categoriesId.map((data) => data.id).toString();
+      }
+
+      if (!categoriesId && !startDate && !endDate) {
+        console.log('1');
+        this.filterSites(sitesId);
+      }
+      
+      if (categoriesId  && !startDate && !endDate) {
+        console.log('2');
+        this.filterCategories(sitesId, categoriesId);
+      }
+
+      if (startDate && endDate && !categoriesId) {
+        console.log('3');
+        this.filterDate(sitesId, startDate, endDate);
+      }
+      if (categoriesId && startDate && endDate) {
+        console.log('4');
+        console.log('SearchComponent -> search -> endDate', endDate);
+        this.filterAll(sitesId, categoriesId, startDate, endDate);
       }
 
       console.log(this.foundSites);
