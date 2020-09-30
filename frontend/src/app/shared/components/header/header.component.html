@@ -2,14 +2,14 @@
   <div class="header__limiter">
     <div class="header__content">
       <div class="logo">
-        <a>
-          <img src="assets/img/Kooper.png" />
+        <a role="link" aria-label="Link a home">
+          <img src="assets/img/Kooper.png" alt="logo koopers" />
         </a>
       </div>  
       <nav>
         <ul>
           <li>
-            <a
+            <a role="link" aria-label="Link a home"
               [routerLink]="['/']"
               [routerLinkActive]="['selected']"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -18,7 +18,7 @@
             </a>
           </li>
           <li>
-            <a
+            <a role="link" aria-label="Link a sitios"
               *ngIf="user"
               [routerLink]="['/admin/sites']"
               [routerLinkActive]="['selected']"
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li>
-            <a
+            <a role="link" aria-label="Link a Categorias"
               *ngIf="user"
               [routerLink]="['/admin/categories']"
               [routerLinkActive]="['selected']"
@@ -36,7 +36,7 @@
             </a>
           </li>
           <li>
-            <a
+            <a role="link" aria-label="Link a Usuarios"
               *ngIf="user && manteiner"
               [routerLink]="['/admin/users']"
               [routerLinkActive]="['selected']"
@@ -45,7 +45,7 @@
             </a>
           </li>
           <li>
-            <a href="/">About us</a>
+            <a role="link" aria-label="Link a acerca de nosotros" href="/">Acerca de nosotros</a>
           </li>
         </ul>
       </nav>
@@ -54,17 +54,17 @@
       <nav>
         <ul>
           <li>
-            <a [routerLink]="['/search']">Buscar</a>
+            <a role="link" aria-label="Link a Buscar" [routerLink]="['/search']">Buscar</a>
           </li>
           <li *ngIf="!user">
-            <a [routerLink]="['/auth/login']">Login</a>
+            <a role="link" aria-label="Link a Iniciar sesión" [routerLink]="['/auth/login']">Iniciar Sesión</a>
           </li>
           <li *ngIf="!user">
-            <a class="register" [routerLink]="['/auth/register']">Signup</a>
+            <a role="link" aria-label="Link a Registrarse" class="register" [routerLink]="['/auth/register']">Registrarse</a>
           </li>
           <li *ngIf="user">
             <app-button
-              label="Logout"
+              label="Salir"
               btn="primary"
               (click)="logout()"
             ></app-button>
@@ -83,16 +83,16 @@
 
     <ul>
       <li>
-        <a
+        <a role="link" aria-label="Link a inicio"
           [routerLink]="['/']"
           [routerLinkActive]="['selected']"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          Home
+          Inicio
         </a>
       </li>
       <li>
-        <a
+        <a role="link" aria-label="Link a sitios"
           *ngIf="user"
           [routerLink]="['/admin/sites']"
           [routerLinkActive]="['selected']"
@@ -101,7 +101,7 @@
         </a>
       </li>
       <li>
-        <a
+        <a role="link" aria-label="Link a categorias"
           *ngIf="user"
           [routerLink]="['/admin/categories']"
           [routerLinkActive]="['selected']"
@@ -110,7 +110,7 @@
         </a>
       </li>
       <li>
-        <a
+        <a role="link" aria-label="Link a usuarios"
           *ngIf="user && manteiner"
           [routerLink]="['/admin/users']"
           [routerLinkActive]="['selected']"
@@ -119,20 +119,20 @@
         </a>
       </li>
       <li>
-        <a href="/">About us</a>
+        <a role="link" aria-label="Link a acerca de nosotros" href="/">About us</a>
       </li>
       <li>
-        <a [routerLink]="['/search']">Buscar</a>
+        <a role="link" aria-label="Link a Buscar" [routerLink]="['/search']">Buscar</a>
       </li>
       <li *ngIf="!user">
-        <a [routerLink]="['/auth/login']">Login</a>
+        <a role="link" aria-label="Link a Iniciar sesión" [routerLink]="['/auth/login']">Iniciar sesión</a>
       </li>
       <li *ngIf="!user">
-        <a class="register" [routerLink]="['/auth/register']">Signup</a>
+        <a role="link" aria-label="Link a Registrarse" class="register" [routerLink]="['/auth/register']">Registrarse</a>
       </li>
       <li *ngIf="user">
         <app-button
-          label="Logout"
+          label="Salir"
           btn="primary"
           (click)="logout()"
         ></app-button>
