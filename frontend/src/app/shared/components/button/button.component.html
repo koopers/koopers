@@ -1,4 +1,4 @@
-<button [type]="type" class="btn" [ngClass]="btn" (click)="onClickButton($event)" [disabled]="disabled">
+<button tabindex="0" [type]="type" class="btn" [ngClass]="btn" (click)="onClickButton($event)" [disabled]="disabled">
   <span *ngIf="!isIcon">{{label}}</span>
   <ng-content></ng-content>
 </button>

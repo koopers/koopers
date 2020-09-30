@@ -11,8 +11,30 @@ export class FiltersService {
 
   constructor(private http: HttpClient) { }
 
-  filterByDates(startDate: number, endDate: number): Observable<{}> {
-    return this.http.get(`${environment.url_api}/search/?start_date=${startDate}&end_date=${endDate}`).pipe(
+
+  filterBySites(siteId: string): Observable<{}> {
+    return this.http.get(`${environment.url_api}/search/?site_id=${siteId}`).pipe(
+      catchError(this.handleError),
+      map((data: any) => data.result)
+    );
+  }
+
+  filterByDates(siteId: string, startDate: number, endDate: number): Observable<{}> {
+    return this.http.get(`${environment.url_api}/search/?site_id=${siteId}&start_date=${startDate}&end_date=${endDate}`).pipe(
+      catchError(this.handleError),
+      map((data: any) => data.result)
+    );
+  }
+
+  filterByCategories(siteId: string, categories: string): Observable<{}> {
+    return this.http.get(`${environment.url_api}/search/?site_id=${siteId}&category_id=${categories}`).pipe(
+      catchError(this.handleError),
+      map((data: any) => data.result)
+    );
+  }
+
+  filterByAll(siteId: string, categories: string, startDate: number, endDate: number): Observable<{}> {
+    return this.http.get(`${environment.url_api}/search/?site_id=${siteId}&category_id=${categories}&start_date=${startDate}&end_date=${endDate}`).pipe(
       catchError(this.handleError),
       map((data: any) => data.result)
     );
