@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit {
       const startDate = this.formatedDate(value.startDate);
       const endDate = this.formatedDate(value.endDate);
 
-      if(categoriesId) {
+      if (categoriesId) {
         categoriesId = categoriesId.map((data) => data.id).toString();
       }
 
@@ -81,8 +81,8 @@ export class SearchComponent implements OnInit {
         console.log('1');
         this.filterSites(sitesId);
       }
-      
-      if (categoriesId  && !startDate && !endDate) {
+
+      if (categoriesId && !startDate && !endDate) {
         console.log('2');
         this.filterCategories(sitesId, categoriesId);
       }
