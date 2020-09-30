@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CategoriesService } from '@core/services/categories/categories.service';
 import { FiltersService } from '@core/services/filters/filters.service';
+import { SitesService } from '@core/services/sites/sites.service';
 
 @Component({
   selector: 'app-search',
@@ -10,17 +12,51 @@ import { FiltersService } from '@core/services/filters/filters.service';
 export class SearchComponent implements OnInit {
   form: FormGroup;
   sites;
-  constructor(private formBuilder: FormBuilder, private filtersService: FiltersService) {
+  options;
+  foundSites;
+  constructor(
+    private formBuilder: FormBuilder,
+    private filtersService: FiltersService,
+    private categoriesService: CategoriesService,
+    private sitesService: SitesService
+  ) {
     this.builderForm();
+    this.getCategories();
+    this.getSites();
   }
 
   ngOnInit(): void {}
 
+  getCategories(): void {
+    this.categoriesService.getAll().subscribe((data) => (this.options = data));
+  }
 
-  filterDate(startDate, endDate): void {
-    this.filtersService.filterByDates(startDate, endDate).subscribe(data => {
-      this.sites = data;
-    });
+  getSites(): void {
+    this.sitesService.getAll().subscribe((data) => (this.sites = data));
+  }
+
+  filterSites(site): void {
+    this.filtersService
+      .filterBySites(site)
+      .subscribe((data) => (this.foundSites = data));
+  }
+
+  filterDate(site, startDate, endDate): void {
+    this.filtersService
+      .filterByDates(site, startDate, endDate)
+      .subscribe((data) => (this.foundSites = data));
+  }
+
+  filterCategories(site, categories): void {
+    this.filtersService
+      .filterByCategories(site, categories)
+      .subscribe((data) => (this.foundSites = data));
+  }
+
+  filterAll(site, categories, startDate, endDate): void {
+    this.filtersService
+      .filterByAll(site, categories, startDate, endDate)
+      .subscribe((data) => (this.foundSites = data));
   }
 
   formatedDate(date: string): number {
@@ -28,24 +64,48 @@ export class SearchComponent implements OnInit {
     return dateFormated.getTime() / 1000;
   }
 
-
-
   search(event: Event): void {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
+      const sitesId = value.site.map((data) => data.id).toString();
+      let categoriesId = value.categories;
       const startDate = this.formatedDate(value.startDate);
       const endDate = this.formatedDate(value.endDate);
 
-      this.filterDate(startDate, endDate);
+      if (categoriesId) {
+        categoriesId = categoriesId.map((data) => data.id).toString();
+      }
+
+      if (!categoriesId && !startDate && !endDate) {
+        console.log('1');
+        this.filterSites(sitesId);
+      }
+
+      if (categoriesId && !startDate && !endDate) {
+        console.log('2');
+        this.filterCategories(sitesId, categoriesId);
+      }
+
+      if (startDate && endDate && !categoriesId) {
+        console.log('3');
+        this.filterDate(sitesId, startDate, endDate);
+      }
+      if (categoriesId && startDate && endDate) {
+        console.log('4');
+        console.log('SearchComponent -> search -> endDate', endDate);
+        this.filterAll(sitesId, categoriesId, startDate, endDate);
+      }
+
+      console.log(this.foundSites);
     }
   }
   private builderForm(): void {
     this.form = this.formBuilder.group({
-      site: ['', [Validators.minLength(4)]],
+      site: ['', [Validators.required, Validators.minLength(1)]],
       categories: ['', Validators.minLength(1)],
-      startDate: [new Date()],
-      endDate: [new Date()],
+      startDate: [''],
+      endDate: [''],
     });
   }
 }
