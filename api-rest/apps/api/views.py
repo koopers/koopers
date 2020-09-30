@@ -54,7 +54,7 @@ class ListScreenshotView(generics.ListAPIView):
     queryset = Screenshot.objects.all()
     serializer_class = ScreenshotSerializer
 
-class ListTrackedSiteView(generics.ListAPIView):
+class ListTrackedSiteView(generics.ListCreateAPIView):
     queryset = TrackedSite.objects.all()
     serializer_class = TrackedSerializer
 
@@ -76,7 +76,12 @@ class ListCategoryView(generics.ListCreateAPIView):
 class TrackedSiteDetailView(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = (IsAuthenticated,)
     queryset = TrackedSite.objects.all()
-    serializer_class = TrackedRUDSerializer
+    serializer_class = TrackedCGUDSerializer
+
+class CreateTrackedSiteView(generics.CreateAPIView):
+    # permission_classes = (IsAuthenticated,)
+    queryset = TrackedSite.objects.all()
+    serializer_class = TrackedCGUDSerializer
 
 class ScreenshotDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Screenshot.objects.all()
@@ -96,8 +101,6 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-
-
 
 class LogoutUserView(APIView):
     permission_classes = (IsAuthenticated,)
@@ -129,9 +132,19 @@ def SearchView(request):
     input_site = request.GET.get('site_name') or Value('null')
     input_category = request.GET.get('category_id')
 
+    sitio = request.GET.get('site')
+    categorias = request.GET.get('category_id')
+    fecha_inicio = request.GET.get('start_date')
+    fecha_fin = request.GET.get('end_date')
+
     # Case 1: Site, no category, no date
+    # if sitio and not categorias and not fecha_inicio and not fecha_fin:
+    
     # Case 2: Site, category, no date
+    # if sitio and categorias and not fecha_inicio and not fecha_fin:
+    
     # Case 3: Site, date, no category
+    # if sitio and not categorias and not fecha_inicio and not fecha_fin:
     # Case 4: Site, category, date
 
     # Case 5: Category, no site, no date
@@ -148,11 +161,11 @@ def SearchView(request):
     end_date   = timezone.datetime.fromtimestamp(int(request.GET.get('end_date')))
 
 
-    screenshots = Screenshot.objects.filter(
-        Q(tracked_site__site_id__title__icontains = input_site) 
-        | Q(created__gte=start_date, created__lte=end_date)
-        | Q(tracked_site__category_id__id=input_category)
-        ).order_by('id')[skip:(skip+amount)]
+    # screenshots = Screenshot.objects.filter(
+    #     Q(tracked_site__site_id__title__icontains = input_site) 
+    #     | Q(created__gte=start_date, created__lte=end_date)
+    #     | Q(tracked_site__category_id__id=input_category)
+    #     ).order_by('id')[skip:(skip+amount)]
 
     result = ScreenshotSerializer(screenshots, many=True)
     

@@ -54,8 +54,10 @@ class TrackedSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrackedSite
         fields = '__all__'
+        read_only_fields = ['site_id','category_id']
 
-class TrackedRUDSerializer(serializers.ModelSerializer):
+
+class TrackedCGUDSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrackedSite
         fields = '__all__'
