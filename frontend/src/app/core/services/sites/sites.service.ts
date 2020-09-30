@@ -42,7 +42,6 @@ export class SitesService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.log('error', error);
     return throwError(error);
   }
 }

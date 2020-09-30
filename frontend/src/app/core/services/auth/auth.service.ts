@@ -18,7 +18,6 @@ export class AuthService {
   }
 
   register(user): Observable<any> {
-    console.log('AuthService -> constructor -> user', user);
     return this.http
       .post(`${environment.url_api}/auth/signup/`, user)
       .pipe(catchError(this.handleError));
@@ -44,10 +43,10 @@ export class AuthService {
         refresh: this.tokenService.getRefreshToken(),
       })
       .pipe(
+        catchError(this.handleError),
         tap((data: { access: string }) => {
           this.tokenService.saveToken(data.access);
-        }),
-        catchError(this.handleError)
+        })
       );
   }
 

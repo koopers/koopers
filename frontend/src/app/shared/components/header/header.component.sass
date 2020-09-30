@@ -3,10 +3,11 @@
 .header
   background-color: $light-color
   box-shadow: 0 1px 1px #ccc
-  padding: 15px 40px
+  padding: 15px 30px
   height: 80px
   color:  $light-color
-  @media screen and ( max-width: 768px )
+  @media screen and ( max-width: 960px )
+    padding: 15px
     display: flex
     justify-content: space-between
 
@@ -32,7 +33,7 @@
         align-items: center
         li
           margin-left: 10px
-      @media screen and ( max-width: 768px  )
+      @media screen and ( max-width: 900px  )
         display: none
     a
       color: $dark-color 
@@ -81,7 +82,7 @@ p-sidebar
         &.selected
           color: #608bd2
 
-@media screen and ( min-width: 769px) 
+@media screen and ( min-width: 901px) 
   p-button
     display: none
     

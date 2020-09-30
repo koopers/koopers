@@ -17,13 +17,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sitesService.getAll().subscribe((data) => {
-      console.log('HomeComponent -> ngOnInit -> data', data);
-      this.sites = data;
-    });
-    this.screenshotsService.getAll().subscribe(data => {
-      console.log('HomeComponent -> ngOnInit -> data', data);
-      this.screenshots = data;
-    });
+    this.sitesService.getAll().subscribe((data) => this.sites = data);
+    this.screenshotsService.getAll().subscribe(data => this.screenshots = data);
   }
 }

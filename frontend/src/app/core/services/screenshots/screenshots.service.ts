@@ -19,7 +19,6 @@ export class ScreenshotsService {
 
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.log('error', error);
     return throwError(error);
   }
 }
