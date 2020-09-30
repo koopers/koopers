@@ -3,13 +3,16 @@
     <form class="form" [formGroup]="form" (ngSubmit)="search($event)">
       <div class="form-group">
         <label class="form-group__label" for="site">Sitio</label>
-        <input class="form-group__input" type="text" id="site" formControlName="site">
+        <p-multiSelect placeholder="Seleccione uno o más sitios" [options]="sites" formControlName="site" optionLabel="title"></p-multiSelect>
+        <!-- <input class="form-group__input" type="text" id="site" formControlName="site"> -->
       </div>
       <div class="form-group">
         <label class="form-group__label" for="categories">Categorias</label>
-        <select class="form-group__input" type="text" id="categories" formControlName="categories">
-          <option value="1">hola</option>
-        </select>
+        <p-multiSelect placeholder="Seleccione una o más categorias" [options]="options" formControlName="categories" optionLabel="title"></p-multiSelect>
+        <!-- <select class="form-group__input" type="text" id="categories" formControlName="categories">
+          <option selected >Eliga una opción</option>
+          <option *ngFor="let option of options">{{option.title}}</option>
+        </select> -->
       </div>
       <div class="form-group">
         <label class="form-group__label" for="startDate">Desde</label>
@@ -26,11 +29,11 @@
       </div>
     </form>
   </div>
-  <div class="search__data" *ngIf="sites">
+  <div class="search__data" *ngIf="foundSites">
     <h5>Sitios encontrados</h5>
-    <p *ngIf="sites.length === 0">No encontramos ningún resultado.</p>
+    <p *ngIf="foundSites.length === 0">No encontramos ningún resultado.</p>
     <div class="search__data--content">
-      <div *ngFor="let site of sites">
+      <div *ngFor="let site of foundSites">
         <app-card [item]="site"></app-card>
       </div>
     </div>
