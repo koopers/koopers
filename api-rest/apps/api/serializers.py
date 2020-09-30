@@ -24,6 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id','username', 'password','is_staff','date_joined')
+        read_only_fields = ['date_joined','id']
         extra_kwargs = {'password':{'write_only':True}}
     
     def create(self, validated_data):
@@ -53,6 +54,14 @@ class TrackedSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrackedSite
         fields = '__all__'
+        read_only_fields = ['site_id','category_id']
+
+
+class TrackedCGUDSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrackedSite
+        fields = '__all__'
+        read_only_fields = ['created','updated']
 
 class ScreenshotSerializer(serializers.ModelSerializer):
     tracked_site = CustomTrackedSerializer(many=False)
