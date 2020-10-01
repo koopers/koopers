@@ -22,6 +22,17 @@
           <li>
             <a
               role="link"
+              aria-label="Link a secciones"
+              *ngIf="user"
+              [routerLink]="['/admin/sections']"
+              [routerLinkActive]="['selected']"
+            >
+              Secciones
+            </a>
+          </li>
+          <li>
+            <a
+              role="link"
               aria-label="Link a Categorias"
               *ngIf="user"
               [routerLink]="['/admin/categories']"
@@ -40,18 +51,7 @@
             >
               Propuestas
             </a>
-          </li>
-          <li>
-            <a
-              role="link"
-              aria-label="Link a secciones"
-              *ngIf="user"
-              [routerLink]="['/admin/sections']"
-              [routerLinkActive]="['selected']"
-            >
-              Secciones
-            </a>
-          </li>
+          </li>          
           <li>
             <a
               role="link"
@@ -91,9 +91,19 @@
           <li>
             <a
               role="link"
-              aria-label="Link a acerca de nosotros"
+              aria-label="Link a nueva propuesta"
+              [routerLink]="['/site/proposal']"
+              [routerLinkActive]="['selected']"
+            >
+              Propuesta
+            </a>
+          </li>
+          <li>
+            <a
+              role="link"
+              aria-label="Link a Acerca de"
               [routerLink]="['/aboutus']"
-              >Acerca de nosotros</a
+              >Acerca de</a
             >
           </li>
           <li *ngIf="!user">
@@ -133,6 +143,17 @@
       <li>
         <a
           role="link"
+          aria-label="Link a secciones"
+          *ngIf="user"
+          [routerLink]="['/admin/sections']"
+          [routerLinkActive]="['selected']"
+        >
+          Secciones
+        </a>
+      </li>
+      <li>
+        <a
+          role="link"
           aria-label="Link a categorias"
           *ngIf="user"
           [routerLink]="['/admin/categories']"
@@ -150,17 +171,6 @@
           [routerLinkActive]="['selected']"
         >
           Propuestas
-        </a>
-      </li>
-      <li>
-        <a
-          role="link"
-          aria-label="Link a secciones"
-          *ngIf="user"
-          [routerLink]="['/admin/sections']"
-          [routerLinkActive]="['selected']"
-        >
-          Secciones
         </a>
       </li>
       <li>
@@ -197,9 +207,19 @@
       <li>
         <a
           role="link"
-          aria-label="Link a acerca de nosotros"
+          aria-label="Link a nueva propuesta"
+          [routerLink]="['/site/proposal']"
+          [routerLinkActive]="['selected']"
+        >
+          Propuesta
+        </a>
+      </li>
+      <li>
+        <a
+          role="link"
+          aria-label="Link a Acerca de"
           [routerLink]="['/aboutus']"
-          >Acerca de nosotros</a
+          >Acerca de</a
         >
       </li>
       <li *ngIf="!user">
