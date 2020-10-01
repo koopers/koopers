@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { Category } from '../../models/categories';
-import { environment } from '../../../../environments/environment';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
+import { Category } from '../../models/categories';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +42,6 @@ export class CategoriesService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.log('error', error);
     return throwError(error);
   }
 }

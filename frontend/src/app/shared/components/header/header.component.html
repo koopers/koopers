@@ -2,23 +2,16 @@
   <div class="header__limiter">
     <div class="header__content">
       <div class="logo">
-        <a role="link" aria-label="Link a home">
-          <img src="assets/img/Kooper.png" alt="logo koopers" />
+        <a role="link" aria-label="Link a home" [routerLink]="['/']">
+          <img src="assets/img/logo.png" alt="logo koopers" />
         </a>
-      </div>  
+      </div>
       <nav>
         <ul>
           <li>
-            <a role="link" aria-label="Link a Inicio"
-              [routerLink]="['/']"
-              [routerLinkActive]="['selected']"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              Inicio
-            </a>
-          </li>
-          <li>
-            <a role="link" aria-label="Link a sitios"
+            <a
+              role="link"
+              aria-label="Link a sitios"
               *ngIf="user"
               [routerLink]="['/admin/sites']"
               [routerLinkActive]="['selected']"
@@ -27,27 +20,9 @@
             </a>
           </li>
           <li>
-            <a role="link" aria-label="Link a Categorias"
-              *ngIf="user"
-              [routerLink]="['/admin/categories']"
-              [routerLinkActive]="['selected']"
-            >
-              Categorías
-            </a>
-          </li>
-          <li>
             <a
-              role="link" aria-label="Link a secciones"
-              *ngIf="user"
-              [routerLink]="['/admin/proposals']"
-              [routerLinkActive]="['selected']"
-            >
-              Propuestas
-            </a>
-          </li>
-          <li>
-            <a
-              role="link" aria-label="Link a secciones"
+              role="link"
+              aria-label="Link a secciones"
               *ngIf="user"
               [routerLink]="['/admin/sections']"
               [routerLinkActive]="['selected']"
@@ -57,16 +32,36 @@
           </li>
           <li>
             <a
-            role="link" aria-label="Link a usuarios"
+              role="link"
+              aria-label="Link a Categorias"
+              *ngIf="user"
+              [routerLink]="['/admin/categories']"
+              [routerLinkActive]="['selected']"
+            >
+              Categorías
+            </a>
+          </li>
+          <li>
+            <a
+              role="link"
+              aria-label="Link a secciones"
+              *ngIf="user"
+              [routerLink]="['/admin/proposals']"
+              [routerLinkActive]="['selected']"
+            >
+              Propuestas
+            </a>
+          </li>          
+          <li>
+            <a
+              role="link"
+              aria-label="Link a usuarios"
               *ngIf="user && manteiner"
               [routerLink]="['/admin/users']"
               [routerLinkActive]="['selected']"
             >
               Usuarios
             </a>
-          </li>
-          <li>
-            <a role="link" aria-label="Link a acerca de nosotros" href="/">Acerca de nosotros</a>
           </li>
         </ul>
       </nav>
@@ -75,13 +70,50 @@
       <nav>
         <ul>
           <li>
-            <a role="link" aria-label="Link a Buscar" [routerLink]="['/sites/search']">Buscar</a>
+            <a
+              role="link"
+              aria-label="Link a Inicio"
+              [routerLink]="['/']"
+              [routerLinkActive]="['selected']"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              Inicio
+            </a>
+          </li>
+          <li>
+            <a
+              role="link"
+              aria-label="Link a Buscar"
+              [routerLink]="['/site/search']"
+              >Buscar</a
+            >
+          </li>
+          <li>
+            <a
+              role="link"
+              aria-label="Link a nueva propuesta"
+              [routerLink]="['/site/proposal']"
+              [routerLinkActive]="['selected']"
+            >
+              Propuesta
+            </a>
+          </li>
+          <li>
+            <a
+              role="link"
+              aria-label="Link a Acerca de"
+              [routerLink]="['/aboutus']"
+              >Acerca de</a
+            >
           </li>
           <li *ngIf="!user">
-            <a role="link" aria-label="Link a Iniciar sesión" [routerLink]="['/auth/login']">Iniciar Sesión</a>
-          </li>
-          <li *ngIf="!user">
-            <a role="link" aria-label="Link a Registrarse" class="register" [routerLink]="['/auth/register']">Registrarse</a>
+            <a
+              class="login"
+              role="link"
+              aria-label="Link a Iniciar sesión"
+              [routerLink]="['/auth/login']"
+              >Iniciar Sesión</a
+            >
           </li>
           <li *ngIf="user">
             <app-button
@@ -93,27 +125,14 @@
         </ul>
       </nav>
     </div>
-
   </div>
-  <p-sidebar
-    [(visible)]="visible"
-    position="right"
-    [baseZIndex]="10000"
-  >
+  <p-sidebar [(visible)]="visible" position="right" [baseZIndex]="10000">
     <h4 class="title">Menú</h4>
-
     <ul>
       <li>
-        <a role="link" aria-label="Link a inicio"
-          [routerLink]="['/']"
-          [routerLinkActive]="['selected']"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          Inicio
-        </a>
-      </li>
-      <li>
-        <a role="link" aria-label="Link a sitios"
+        <a
+          role="link"
+          aria-label="Link a sitios"
           *ngIf="user"
           [routerLink]="['/admin/sites']"
           [routerLinkActive]="['selected']"
@@ -122,27 +141,9 @@
         </a>
       </li>
       <li>
-        <a role="link" aria-label="Link a categorias"
-          *ngIf="user"
-          [routerLink]="['/admin/categories']"
-          [routerLinkActive]="['selected']"
-        >
-          Categorías
-        </a>
-      </li>
-      <li>
         <a
-          role="link" aria-label="Link a propuestas"
-          *ngIf="user"
-          [routerLink]="['/admin/proposals']"
-          [routerLinkActive]="['selected']"
-        >
-          Propuestas
-        </a>
-      </li>
-      <li>
-        <a
-          role="link" aria-label="Link a secciones"
+          role="link"
+          aria-label="Link a secciones"
           *ngIf="user"
           [routerLink]="['/admin/sections']"
           [routerLinkActive]="['selected']"
@@ -152,7 +153,30 @@
       </li>
       <li>
         <a
-          role="link" aria-label="Link a usuarios"
+          role="link"
+          aria-label="Link a categorias"
+          *ngIf="user"
+          [routerLink]="['/admin/categories']"
+          [routerLinkActive]="['selected']"
+        >
+          Categorías
+        </a>
+      </li>
+      <li>
+        <a
+          role="link"
+          aria-label="Link a propuestas"
+          *ngIf="user"
+          [routerLink]="['/admin/proposals']"
+          [routerLinkActive]="['selected']"
+        >
+          Propuestas
+        </a>
+      </li>
+      <li>
+        <a
+          role="link"
+          aria-label="Link a usuarios"
           *ngIf="user && manteiner"
           [routerLink]="['/admin/users']"
           [routerLinkActive]="['selected']"
@@ -160,24 +184,55 @@
           Usuarios
         </a>
       </li>
-      <li>
-        <a role="link" aria-label="Link a acerca de nosotros" href="/">About us</a>
+      <hr *ngIf="user"/>
+      <li class="inicio">
+        <a
+          role="link"
+          aria-label="Link a inicio"
+          [routerLink]="['/']"
+          [routerLinkActive]="['selected']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Inicio
+        </a>
       </li>
       <li>
-        <a role="link" aria-label="Link a Buscar" [routerLink]="['/sites/search']">Buscar</a>
+        <a
+          role="link"
+          aria-label="Link a Buscar"
+          [routerLink]="['/site/search']"
+          >Buscar</a
+        >
+      </li>
+      <li>
+        <a
+          role="link"
+          aria-label="Link a nueva propuesta"
+          [routerLink]="['/site/proposal']"
+          [routerLinkActive]="['selected']"
+        >
+          Propuesta
+        </a>
+      </li>
+      <li>
+        <a
+          role="link"
+          aria-label="Link a Acerca de"
+          [routerLink]="['/aboutus']"
+          >Acerca de</a
+        >
       </li>
       <li *ngIf="!user">
-        <a role="link" aria-label="Link a Iniciar sesión" [routerLink]="['/auth/login']">Iniciar sesión</a>
-      </li>
-      <li *ngIf="!user">
-        <a role="link" aria-label="Link a Registrarse" class="register" [routerLink]="['/auth/register']">Registrarse</a>
+        <a
+          class="login"
+          role="link"
+          aria-label="Link a Iniciar sesión"
+          [routerLink]="['/auth/login']"
+          >Iniciar sesión</a
+        >
       </li>
       <li *ngIf="user">
-        <app-button
-          label="Salir"
-          btn="primary"
-          (click)="logout()"
-        ></app-button>
+        <app-button label="Salir" btn="primary" (click)="logout()"></app-button>
       </li>
     </ul>
   </p-sidebar>

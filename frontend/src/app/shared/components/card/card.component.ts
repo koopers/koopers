@@ -11,10 +11,15 @@ export class CardComponent implements OnInit {
   @Input() item: Site & Screenshot;
   @Output() clickCard?: EventEmitter<string> = new EventEmitter();
 
+  display = false;
+
   constructor() {}
 
   ngOnInit(): void {}
 
+  showDialog(): void {
+    this.display = true;
+  }
   onClickCard(event): void {
     this.clickCard.emit(event);
   }

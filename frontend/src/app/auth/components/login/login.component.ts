@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin/sites']);
         },
         (error) => {
-          const msg = error.error.detail;
+          const msg = error.error.detail || 'No pudimos encontrar la cuenta. Por favor revise el correo y la contraseña e intentelo de nuevo.';
           this.alertsService.handleErrorAlert(msg);
         }
       );

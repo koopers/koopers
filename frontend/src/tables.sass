@@ -1,9 +1,13 @@
 // Table
+app-button
+  margin-bottom: 10px
+
 ::ng-deep
   .p-datatable .p-datatable-thead > tr > th
     background: $secondary-color
     color: $light-color
     font-weight: bold
+    
 
   .p-datatable .p-sortable-column.p-highlight
     background: $secondary-color
@@ -22,11 +26,12 @@
   .p-datatable .p-sortable-column:not(.p-highlight):hover .p-sortable-column-icon
     color: $light-color
 
+
   .p-datatable .p-datatable-tbody > tr > td
     text-align: left
     border: 1px solid $light-color
     border-width: 0 0 1px 0
-    padding: 0 1rem
+    padding: 10px 1rem
     word-break: break-word
 
   .p-datatable-responsive-demo .p-datatable-tbody > tr > td .p-column-title
@@ -58,3 +63,4 @@
 
                 &:last-child
                     border-bottom: 1px solid var(--surface-d)
+                    padding-bottom: 15px
