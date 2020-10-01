@@ -17,6 +17,7 @@ import {
 import { TableModule } from 'primeng/table';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {CheckboxModule} from 'primeng/checkbox';
 import { SharedModule } from '../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardSitesComponent } from './components/dashboard-sites/dashboard-sites.component';
@@ -52,6 +53,7 @@ import { DashboardSuggestedSitesComponent } from './components/dashboard-suggest
     InputSwitchModule,
     ConfirmDialogModule,
     DropdownModule,
+    CheckboxModule,
     ReactiveFormsModule,
     AdminRoutingModule,
     SharedModule,

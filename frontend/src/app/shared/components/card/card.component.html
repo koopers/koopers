@@ -4,13 +4,14 @@
       <h6 *ngIf="!item.tracked_site" class="c-card__title">{{ item.title }}</h6>
       <h6 class="c-card__title" *ngIf="item.tracked_site">{{ item.tracked_site.site_id.title }}</h6>
 
-      <img class="c-card__image" [src]="item.mobile_url || 'assets/img/no-image.png'" alt="" />
+      <img class="c-card__image" [src]="item.mobile_url || 'assets/img/no-image.png'" [alt]="item.title" />
     </div>
     <p *ngIf="item.tracked_site" class="c-card__description">
       {{ item.tracked_site.category_id.title }}
     </p>
-    <time *ngIf="item.tracked_site" class="c-card__date" [attr.datetime]="item.tracked_site.created">{{
-      item.tracked_site.created | date: 'short'
+    
+    <time *ngIf="item.tracked_site" class="c-card__date" [attr.datetime]="item.created">{{
+      item.created | date
     }}</time>
   </a>
 </article>

@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>
+  <h1 id='title-header'>
     <span *ngIf="!currentCategory">Nueva Categoría</span>
     <span *ngIf="currentCategory">Editar Categoría</span>
   </h1>
@@ -12,7 +12,7 @@
   </form>
 
   <div class="flex-justify-end">
-    <app-button label='Cancelar' btn='default' (click)="goBack()"></app-button>
-    <app-button label='Guardar' btn='primary' (click)="onSave()"></app-button>
+    <app-button id="cancel-btn" label='Cancelar' btn='default' (click)="goBack()"></app-button>
+    <app-button id="save-btn" label='Guardar' btn='primary' (click)="onSave()"></app-button>
   </div>
 </div>

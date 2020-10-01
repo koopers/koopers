@@ -1,0 +1,23 @@
+.search
+  &__container 
+    padding: 20px
+    .form
+      display: flex
+      justify-content: space-around
+      align-items: center
+      flex-wrap: wrap
+      input, select
+        width: 200px
+        margin-right: 10px
+      &-group
+        p-multiSelect
+          .p-multiselect
+            min-width: 190px 
+      &-button
+        margin: auto 0
+  &__data
+    padding: 20px
+    &--content
+      display: grid
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+    

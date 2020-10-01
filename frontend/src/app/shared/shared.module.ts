@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {
   FaIconLibrary,
@@ -16,12 +17,14 @@ import {
   faTrash
 } from '@fortawesome/free-solid-svg-icons';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { SidebarModule } from 'primeng/sidebar';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './components/header/header.component';
-
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,25 @@ import { HeaderComponent } from './components/header/header.component';
     ButtonComponent,
     CardComponent,
     HeaderComponent,
+    SearchComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, RouterModule, SidebarModule, ButtonModule],
-  exports: [AlertsComponent, ButtonComponent, CardComponent, HeaderComponent],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    RouterModule,
+    SidebarModule,
+    ButtonModule,
+    ReactiveFormsModule,
+    CalendarModule,
+    MultiSelectModule,
+  ],
+  exports: [
+    AlertsComponent,
+    ButtonComponent,
+    CardComponent,
+    HeaderComponent,
+    SearchComponent,
+  ],
 })
 export class SharedModule {
   constructor(library: FaIconLibrary) {

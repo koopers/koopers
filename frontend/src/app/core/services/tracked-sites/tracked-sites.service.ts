@@ -19,7 +19,7 @@ export class TrackedSitesService {
 
   create(body: {site_id: number, category_id: number, path_url: string}): Observable<TrackedSite> {
     return this.http
-    .post<TrackedSite>(`${environment.url_api}/tracked-sites/`, body)
+    .post<TrackedSite>(`${environment.url_api}/tracked-sites/add/`, body)
     .pipe(catchError(this.handleError));
   }
 
