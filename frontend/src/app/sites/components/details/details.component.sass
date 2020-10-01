@@ -1,0 +1,31 @@
+.details
+  padding: 20px
+  &__main
+    display: grid
+    grid-template-columns: 65% 35%
+    gap: 20px
+    @media screen and ( max-width: 768px  )
+      display: flex
+      flex-direction: column-reverse
+    &--content
+      .screenshots
+        display: grid
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+        gap: 20px
+      .form
+        display: flex
+        flex-direction: column
+        @media screen and ( max-width: 768px  )
+          flex-direction: row
+          align-items: center
+          justify-content: space-evenly
+          flex-wrap: wrap
+        &-group          
+          label
+            display: block
+            font-weight: 700
+            margin: 10px 0
+          p-dropdown
+            margin: auto
+        app-button
+          margin: 10px auto

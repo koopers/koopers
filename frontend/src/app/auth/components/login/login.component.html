@@ -1,4 +1,12 @@
-<section class="login container">
+<header class="header__login">
+  <div class="logo">
+    <img src="assets/img/logo.png" alt="logo">
+  </div>
+  <div class="home">
+    <app-button label="Volver" btn="primary" [routerLink]="['/']"></app-button>
+  </div>
+</header>
+<section class="login">
   <h2>Login</h2>
   <div class="login__container">
     <form class="form" [formGroup]="form" (ngSubmit)="login($event)">
@@ -9,10 +17,6 @@
       <div class="form-group">
         <label class="form-group__label" for="password">Password</label>
         <input class="form-group__input" type="password" id="password" formControlName="password">
-      </div>
-      <div class="form-group text">
-        <p>Si no tiene una cuenta, registrese <a [routerLink]="['/auth/register']" routerLinkActive="active">aquí</a>
-        </p>
       </div>
       <div class="button-group">
         <app-button label='Cancelar' type='button' btn="danger" (click)="goBack()"></app-button>
