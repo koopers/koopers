@@ -17,6 +17,12 @@ export class ScreenshotsService {
       .pipe(catchError(this.handleError));
   }
 
+  getOne(id: number): Observable<{}> {
+    return this.http
+      .get<{}>(`${environment.url_api}/screenshots/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error);
