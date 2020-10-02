@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
-import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
-import { SuggestedSitesService } from 'src/app/core/services/suggested-sites/suggested-sites.service';
-import { BaseComponent } from 'src/app/core/interfaces/base.component';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BaseComponent } from '@core/interfaces/base.component';
+import { SuggestedSite } from '@core/models/suggested-sites';
+import { AlertsService } from '@core/services/alerts/alerts.service';
+import { SuggestedSitesService } from '@core/services/suggested-sites/suggested-sites.service';
 import { takeUntil } from 'rxjs/operators';
-import { SuggestedSite } from 'src/app/core/models/suggested-sites';
 
 @Component({
   selector: 'app-form-suggested-sites',
@@ -76,7 +76,7 @@ export class FormSuggestedSitesComponent extends BaseComponent implements OnInit
       .pipe(
         takeUntil(this.unsubscribe$)
       )
-      .subscribe((site) => {
+      .subscribe(() => {
         this.alertsService.handleSuccessAlert('Propuesta actualizada exitosamente!');
         this.goBack();
       });
@@ -85,7 +85,7 @@ export class FormSuggestedSitesComponent extends BaseComponent implements OnInit
       .create(values)
       .pipe(
         takeUntil(this.unsubscribe$)
-      ).subscribe((site) => {
+      ).subscribe(() => {
         this.alertsService.handleSuccessAlert('Propuesta creada exitosamente!');
         this.goBack();
       });

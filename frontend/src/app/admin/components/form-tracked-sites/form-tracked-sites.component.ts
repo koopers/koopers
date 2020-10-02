@@ -1,15 +1,15 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
-import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
-import { TrackedSitesService } from 'src/app/core/services/tracked-sites/tracked-sites.service';
-import { CategoriesService } from 'src/app/core/services/categories/categories.service';
-import { SitesService } from 'src/app/core/services/sites/sites.service';
-import { BaseComponent } from 'src/app/core/interfaces/base.component';
 import { ActivatedRoute } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
-import { TrackedSite } from 'src/app/core/models/tracked-sites';
+import { BaseComponent } from '@core/interfaces/base.component';
+import { TrackedSite } from '@core/models/tracked-sites';
+import { AlertsService } from '@core/services/alerts/alerts.service';
+import { CategoriesService } from '@core/services/categories/categories.service';
+import { SitesService } from '@core/services/sites/sites.service';
+import { TrackedSitesService } from '@core/services/tracked-sites/tracked-sites.service';
 import { SelectItem } from 'primeng/api';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-tracked-sites',
