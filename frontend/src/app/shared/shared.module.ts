@@ -20,6 +20,7 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SidebarModule } from 'primeng/sidebar';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { ButtonComponent } from './components/button/button.component';
@@ -47,6 +48,7 @@ import { SearchComponent } from './components/search/search.component';
     CalendarModule,
     MultiSelectModule,
     DialogModule,
+    ProgressSpinnerModule
   ],
   exports: [
     AlertsComponent,

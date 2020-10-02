@@ -2,6 +2,7 @@
   <div class="home__container">
     <aside class="home__sities">
       <h3>Sitios</h3>
+      <p-progressSpinner *ngIf="loading"></p-progressSpinner>
       <cdk-virtual-scroll-viewport itemSize="100" class="viewport-site" >
         <div class="home__sities--container">
           <div class="home__sities--content" *ngFor="let site of sites">
@@ -12,6 +13,7 @@
     </aside>
     <section class="home__covers">
       <h3>Portadas</h3>
+      <p-progressSpinner *ngIf="loading"></p-progressSpinner>
       <cdk-virtual-scroll-viewport itemSize="60" class="viewport" >
         <div class="home__covers--container">
           <div class="home__covers--content" *cdkVirtualFor="let screenshot of screenshots">

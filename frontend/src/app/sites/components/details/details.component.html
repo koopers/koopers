@@ -8,11 +8,13 @@
         <p *ngIf="screenshots.length === 0">
           No tenemos capturas de "{{ site.title }}"
         </p>
-        <div class="screenshots" *ngIf="screenshots.length > 0">
-          <div *ngFor="let screenshot of screenshots">
-            <app-card [item]="screenshot"></app-card>
+        <cdk-virtual-scroll-viewport itemSize="100" class="viewport-detail">
+          <div class="screenshots" *ngIf="screenshots.length > 0">
+            <div *cdkVirtualFor="let screenshot of screenshots">
+              <app-card [item]="screenshot"></app-card>
+            </div>
           </div>
-        </div>
+        </cdk-virtual-scroll-viewport>
       </section>
       <aside class="details__main--content">
         <form class="form" [formGroup]="form" (ngSubmit)="search($event)">

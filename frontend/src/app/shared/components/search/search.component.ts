@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
   sites;
   options;
   foundSites;
+  loading = false;
   constructor(
     private formBuilder: FormBuilder,
     private filtersService: FiltersService,
@@ -28,35 +29,59 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {}
 
   getCategories(): void {
-    this.categoriesService.getAll().subscribe((data) => (this.options = data));
+    this.loading = true;
+    this.categoriesService.getAll().subscribe((data) => {
+      this.loading = false;
+      this.options = data;
+    });
   }
 
   getSites(): void {
-    this.sitesService.getAll().subscribe((data) => (this.sites = data));
+    this.loading = true;
+    this.sitesService.getAll().subscribe((data) => {
+      this.loading = false;
+      this.sites = data;
+    });
   }
 
   filterSites(site): void {
+    this.loading = true;
     this.filtersService
       .filterBySites(site)
-      .subscribe((data) => (this.foundSites = data));
+      .subscribe((data) => {
+        this.loading = false;
+        this.foundSites = data;
+      });
   }
 
   filterDate(site, startDate, endDate): void {
+    this.loading = true;
     this.filtersService
       .filterByDates(site, startDate, endDate)
-      .subscribe((data) => (this.foundSites = data));
+      .subscribe((data) => {
+        this.loading = false;
+        this.foundSites = data;
+      });
   }
 
   filterCategories(site, categories): void {
+    this.loading = true;
     this.filtersService
       .filterByCategories(site, categories)
-      .subscribe((data) => (this.foundSites = data));
+      .subscribe((data) => {
+        this.loading = false;
+        this.foundSites = data;
+      });
   }
 
   filterAll(site, categories, startDate, endDate): void {
+    this.loading = true;
     this.filtersService
       .filterByAll(site, categories, startDate, endDate)
-      .subscribe((data) => (this.foundSites = data));
+      .subscribe((data) => {
+        this.loading = false;
+        this.foundSites = data;
+      });
   }
 
   formatedDate(date: string): number {
