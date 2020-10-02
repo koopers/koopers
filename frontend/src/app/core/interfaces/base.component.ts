@@ -1,4 +1,4 @@
-import { OnDestroy, Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -14,7 +14,7 @@ export class BaseComponent implements OnDestroy {
 
   constructor() { }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }

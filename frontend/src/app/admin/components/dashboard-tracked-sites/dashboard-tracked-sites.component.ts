@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {ConfirmationService} from 'primeng/api';
-import {TrackedSitesService} from '../../../core/services/tracked-sites/tracked-sites.service';
-import {TrackedSite} from '../../../core/models/tracked-sites';
-import { BaseComponent } from 'src/app/core/interfaces/base.component';
-import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
+import { BaseComponent } from '@core/interfaces/base.component';
+import { TrackedSite } from '@core/models/tracked-sites';
+import { AlertsService } from '@core/services/alerts/alerts.service';
+import { TrackedSitesService } from '@core/services/tracked-sites/tracked-sites.service';
+import { ConfirmationService } from 'primeng/api';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard-tracked-sites',
   templateUrl: './dashboard-tracked-sites.component.html',
   styleUrls: ['./dashboard-tracked-sites.component.sass'],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService],
 })
-export class DashboardTrackedSitesComponent extends BaseComponent implements OnInit {
+export class DashboardTrackedSitesComponent
+  extends BaseComponent
+  implements OnInit {
   trackedSites: TrackedSite[] = [];
   SITE_HEADER = 'Sitio';
   CATEGORY_HEADER = 'Categoría';
@@ -31,28 +33,27 @@ export class DashboardTrackedSitesComponent extends BaseComponent implements OnI
     this.getData();
   }
 
-  confirmDelete(tSite: TrackedSite) {
+  confirmDelete(tSite: TrackedSite): void {
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
-        this.tSitesService.delete(tSite.id)
-        .pipe(
-          takeUntil(this.unsubscribe$)
-        )
-        .subscribe((response) => {
-          this.alertsService.handleSuccessAlert('Sección eliminada exitosamente!');
-          this.getData();
-        });
-      }
+        this.tSitesService
+          .delete(tSite.id)
+          .pipe(takeUntil(this.unsubscribe$))
+          .subscribe(() => {
+            this.alertsService.handleSuccessAlert(
+              'Sección eliminada exitosamente!'
+            );
+            this.getData();
+          });
+      },
     });
   }
 
-  private getData() {
-    this.tSitesService.getAll()
-    .pipe(
-      takeUntil(this.unsubscribe$)
-    )
-    .subscribe(trackedSites => this.trackedSites = trackedSites);
+  private getData(): void {
+    this.tSitesService
+      .getAll()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((trackedSites) => (this.trackedSites = trackedSites));
   }
-
 }

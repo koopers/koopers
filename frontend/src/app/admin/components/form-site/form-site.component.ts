@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
-import { SitesService } from 'src/app/core/services/sites/sites.service';
-import { BaseComponent } from 'src/app/core/interfaces/base.component';
 import { ActivatedRoute } from '@angular/router';
+import { BaseComponent } from '@core/interfaces/base.component';
+import { Site } from '@core/models/sites';
+import { AlertsService } from '@core/services/alerts/alerts.service';
+import { SitesService } from '@core/services/sites/sites.service';
 import { takeUntil } from 'rxjs/operators';
-import { Site } from 'src/app/core/models/sites';
 
 @Component({
   selector: 'app-form-site',

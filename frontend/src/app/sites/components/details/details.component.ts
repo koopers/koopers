@@ -19,6 +19,7 @@ export class DetailsComponent extends BaseComponent implements OnInit {
   form: FormGroup;
   categories = [];
   size = true;
+  loading = false;
 
   constructor(
     private sitesService: SitesService,
@@ -38,29 +39,37 @@ export class DetailsComponent extends BaseComponent implements OnInit {
   }
 
   resize(): void {
+    this.loading = true;
     this.breakpointObserver
       .observe('(max-width: 768px)')
       .subscribe((result) => {
+        this.loading = false;
         this.size = result.matches;
       });
   }
 
   getOneSite(): void {
+    this.loading = true;
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params.id;
       this.sitesService.getOne(this.id).subscribe((site) => {
+        this.loading = false;
         this.site = site;
       });
     });
   }
 
   getAllScreenshots(): void {
+    this.loading = true;
     this.filtersService.filterBySites(this.id.toString()).subscribe((data) => {
-      return (this.screenshots = data);
+      this.loading = false;
+      this.screenshots = data;
     });
   }
 
-  search(event: Event): void {}
+  search(event: Event): void {
+    // this.loading = true;
+  }
 
   private builderForm(): void {
     this.form = this.formBuilder.group({

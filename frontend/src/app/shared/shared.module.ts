@@ -20,12 +20,15 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SidebarModule } from 'primeng/sidebar';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
+
+
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { SearchComponent } from './components/search/search.component';
     ReactiveFormsModule,
     CalendarModule,
     MultiSelectModule,
-    DialogModule
+    DialogModule,
+    ProgressSpinnerModule
   ],
   exports: [
     AlertsComponent,

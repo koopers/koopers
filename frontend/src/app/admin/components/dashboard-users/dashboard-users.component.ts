@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {ConfirmationService} from 'primeng/api';
-import {UsersService} from '../../../core/services/users/users.service';
-import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
-import {BaseComponent} from '../../../core/interfaces/base.component';
+import { BaseComponent } from '@core/interfaces/base.component';
+import { User } from '@core/models/users';
+import { AlertsService } from '@core/services/alerts/alerts.service';
+import { UsersService } from '@core/services/users/users.service';
+import { ConfirmationService } from 'primeng/api';
 import { takeUntil } from 'rxjs/operators';
-import {User} from '../../../core/models/users';
 
 @Component({
   selector: 'app-dashboard-users',
   templateUrl: './dashboard-users.component.html',
   styleUrls: ['./dashboard-users.component.sass'],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService],
 })
 export class DashboardUsersComponent extends BaseComponent implements OnInit {
   users: User[] = [];
@@ -22,37 +22,36 @@ export class DashboardUsersComponent extends BaseComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private confirmationService: ConfirmationService,
-    private alertsService: AlertsService,
+    private alertsService: AlertsService
   ) {
     super();
-   }
+  }
 
   ngOnInit(): void {
     this.getData();
   }
 
-  confirmDelete(user: User) {
+  confirmDelete(user: User): void {
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
-        this.usersService.delete(user.id)
-        .pipe(
-          takeUntil(this.unsubscribe$)
-        )
-        .subscribe((response) => {
-          this.alertsService.handleSuccessAlert('Usuario eliminado exitosamente!');
-          this.getData();
-        });
-      }
+        this.usersService
+          .delete(user.id)
+          .pipe(takeUntil(this.unsubscribe$))
+          .subscribe((response) => {
+            this.alertsService.handleSuccessAlert(
+              'Usuario eliminado exitosamente!'
+            );
+            this.getData();
+          });
+      },
     });
   }
 
-  private getData() {
-    this.usersService.getAll()
-    .pipe(
-      takeUntil(this.unsubscribe$)
-    )
-    .subscribe(users => this.users = users);
+  private getData(): void {
+    this.usersService
+      .getAll()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((users) => (this.users = users));
   }
-
 }
