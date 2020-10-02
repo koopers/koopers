@@ -11,7 +11,7 @@ import os
 from botocore.exceptions import NoCredentialsError
 import datetime
 import environ
-
+from pyvirtualdisplay import Display
 
 env = environ.Env()
 environ.Env.read_env()
@@ -42,67 +42,64 @@ def upload_to_aws(local_file, bucket, s3_file):
 def scrapping_website(link,site_id):
     print(link)
     site = TrackedSite.objects.get(pk=site_id)
-    options = webdriver.ChromeOptions()
-    options.add_argument("headless")
-
-
-    if(platform.system() == 'Linux'):
-        options.binary_location = '/usr/bin/chromium-browser'
-
-    options.add_argument("disable-infobars") 
-    options.add_argument("--disable-extensions") 
-    options.add_argument("--disable-gpu") 
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--no-sandbox")
-
-    with webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options) as driver:
-        date=datetime.datetime.now().strftime ("%Y%m%d")
-        desktop = {'output': str(site_id) + "-" + date  + '-desktop.png',
-                   'width': 1024,
-                   'height': 1800}
-        tablet = {'output': str(site_id) + "-" + date  + '-tablet.png',
-                  'width': 768,
-                  'height': 1400}
-        mobile = {'output': str(site_id) + "-" + date  + '-mobile.png',
-                  'width': 375,
-                  'height': 1200}
-        #linkWithProtocol = 'https://' + str(link)
-        linkWithProtocol =  str(link)
-       
-        driver.set_window_size(desktop['width'], desktop['height'])
-        driver.get(linkWithProtocol)
-        time.sleep(2)
-        driver.save_screenshot(desktop['output'])
-        uploaded = upload_to_aws(desktop['output'], 'koopers', desktop['output'])
-        if(uploaded):
-            os.remove(desktop['output'])
-
-        driver.set_window_size(tablet['width'], tablet['height'])
-        driver.get(linkWithProtocol)
-        time.sleep(2)
-        driver.save_screenshot(tablet['output'])
-        uploaded = upload_to_aws(tablet['output'], 'koopers', tablet['output'])
-        if(uploaded):
-            os.remove(tablet['output'])
-        
-        driver.set_window_size(mobile['width'], mobile['height'])
-        driver.get(linkWithProtocol)
-        time.sleep(2)
-        driver.save_screenshot(mobile['output'])
-        uploaded = upload_to_aws(mobile['output'], 'koopers', mobile['output'])
-        if(uploaded):
-            os.remove(mobile['output'])
-
-        pref = "https://koopers.s3-sa-east-1.amazonaws.com/"
-        mu = pref+mobile['output']
-        tu = pref + tablet['output']
-        du = pref + desktop['output']
-
-        s = Screenshot(tracked_site=site,mobile_url=mu,tablet_url=tu,desktop_url=du)
-        s.save()
 
     
+    date=datetime.datetime.now().strftime ("%Y%m%d")
+    desktop = {'output': str(site_id) + "-" + date  + '-desktop.png',
+                   'width': 1024,
+                   'height': 1800}
+    tablet = {'output': str(site_id) + "-" + date  + '-tablet.png',
+                  'width': 768,
+                  'height': 1400}
+    mobile = {'output': str(site_id) + "-" + date  + '-mobile.png',
+                  'width': 375,
+                  'height': 1200}
+        
+    linkWithProtocol =  str(link)
+    display = Display(visible=0, size=(desktop['width'], desktop['height']))
+    display.start()
+    browser = webdriver.Firefox()
+    browser.get(linkWithProtocol)
+    browser.save_screenshot(desktop['output'])
+    uploaded = upload_to_aws(desktop['output'], 'koopers', desktop['output'])
+    if(uploaded):
+         os.remove(desktop['output'])
+    browser.quit()
+    display.stop()
 
+    display = Display(visible=0, size=(tablet['width'], tablet['height']))
+    display.start()
+    browser = webdriver.Firefox()
+    browser.get(linkWithProtocol)
+    browser.save_screenshot(tablet['output'])
+    uploaded = upload_to_aws(tablet['output'], 'koopers', tablet['output'])
+    if(uploaded):
+         os.remove(tablet['output'])
+    browser.quit()
+    display.stop()
+	
+    display = Display(visible=0, size=(mobile['width'], mobile['height']))
+    display.start()
+    browser = webdriver.Firefox()
+    browser.get(linkWithProtocol)
+    browser.save_screenshot(mobile['output'])
+    uploaded = upload_to_aws(mobile['output'], 'koopers', mobile['output'])
+    if(uploaded):
+         os.remove(mobile['output'])
+    browser.quit()
+    display.stop()
+    
+
+    pref = "https://koopers.s3-sa-east-1.amazonaws.com/"
+    mu = pref+mobile['output']
+    tu = pref + tablet['output']
+    du = pref + desktop['output']
+
+    s = Screenshot(tracked_site=site,mobile_url=mu,tablet_url=tu,desktop_url=du)
+    s.save()
+
+    
+    
 @task(name="get_tracket_sites")
 def add_two_numbers():
     '''

@@ -8,10 +8,27 @@ export class CategoriesServiceStub {
     return of(categories);
   }
 
-  delete() {
-    return of(true);
+  delete(): Observable<Category> {
+    return of(categories[0]);
+  }
+
+  create(body: {title: string}): Observable<Category> {
+    return of(categories[0]);
+  }
+
+  getOne(id: number): Observable<Category> {
+    return of(categories[0]);
+  }
+
+  update(id: number, body: {title: string}): Observable<Category> {
+    return of(categories[0]);
   }
 }
+
+export class LocationStub {
+  back(): void {}
+}
+
 
 export class AlertsServiceStub {
   handleSuccessAlert() {}

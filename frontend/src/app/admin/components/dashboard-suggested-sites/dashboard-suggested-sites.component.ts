@@ -50,6 +50,10 @@ export class DashboardSuggestedSitesComponent
     });
   }
 
+  categoriesLabel(categories): void {
+    return JSON.parse(categories).join(', ');
+  }
+
   private getData(): void {
     this.sSitesService
       .getAll()

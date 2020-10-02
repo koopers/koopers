@@ -113,7 +113,7 @@ class LogoutUserView(APIView):
 
 from django.db.models import Value
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def SearchView(request):
 
     # page = 0 if not request.GET.get('page') else int(request.GET.get('page'))
