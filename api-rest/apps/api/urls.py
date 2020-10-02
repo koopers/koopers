@@ -35,6 +35,7 @@ urlpatterns = [
     path('screenshots/<int:pk>', ScreenshotDetailView.as_view(), name='screenshot-detail'),
     path('sites/', ListSiteView.as_view(), name='sites'),
     path('sites/<int:pk>', SiteDetailView.as_view(), name='site-detail'),
+    path('site-details/<int:pk>', SiteMoreDetailView, name='site-more-details'),
     path('tracked-sites/', ListTrackedSiteView.as_view(), name='tracked-sites'),
     path('tracked-sites/add/', CreateTrackedSiteView.as_view(), name='tracked-sites-add'),
     path('tracked-sites/<int:pk>', TrackedSiteDetailView.as_view(), name='tracked-site-detail'),

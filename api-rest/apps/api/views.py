@@ -168,3 +168,20 @@ def AddScreenshot(request):
         return Response({
             'message':'ok'
         })
+
+@api_view(['GET'])
+def SiteMoreDetailView(request, pk):
+    categories = None
+    site = get_object_or_404(Site, pk=pk)
+    tsite = TrackedSite.objects.filter(site_id=site)
+    data_categories = SiteCategorySerializer(tsite, many=True).data
+    
+
+    return Response({
+        'site': {
+            'title': site.title,
+            'url': site.url,
+            'available': site.available,
+        },
+        'categories': data_categories,
+    })
