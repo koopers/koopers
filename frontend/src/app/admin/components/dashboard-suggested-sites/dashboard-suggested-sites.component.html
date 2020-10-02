@@ -1,10 +1,6 @@
 <div class="container">
   <h1>Propuestas</h1>
 
-  <div class="flex-justify-end">
-    <app-button label='Nuevo' btn='primary' [routerLink]="['/admin/proposals/new']"></app-button>
-  </div>
-
   <p-table
     [value]="suggestedSites"
     [paginator]="true"
@@ -37,7 +33,7 @@
         </td>
         <td>
           <span class="p-column-title">{{CATEGORIES_HEADER}}</span>
-          {{suggestedSite.categories}}
+          {{categoriesLabel(suggestedSite.categories)}}
         </td>
         <td>
           <span class="p-column-title">{{ACTIONS_HEADER}}</span>

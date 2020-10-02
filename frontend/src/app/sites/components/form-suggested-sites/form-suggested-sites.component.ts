@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
-import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
-import { SuggestedSitesService } from 'src/app/core/services/suggested-sites/suggested-sites.service';
-import { BaseComponent } from 'src/app/core/interfaces/base.component';
+import { BaseComponent } from '@core/interfaces/base.component';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { AlertsService } from '@core/services/alerts/alerts.service';
+import { SuggestedSitesService } from '@core/services/suggested-sites/suggested-sites.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { SuggestedSite } from 'src/app/core/models/suggested-sites';
 
 @Component({
   selector: 'app-form-suggested-sites',
@@ -15,7 +14,6 @@ import { SuggestedSite } from 'src/app/core/models/suggested-sites';
 })
 export class FormSuggestedSitesComponent extends BaseComponent implements OnInit {
   suggestedForm: FormGroup;
-  currentSuggestedSite: SuggestedSite;
 
   constructor(
     private fb: FormBuilder,
@@ -32,22 +30,6 @@ export class FormSuggestedSitesComponent extends BaseComponent implements OnInit
       title: ['', Validators.required],
       url: ['', Validators.required],
       categories: this.fb.array([])
-    });
-
-    this.route.params.subscribe(params => {
-      const {id} = params;
-      if (id) {
-        this.sSitesService.getOne(id)
-        .pipe(
-          takeUntil(this.unsubscribe$)
-        ).subscribe(site => {
-          this.currentSuggestedSite = {...site, categories: JSON.parse(site.categories) };
-          this.suggestedForm.patchValue(this.currentSuggestedSite);
-          this.currentSuggestedSite.categories.forEach(category => {
-            this.addCategory(category);
-          });
-        });
-      }
     });
   }
 
@@ -67,20 +49,14 @@ export class FormSuggestedSitesComponent extends BaseComponent implements OnInit
     const values = this.suggestedForm.value;
     values.categories = JSON.stringify(values.categories);
 
-    if (this.currentSuggestedSite) {
-      this.sSitesService
-      .update(
-        this.currentSuggestedSite.id,
-        values
-      )
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe((site) => {
-        this.alertsService.handleSuccessAlert('Propuesta actualizada exitosamente!');
-        this.goBack();
-      });
-    }
+    this.sSitesService
+    .create(values)
+    .pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe((site) => {
+      this.alertsService.handleSuccessAlert('Propuesta creada exitosamente!');
+      this.goBack();
+    });
   }
 
   goBack(): void {

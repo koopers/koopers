@@ -47,6 +47,10 @@ export class DashboardSuggestedSitesComponent extends BaseComponent implements O
     });
   }
 
+  categoriesLabel(categories) {
+    return JSON.parse(categories).join(', ');
+  }
+
   private getData() {
     this.sSitesService.getAll()
     .pipe(
