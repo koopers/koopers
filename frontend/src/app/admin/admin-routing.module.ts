@@ -67,10 +67,6 @@ const routes: Routes = [
     component: DashboardSuggestedSitesComponent
   },
   {
-    path: 'proposals/new',
-    component: FormSuggestedSitesComponent
-  },
-  {
     path: 'proposals/:id',
     component: FormSuggestedSitesComponent
   }
