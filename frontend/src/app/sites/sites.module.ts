@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { SharedModule } from '@shared/shared.module';
 import { CalendarModule } from 'primeng/calendar';
@@ -21,7 +21,8 @@ import { SitesRoutingModule } from './sites-routing.module';
     CalendarModule,
     ReactiveFormsModule,
     DropdownModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    FontAwesomeModule
   ]
 })
 export class SitesModule {
