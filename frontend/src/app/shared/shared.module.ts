@@ -27,6 +27,8 @@ import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 
+
+
 @NgModule({
   declarations: [
     AlertsComponent,
@@ -44,7 +46,7 @@ import { SearchComponent } from './components/search/search.component';
     ReactiveFormsModule,
     CalendarModule,
     MultiSelectModule,
-    DialogModule
+    DialogModule,
   ],
   exports: [
     AlertsComponent,

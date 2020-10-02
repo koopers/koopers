@@ -10,8 +10,6 @@
       display: block
   &__sities
     border-right: 0.2px solid $gray-color
-    margin: 0 auto
-    padding-right: 10px
     @media screen and ( max-width: 768px  )
       border: none
     &--container
@@ -20,6 +18,7 @@
         display: flex
         overflow-y: auto
     &--content
+      display: inline-block
       @media screen and ( max-width: 768px )
         margin-right: 10px
   &__covers
@@ -27,3 +26,12 @@
       padding: 20px
       display: grid
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+
+
+.viewport-site
+  height: 450px
+  @media screen and ( max-width: 768px )
+    height: 200px
+
+.viewport 
+  height: 450px

@@ -12,6 +12,8 @@ import { SitesService } from '@core/services/sites/sites.service';
 export class HomeComponent extends BaseComponent implements OnInit {
   sites: Site[];
   screenshots;
+
+  
   constructor(private sitesService: SitesService, private screenshotsService: ScreenshotsService) {
     super();
   }

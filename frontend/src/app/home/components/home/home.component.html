@@ -2,19 +2,24 @@
   <div class="home__container">
     <aside class="home__sities">
       <h3>Sitios</h3>
-      <div class="home__sities--container">
-        <div class="home__sities--content" *ngFor="let site of sites">
-          <app-card [item]="site"></app-card>
+      <cdk-virtual-scroll-viewport itemSize="100" class="viewport-site" >
+        <div class="home__sities--container">
+          <div class="home__sities--content" *ngFor="let site of sites">
+            <app-card [item]="site"></app-card>
+          </div>
         </div>
-      </div>
+      </cdk-virtual-scroll-viewport>
     </aside>
     <section class="home__covers">
       <h3>Portadas</h3>
-      <div class="home__covers--container">
-        <div class="home__covers--content" *ngFor="let screenshot of screenshots">
-          <app-card [item]="screenshot"></app-card>
+      <cdk-virtual-scroll-viewport itemSize="60" class="viewport" >
+        <div class="home__covers--container">
+          <div class="home__covers--content" *cdkVirtualFor="let screenshot of screenshots">
+            <app-card [item]="screenshot"></app-card>
+          </div>
         </div>
-      </div>
+      </cdk-virtual-scroll-viewport>
     </section>
   </div>
 </section>
+
