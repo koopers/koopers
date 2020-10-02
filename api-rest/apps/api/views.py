@@ -12,16 +12,8 @@ from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 class ListUsersView(generics.ListAPIView):
-    # permission_classes = (IsAuthenticated,)
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-# class UserDetailView(APIView):
-#     permission_classes = (IsAuthenticated,)
-#     def get(self, request, pk):
-#         user = get_object_or_404(User, pk=pk)
-#         data = UserSerializer(user).data
-#         return Response(data)
 
 class UserCreateView(generics.CreateAPIView):
     permission_classes = (IsAuthenticated,)
@@ -30,16 +22,6 @@ class UserCreateView(generics.CreateAPIView):
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # def get(self, request, pk):
-    #     permission_classes = (IsAuthenticated,)
-    #     queryset = get_object_or_404(User, pk=pk)
-    # def delete(self, request, pk):
-    #     permission_classes = (IsAuthenticated,)
-    #     queryset = User.objects.delete(pk=pk)
-    # def put(self, request, pk):
-    #     permission_classes = (IsAuthenticated,)
-    #     queryset = get_object_or_404(User,pk=pk)
-
 
 class UserInfoView(APIView):
     permission_classes = (IsAuthenticated,)
@@ -59,27 +41,22 @@ class ListTrackedSiteView(generics.ListCreateAPIView):
     serializer_class = TrackedSerializer
 
 class ListSiteView(generics.ListCreateAPIView):
-    # permission_classes = (IsAuthenticated,)
     queryset = Site.objects.all()
     serializer_class = SiteSerializer
 
 class ListSuggestedSiteView(generics.ListCreateAPIView):
-    # permission_classes = (IsAuthenticated,)
     queryset = SuggestedSite.objects.all()
     serializer_class = SuggestedSiteSerializer
 
 class ListCategoryView(generics.ListCreateAPIView):
-    # permission_classes = (IsAuthenticated,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 class TrackedSiteDetailView(generics.RetrieveUpdateDestroyAPIView):
-    # permission_classes = (IsAuthenticated,)
     queryset = TrackedSite.objects.all()
     serializer_class = TrackedCGUDSerializer
 
 class CreateTrackedSiteView(generics.CreateAPIView):
-    # permission_classes = (IsAuthenticated,)
     queryset = TrackedSite.objects.all()
     serializer_class = TrackedCGUDSerializer
 
@@ -88,7 +65,6 @@ class ScreenshotDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ScreenshotSerializer
 
 class SiteDetailView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticated,)
     queryset = Site.objects.all()
     serializer_class = SiteSerializer
 
@@ -116,7 +92,6 @@ from django.db.models import Value
 @api_view(['GET'])
 def SearchView(request):
 
-    # page = 0 if not request.GET.get('page') else int(request.GET.get('page'))
     if request.GET.get('page'):
         number = int(request.GET.get('page'))
         if number == 0 or number == 1:
