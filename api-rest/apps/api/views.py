@@ -33,7 +33,7 @@ class UserInfoView(APIView):
         return Response(content)
 
 class ListScreenshotView(generics.ListAPIView):
-    queryset = Screenshot.objects.all()
+    queryset = Screenshot.objects.all().order_by('-created','tracked_site__category_id')
     serializer_class = ScreenshotSerializer
 
 class ListTrackedSiteView(generics.ListCreateAPIView):
