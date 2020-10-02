@@ -18,6 +18,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
+import { DialogModule } from 'primeng/dialog';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SidebarModule } from 'primeng/sidebar';
 import { AlertsComponent } from './components/alerts/alerts.component';
@@ -43,6 +44,7 @@ import { SearchComponent } from './components/search/search.component';
     ReactiveFormsModule,
     CalendarModule,
     MultiSelectModule,
+    DialogModule
   ],
   exports: [
     AlertsComponent,

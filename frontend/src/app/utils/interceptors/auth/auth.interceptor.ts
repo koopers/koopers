@@ -2,7 +2,7 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest,
+  HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -50,6 +50,7 @@ export class AuthInterceptor implements HttpInterceptor {
       })
     );
   }
+
 
   addRefreshToken(request: HttpRequest<any>): HttpRequest<any> {
     const token = this.tokenService.getRefreshToken();

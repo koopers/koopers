@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { TrackedSite } from '../../models/tracked-sites';
-import { environment } from '../../../../environments/environment';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
+import { TrackedSite } from '../../models/tracked-sites';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,6 @@ export class TrackedSitesService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.log('error', error);
     return throwError(error);
   }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetailsComponent } from './components/details/details.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
+import { FormSuggestedSitesComponent } from './components/form-suggested-sites/form-suggested-sites.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'detail/:id',
     component: DetailsComponent
+  },
+  {
+    path: 'proposal',
+    component: FormSuggestedSitesComponent
   }
 ];
 

@@ -78,26 +78,19 @@ export class SearchComponent implements OnInit {
       }
 
       if (!categoriesId && !startDate && !endDate) {
-        console.log('1');
         this.filterSites(sitesId);
       }
 
       if (categoriesId && !startDate && !endDate) {
-        console.log('2');
         this.filterCategories(sitesId, categoriesId);
       }
 
       if (startDate && endDate && !categoriesId) {
-        console.log('3');
         this.filterDate(sitesId, startDate, endDate);
       }
       if (categoriesId && startDate && endDate) {
-        console.log('4');
-        console.log('SearchComponent -> search -> endDate', endDate);
         this.filterAll(sitesId, categoriesId, startDate, endDate);
       }
-
-      console.log(this.foundSites);
     }
   }
   private builderForm(): void {
