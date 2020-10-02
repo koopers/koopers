@@ -44,40 +44,10 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  filterSites(site): void {
-    this.loading = true;
-    this.filtersService
-      .filterBySites(site)
-      .subscribe((data) => {
-        this.loading = false;
-        this.foundSites = data;
-      });
-  }
-
-  filterDate(site, startDate, endDate): void {
-    this.loading = true;
-    this.filtersService
-      .filterByDates(site, startDate, endDate)
-      .subscribe((data) => {
-        this.loading = false;
-        this.foundSites = data;
-      });
-  }
-
-  filterCategories(site, categories): void {
-    this.loading = true;
-    this.filtersService
-      .filterByCategories(site, categories)
-      .subscribe((data) => {
-        this.loading = false;
-        this.foundSites = data;
-      });
-  }
-
   filterAll(site, categories, startDate, endDate): void {
     this.loading = true;
     this.filtersService
-      .filterByAll(site, categories, startDate, endDate)
+      .filterOptions(site, categories, startDate, endDate)
       .subscribe((data) => {
         this.loading = false;
         this.foundSites = data;
@@ -93,34 +63,24 @@ export class SearchComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
-      const sitesId = value.site.map((data) => data.id).toString();
+      let sitesId = value.site;
       let categoriesId = value.categories;
       const startDate = this.formatedDate(value.startDate);
       const endDate = this.formatedDate(value.endDate);
 
+      if (sitesId) {
+        sitesId = sitesId.map((data: any) => data.id).toString();
+      }
+
       if (categoriesId) {
-        categoriesId = categoriesId.map((data) => data.id).toString();
+        categoriesId = categoriesId.map((data: any) => data.id).toString();
       }
-
-      if (!categoriesId && !startDate && !endDate) {
-        this.filterSites(sitesId);
-      }
-
-      if (categoriesId && !startDate && !endDate) {
-        this.filterCategories(sitesId, categoriesId);
-      }
-
-      if (startDate && endDate && !categoriesId) {
-        this.filterDate(sitesId, startDate, endDate);
-      }
-      if (categoriesId && startDate && endDate) {
-        this.filterAll(sitesId, categoriesId, startDate, endDate);
-      }
+      this.filterAll(sitesId, categoriesId, startDate, endDate);
     }
   }
   private builderForm(): void {
     this.form = this.formBuilder.group({
-      site: ['', [Validators.required, Validators.minLength(1)]],
+      site: ['', [Validators.minLength(1)]],
       categories: ['', Validators.minLength(1)],
       startDate: [''],
       endDate: [''],
