@@ -64,7 +64,7 @@ class ListSiteView(generics.ListCreateAPIView):
     serializer_class = SiteSerializer
 
 class ListSuggestedSiteView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     queryset = SuggestedSite.objects.all()
     serializer_class = SuggestedSiteSerializer
 
