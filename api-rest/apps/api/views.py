@@ -113,7 +113,7 @@ class LogoutUserView(APIView):
 
 from django.db.models import Value
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def SearchView(request):
 
     # page = 0 if not request.GET.get('page') else int(request.GET.get('page'))
@@ -130,8 +130,8 @@ def SearchView(request):
     skip = page * amount
     rows = skip + amount
 
-    sites = request.GET.get('site_id').split(',')
-    categories = request.GET.get('category_id').split(',')
+    sites = None if not request.GET.get('site_id') else request.GET.get('site_id').split(',')
+    categories = None if not request.GET.get('category_id') else request.GET.get('category_id').split(',')
 
     start_date = None if not request.GET.get('start_date') else timezone.datetime.fromtimestamp(int(request.GET.get('start_date')))
     end_date = None if not request.GET.get('end_date') else timezone.datetime.fromtimestamp(int(request.GET.get('end_date')))
@@ -139,40 +139,40 @@ def SearchView(request):
 
     # Case 1: Site
     if sites and not categories and not start_date and not end_date:
-        screenshots = Screenshot.objects.filter(tracked_site__site__in=sites).order_by('-created')[skip:(skip+amount)]
+        screenshots = Screenshot.objects.filter(tracked_site__site_id__in=sites).order_by('id')[skip:(skip+amount)]
     
     # Case 2: Site, category
     elif sites and categories and not start_date and not end_date:
-        screenshots = Screenshot.objects.filter(tracked_site__site__in=sites, tracked_site__category_id__in=categories).order_by('-created')[skip:(skip+amount)]
+        screenshots = Screenshot.objects.filter(tracked_site__site_id__in=sites, tracked_site__category_id__in=categories).order_by('id')[skip:(skip+amount)]
     
     # Case 3: Site, date
     elif sites and not categories and start_date and end_date:
-        screenshots = Screenshot.objects.filter(tracked_site__site__in=sites, created__range=(start_date, end_date)).order_by('-created')[skip:(skip+amount)]
+        screenshots = Screenshot.objects.filter(tracked_site__site_id__in=sites, created__range=(start_date, end_date)).order_by('id')[skip:(skip+amount)]
     
     # Case 4: Site, category, date
     elif sites and categories and start_date and end_date:
         screenshots = Screenshot.objects.filter(
-            tracked_site__site__in=sites,
+            tracked_site__site_id__in=sites,
             tracked_site__category_id__in=categories,
             created__range=(start_date, end_date)
-            ).order_by('-created')[skip:(skip+amount)]
+            ).order_by('id')[skip:(skip+amount)]
     
     # Case 5: Category
     elif categories and not sites and not start_date and not end_date:
-        screenshots = Screenshot.objects.filter(tracked_site__category_id__in=categories).order_by('-created')[skip:(skip+amount)]
+        screenshots = Screenshot.objects.filter(tracked_site__category_id__in=categories).order_by('id')[skip:(skip+amount)]
     
     # Case 6: Category, date
     elif categories and not sites and start_date and end_date:
         screenshots = Screenshot.objects.filter(
             tracked_site__category_id__in=categories,
             created__range=(start_date, end_date)
-            ).order_by('-created')[skip:(skip+amount)]
+            ).order_by('id')[skip:(skip+amount)]
 
     # Case 7: Date
     elif start_date and end_date and not sites and not categories:
-        screenshots = Screenshot.objects.filter(created__range=(start_date, end_date)).order_by('-created')[skip:(skip+amount)]
+        screenshots = Screenshot.objects.filter(created__range=(start_date, end_date)).order_by('id')[skip:(skip+amount)]
     else:
-        screenshots = Screenshot.objects.all().order_by('-created')[skip:(skip+amount)]
+        screenshots = Screenshot.objects.all().order_by('id')[skip:(skip+amount)]
 
     result = ScreenshotSerializer(screenshots, many=True)
     

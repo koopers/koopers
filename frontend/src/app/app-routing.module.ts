@@ -18,6 +18,10 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
       },
       {
+        path: 'site',
+        loadChildren: () => import('./sites/sites.module').then((m) => m.SitesModule),
+      },
+      {
         path: 'admin',
         canActivate: [AuthGuard],
         loadChildren: () =>
@@ -28,6 +32,13 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./page-not-found/page-not-found.module').then(
+        (m) => m.PageNotFoundModule
+      ),
   },
 ];
 

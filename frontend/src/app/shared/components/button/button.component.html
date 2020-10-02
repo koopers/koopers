@@ -1,9 +1,10 @@
-<button [type]="type" class="btn" [ngClass]="btn" (click)="onClickButton($event)" [disabled]="disabled">
+<button tabindex="0" [type]="type" class="btn" [ngClass]="btn" (click)="onClickButton($event)" [disabled]="disabled">
   <span *ngIf="!isIcon">{{label}}</span>
   <ng-content></ng-content>
 </button>
 
-<!-- <app-button label='Default' btn='default'></app-button>
+<!-- 
+<app-button label='Default' btn='default'></app-button>
 <app-button label='Secondary' btn='secondary'></app-button>
 <app-button label='Danger' btn='danger'></app-button>
 <app-button label='Success' btn='success'></app-button>

@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { TrackedSite } from '../../models/tracked-sites';
-import { environment } from '../../../../environments/environment';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
+import { TrackedSite } from '../../models/tracked-sites';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class TrackedSitesService {
 
   create(body: {site_id: number, category_id: number, path_url: string}): Observable<TrackedSite> {
     return this.http
-    .post<TrackedSite>(`${environment.url_api}/tracked-sites/`, body)
+    .post<TrackedSite>(`${environment.url_api}/tracked-sites/add/`, body)
     .pipe(catchError(this.handleError));
   }
 
@@ -42,7 +42,6 @@ export class TrackedSitesService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.log('error', error);
     return throwError(error);
   }
 }

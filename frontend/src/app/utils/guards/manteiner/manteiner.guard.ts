@@ -4,11 +4,11 @@ import {
   CanActivate,
   Router,
   RouterStateSnapshot,
-  UrlTree,
+  UrlTree
 } from '@angular/router';
 import { AuthService } from '@core/services/auth/auth.service';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -24,8 +24,8 @@ export class ManteinerGuard implements CanActivate {
     | boolean
     | UrlTree {
     return this.authService.getUser().pipe(
+      catchError((error) => throwError(error)),
       map((user) => {
-        console.log('ManteinerGuard -> constructor -> user', user);
         return user.admin === false ? false : true;
       }),
       tap((hasUser) => {

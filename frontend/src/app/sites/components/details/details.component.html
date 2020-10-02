@@ -1,0 +1,41 @@
+<section class="details" >
+  <div class="details__container" *ngIf="site">
+    <header class="details__head">
+      <h1>{{ site.title }}</h1>
+    </header>
+    <main class="details__main" *ngIf="screenshots">
+      <section class="details__main--content">
+        <p *ngIf="screenshots.length === 0">
+          No tenemos capturas de "{{ site.title }}"
+        </p>
+        <div class="screenshots" *ngIf="screenshots.length > 0">
+          <div *ngFor="let screenshot of screenshots">
+            <app-card [item]="screenshot"></app-card>
+          </div>
+        </div>
+      </section>
+      <aside class="details__main--content">
+        <form class="form" [formGroup]="form" (ngSubmit)="search($event)">
+          <div class="form-group">
+            <label for="date">Calendario:</label>
+            <p-calendar
+              [inline]="!size"
+              [showIcon]="size"
+              formControlName="date"
+            ></p-calendar>
+          </div>
+          <div class="form-group">
+            <label for="category">Categorias:</label>
+            <p-dropdown
+              placeholder="Seleccione una categoría"
+              [options]="categories"
+              formControlName="category"
+              optionLabel="title"
+            ></p-dropdown>
+          </div>
+          <app-button label="Buscar" type="submit" btn="success"></app-button>
+        </form>
+      </aside>
+    </main>
+  </div>
+</section>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService} from 'primeng/api';
 import {UsersService} from '../../../core/services/users/users.service';
+import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
+import {BaseComponent} from '../../../core/interfaces/base.component';
+import { takeUntil } from 'rxjs/operators';
 import {User} from '../../../core/models/users';
 
 @Component({
@@ -9,25 +12,47 @@ import {User} from '../../../core/models/users';
   styleUrls: ['./dashboard-users.component.sass'],
   providers: [ConfirmationService]
 })
-export class DashboardUsersComponent implements OnInit {
-  users: User[] = []
+export class DashboardUsersComponent extends BaseComponent implements OnInit {
+  users: User[] = [];
+  USERNAME_HEADER = 'Usuario';
+  TYPE_HEADER = 'Tipo';
+  DATE_HEADER = 'Fecha de creación';
+  ACTIONS_HEADER = 'Acciones';
 
   constructor(
     private usersService: UsersService,
-    private confirmationService: ConfirmationService
-  ) { }
+    private confirmationService: ConfirmationService,
+    private alertsService: AlertsService,
+  ) {
+    super();
+   }
 
   ngOnInit(): void {
-    this.usersService.getAll().subscribe(users => this.users = users);
+    this.getData();
   }
 
-  confirmDelete() {
+  confirmDelete(user: User) {
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
-          //Actual logic to perform a confirmation
+        this.usersService.delete(user.id)
+        .pipe(
+          takeUntil(this.unsubscribe$)
+        )
+        .subscribe((response) => {
+          this.alertsService.handleSuccessAlert('Usuario eliminado exitosamente!');
+          this.getData();
+        });
       }
     });
+  }
+
+  private getData() {
+    this.usersService.getAll()
+    .pipe(
+      takeUntil(this.unsubscribe$)
+    )
+    .subscribe(users => this.users = users);
   }
 
 }
