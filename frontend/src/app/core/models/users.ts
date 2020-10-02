@@ -5,3 +5,4 @@ export interface User {
   password?: string;
   date_joined: string;
 }
+
