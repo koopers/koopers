@@ -113,11 +113,13 @@ describe('FormCategoryComponent', () => {
   });
 
   it('when router has id should call getOne', () => {
-    spyOn(categoriesService, 'getOne');
+    spyOn(categoriesService, 'getOne').and.callThrough();
     activatedRoute.params = of({id: 3});
-    fixture.detectChanges();
     component.ngOnInit();
-    expect(categoriesService.getOne).toHaveBeenCalledWith(3);
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(categoriesService.getOne).toHaveBeenCalledWith(3);
+    });
   });
 
   it('when getOne returns should call set current category', () => {

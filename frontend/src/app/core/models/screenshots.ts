@@ -12,6 +12,7 @@ export interface Screenshot {
     created: string;
     path_url: string;
     site_id: {
+      id?: number,
       title: string;
       utl: string;
     }
