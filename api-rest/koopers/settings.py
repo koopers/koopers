@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import environ
-
+import sys
+TESTING = 'test' in sys.argv
 env = environ.Env()
 # reading .env file
 environ.Env.read_env()
@@ -35,7 +36,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,8 +53,15 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_celery_results',
 
-]
+)
 
+THIRD_PARTY_APPS = (
+    'django_nose',
+)
+
+
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,7 +78,9 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
     'http://127.0.0.1:4200',
     'https://localhost:4200',
-    'https://127.0.0.1:4200'
+    'https://127.0.0.1:4200',
+    'http://koopers.press',
+    'https://koopers.press',
 )
 
 ROOT_URLCONF = 'koopers.urls'
@@ -216,3 +226,13 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+# Django-nose Measuring coverage
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-html',
+    '--cover-html-dir=htmlcov',
+    '--cover-package=apps.api,apps.core',
+    
+]
