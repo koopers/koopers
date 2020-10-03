@@ -20,6 +20,7 @@ export class DashboardTrackedSitesComponent
   CATEGORY_HEADER = 'Categoría';
   URL_HEADER = 'URL';
   ACTIONS_HEADER = 'Acciones';
+  loading = false;
 
   constructor(
     private tSitesService: TrackedSitesService,
@@ -41,6 +42,7 @@ export class DashboardTrackedSitesComponent
           .delete(tSite.id)
           .pipe(takeUntil(this.unsubscribe$))
           .subscribe(() => {
+            this.loading = true;
             this.alertsService.handleSuccessAlert(
               'Sección eliminada exitosamente!'
             );
@@ -51,9 +53,13 @@ export class DashboardTrackedSitesComponent
   }
 
   private getData(): void {
+    this.loading = true;
     this.tSitesService
       .getAll()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((trackedSites) => (this.trackedSites = trackedSites));
+      .subscribe((trackedSites) => {
+        this.loading = false;
+        return (this.trackedSites = trackedSites);
+      });
   }
 }

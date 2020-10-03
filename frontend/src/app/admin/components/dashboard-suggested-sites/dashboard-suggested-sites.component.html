@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Propuestas</h1>
+  <p-progressSpinner *ngIf="loading"></p-progressSpinner>
 
   <p-table
     [value]="suggestedSites"
