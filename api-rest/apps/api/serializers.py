@@ -6,6 +6,7 @@ class CustomCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['id','title']
+    
 
 class CustomSiteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,6 +48,12 @@ class SiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Site
         fields = '__all__'
+
+class SiteCategorySerializer(serializers.ModelSerializer):
+    category_id = CustomCategorySerializer(many = False)
+    class Meta:
+        model = TrackedSite
+        fields = ['category_id']
 
 class TrackedSerializer(serializers.ModelSerializer):
     site_id = CustomSiteSerializer(many=False)

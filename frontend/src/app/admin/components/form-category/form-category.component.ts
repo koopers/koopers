@@ -1,12 +1,12 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
-import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
-import { CategoriesService } from 'src/app/core/services/categories/categories.service';
-import { BaseComponent } from 'src/app/core/interfaces/base.component';
 import { ActivatedRoute } from '@angular/router';
+import { BaseComponent } from '@core/interfaces/base.component';
+import { Category } from '@core/models/categories';
+import { AlertsService } from '@core/services/alerts/alerts.service';
+import { CategoriesService } from '@core/services/categories/categories.service';
 import { takeUntil } from 'rxjs/operators';
-import { Category } from 'src/app/core/models/categories';
 
 @Component({
   selector: 'app-form-category',

@@ -20,6 +20,7 @@ export class CardComponent implements OnInit {
   showDialog(): void {
     this.display = true;
   }
+
   onClickCard(event): void {
     this.clickCard.emit(event);
   }

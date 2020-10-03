@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BaseComponent } from '@core/interfaces/base.component';
+import { User } from '@core/models/users';
+import { AlertsService } from '@core/services/alerts/alerts.service';
+import { UsersService } from '@core/services/users/users.service';
 import { takeUntil } from 'rxjs/operators';
-import { BaseComponent } from 'src/app/core/interfaces/base.component';
-import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
-import { UsersService } from 'src/app/core/services/users/users.service';
-import { User } from 'src/app/core/models/users';
 
 @Component({
   selector: 'app-form-user',

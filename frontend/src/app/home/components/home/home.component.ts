@@ -11,13 +11,25 @@ import { SitesService } from '@core/services/sites/sites.service';
 })
 export class HomeComponent extends BaseComponent implements OnInit {
   sites: Site[];
-  screenshots;
-  constructor(private sitesService: SitesService, private screenshotsService: ScreenshotsService) {
+  screenshots = {};
+  loading = false;
+
+  constructor(
+    private sitesService: SitesService,
+    private screenshotsService: ScreenshotsService
+  ) {
     super();
   }
 
   ngOnInit(): void {
-    this.sitesService.getAll().subscribe((data) => this.sites = data);
-    this.screenshotsService.getAll().subscribe(data => this.screenshots = data);
+    this.loading = true;
+    this.sitesService.getAll().subscribe((data) => {
+      this.loading = false;
+      this.sites = data;
+    });
+    this.screenshotsService.getAll().subscribe((data) => {
+      this.loading = false;
+      this.screenshots = data;
+    });
   }
 }
