@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActiveColumnComponent } from './active-column.component';
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ActiveColumnComponent', () => {
   let component: ActiveColumnComponent;
@@ -8,7 +9,10 @@ describe('ActiveColumnComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActiveColumnComponent ]
+      declarations: [ ActiveColumnComponent ],
+      schemas: [
+        NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA
+      ]
     })
     .compileComponents();
   }));

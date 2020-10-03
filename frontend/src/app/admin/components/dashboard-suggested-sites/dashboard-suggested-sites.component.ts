@@ -48,7 +48,11 @@ export class DashboardSuggestedSitesComponent extends BaseComponent implements O
   }
 
   categoriesLabel(categories) {
-    return JSON.parse(categories).join(', ');
+    try {
+      return JSON.parse(categories).join(', ');
+    } catch(e) {
+      return categories;
+    }
   }
 
   private getData() {
