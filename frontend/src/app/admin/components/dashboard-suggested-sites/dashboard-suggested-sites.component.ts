@@ -51,7 +51,11 @@ export class DashboardSuggestedSitesComponent
   }
 
   categoriesLabel(categories): void {
-    return JSON.parse(categories).join(', ');
+    try {
+      return JSON.parse(categories).join(', ');
+    } catch (e) {
+      return categories;
+    }
   }
 
   private getData(): void {
