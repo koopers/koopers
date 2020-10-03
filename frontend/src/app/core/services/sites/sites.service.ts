@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
-import { Site } from '../../models/sites';
+import { Site, SiteDetails } from '../../models/sites';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +26,12 @@ export class SitesService {
   getOne(id: number): Observable<Site> {
     return this.http
     .get<Site>(`${environment.url_api}/sites/${id}`)
+    .pipe(catchError(this.handleError));
+  }
+
+  getOneWithDetails(id: number): Observable<SiteDetails> {
+    return this.http
+    .get<SiteDetails>(`${environment.url_api}/site-details/${id}`)
     .pipe(catchError(this.handleError));
   }
 

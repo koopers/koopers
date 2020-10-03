@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { BaseComponent } from '@core/interfaces/base.component';
-import { Site } from '@core/models/sites';
+import { Category } from '@core/models/categories';
 import { FiltersService } from '@core/services/filters/filters.service';
 import { SitesService } from '@core/services/sites/sites.service';
 
@@ -14,10 +14,10 @@ import { SitesService } from '@core/services/sites/sites.service';
 })
 export class DetailsComponent extends BaseComponent implements OnInit {
   id: number;
-  site: Site;
+  site;
   screenshots;
   form: FormGroup;
-  categories = [];
+  categories: Category[];
   size = true;
   loading = false;
 
@@ -34,7 +34,7 @@ export class DetailsComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOneSite();
-    this.getAllScreenshots();
+    this.getAllScreenshots(this.id);
     this.resize();
   }
 
@@ -52,29 +52,46 @@ export class DetailsComponent extends BaseComponent implements OnInit {
     this.loading = true;
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params.id;
-      this.sitesService.getOne(this.id).subscribe((site) => {
+      this.sitesService.getOneWithDetails(this.id).subscribe((siteDetails) => {
         this.loading = false;
-        this.site = site;
+        this.site = siteDetails.site;
+        this.categories = siteDetails.categories.map(category => category.category_id);
       });
     });
   }
 
-  getAllScreenshots(): void {
+  getAllScreenshots(id, categories?: string, date?: number): void {
     this.loading = true;
-    this.filtersService.filterOptions(this.id.toString()).subscribe((data) => {
+    this.filtersService.filterOptions(id.toString(), categories, date).subscribe((data) => {
       this.loading = false;
       this.screenshots = data;
     });
   }
 
+  formatedDate(date: string): number {
+    const dateFormated = new Date(date);
+    return dateFormated.getTime() / 1000;
+  }
+
   search(event: Event): void {
-    // this.loading = true;
+    event.preventDefault();
+    this.loading = true;
+    const value = this.form.value;
+    let categories = value.category;
+    const date = this.formatedDate(value.date);
+    if (this.form.valid) {
+      this.loading = false;
+      if (categories) {
+        categories = categories.id.toString();
+      }
+      this.getAllScreenshots(this.id, categories, date);
+    }
   }
 
   private builderForm(): void {
     this.form = this.formBuilder.group({
-      date: ['', Validators.required],
-      category: ['', Validators.required],
+      date: ['', Validators.min(1)],
+      category: ['', Validators.min(1)],
     });
   }
 }

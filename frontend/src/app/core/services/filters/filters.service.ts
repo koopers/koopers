@@ -28,6 +28,9 @@ export class FiltersService {
     if (startDate && endDate) {
       params += `&start_date=${startDate}&end_date=${endDate}`;
     }
+    if (startDate) {
+      params += `&start_date=${startDate}`;
+    }
 
     console.log(params);
 

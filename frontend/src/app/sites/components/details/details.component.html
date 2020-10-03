@@ -1,11 +1,11 @@
-<section class="details" >
+<section class="details">
   <div class="details__container" *ngIf="site">
-    <header class="details__head">
-      <h1>{{ site.title }}</h1>
-    </header>
     <p-progressSpinner *ngIf="loading"></p-progressSpinner>
     <main class="details__main" *ngIf="screenshots">
       <section class="details__main--content">
+        <header class="details__head">
+          <h1>{{ site.title }}</h1>
+        </header>
         <p *ngIf="screenshots.length === 0">
           No tenemos capturas de "{{ site.title }}"
         </p>
@@ -36,7 +36,12 @@
               optionLabel="title"
             ></p-dropdown>
           </div>
-          <app-button label="Buscar" type="submit" btn="success"></app-button>
+          <app-button
+            label="Buscar"
+            type="submit"
+            btn="success"
+            [disabled]="form.invalid"
+          ></app-button>
         </form>
       </aside>
     </main>
