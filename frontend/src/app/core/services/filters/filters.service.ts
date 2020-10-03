@@ -11,7 +11,6 @@ export class FiltersService {
 
   constructor(private http: HttpClient) { }
 
-
   filterBySites(siteId: string): Observable<{}> {
     return this.http.get(`${environment.url_api}/search/?site_id=${siteId}`).pipe(
       catchError(this.handleError),

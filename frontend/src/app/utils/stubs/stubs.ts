@@ -167,6 +167,22 @@ export class AuthServiceStub {
   }
 }
 
+export class TokenServiceStub {
+  saveToken(token: string): void {}
+
+  saveRefreshToken(tokenRefresh: string): void {}
+
+  getToken(): string {
+    return '';
+  }
+
+  getRefreshToken(): string {
+    return '';
+  }
+
+  deleteTokens(): void {}
+}
+
 export class LocationStub {
   back(): void {}
 }
