@@ -169,18 +169,22 @@ def SearchView(request):
             created__range=(start_date, end_date)
             ).order_by('-created', 'tracked_site__category_id')[skip:(skip+amount)]
 
-    # Case 7: Date
+    # Case 7: Both Date
     elif start_date and end_date and not sites and not categories:
         screenshots = Screenshot.objects.filter(created__range=(start_date, end_date)).order_by(
             '-created', 'tracked_site__category_id')[skip:(skip+amount)]
 
-    # Case 8: Site, start_date
+    # Case 8: Only start_date
+    elif start_date and not end_date and not sites and not categories:
+        screenshots = Screenshot.objects.filter(created=start_date).order_by('-created', 'tracked_site__category_id')[skip:(skip+amount)]
+
+    # Case 9: Site, start_date
     elif sites and start_date and not categories and not end_date:
         screenshots = Screenshot.objects.filter(created=start_date, 
         tracked_site__site_id__in=sites
         ).order_by('-created', 'tracked_site__category_id')[skip:(skip+amount)]
 
-    # Case 9: Site, Category, start_date
+    # Case 10: Site, Category, start_date
     elif sites and categories and start_date and not end_date:
         screenshots = Screenshot.objects.filter(created=start_date,
         tracked_site__site_id__in=sites,
