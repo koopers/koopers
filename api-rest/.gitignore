@@ -6,3 +6,4 @@ media/
 .env
 celerybeat*
 db.sqlite3
+geckodriver*
