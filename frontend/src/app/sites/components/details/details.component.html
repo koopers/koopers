@@ -6,8 +6,8 @@
         <header class="details__head">
           <h1>{{ site.title }}</h1>
         </header>
-        <p *ngIf="screenshots.length === 0">
-          No tenemos capturas de "{{ site.title }}"
+        <p class="no-result" *ngIf="screenshots.length === 0">
+          No encontramos ningún resultado con la busqueda.
         </p>
         <cdk-virtual-scroll-viewport itemSize="100" class="viewport-detail">
           <div class="screenshots" *ngIf="screenshots.length > 0">
