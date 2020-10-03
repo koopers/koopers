@@ -6,6 +6,8 @@ import { TrackedSite } from '@core/models/tracked-sites';
 import { User } from '@core/models/users';
 import { of, Observable } from 'rxjs';
 import {categories, suggestedSites, sites, users, trackedSites, screenshots} from '../mocks/mocks';
+import { EventEmitter } from '@angular/core';
+import { Alert, SUCCESS_TYPE, INFO_TYPE } from '@core/models/alerts';
 
 export class CategoriesServiceStub {
 
@@ -188,7 +190,23 @@ export class LocationStub {
 }
 
 export class AlertsServiceStub {
+  showAlert = new EventEmitter<Alert[]>();
+
   handleSuccessAlert() {}
 
   handleErrorAlert(message: string): void {}
+
+  onAlertClosed(alert: Alert): void {}
+
+  checkClass(alert: Alert): string {
+    if (alert.type === SUCCESS_TYPE) {
+      return 'Alert__div--success';
+    }
+
+    if (alert.type === INFO_TYPE) {
+      return 'Alert__div--info';
+    }
+
+    return 'Alert__div--error';
+  }
 }
