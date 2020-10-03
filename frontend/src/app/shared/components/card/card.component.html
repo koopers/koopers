@@ -1,12 +1,12 @@
 <article class="c-card">
-  <a *ngIf="item.tracked_site" class="c-card__link" (click)="showDialog()">
+  <a *ngIf="item?.tracked_site" class="c-card__link" (click)="showDialog()">
     <div class="c-card__image-wrapper cover">
-      <h6 class="c-card__title">{{ item.tracked_site.site_id.title }}</h6>
+      <h6 class="c-card__title">{{ item?.tracked_site.site_id.title }}</h6>
 
       <img
         class="c-card__image"
         [src]="item.desktop_url || 'assets/img/no-image.png'"
-        [alt]="item.title"
+        [alt]="item?.title"
       />
     </div>
     <p class="c-card__description">
@@ -18,16 +18,16 @@
     }}</time>
   </a>
   <a
-    *ngIf="!item.tracked_site"
+    *ngIf="!item?.tracked_site"
     class="c-card__link"
-    [routerLink]="['/site/detail', item.id]"
+    [routerLink]="['/site/detail', item?.id]"
   >
     <div class="c-card__image-wrapper">
-      <h6 class="c-card__title">{{ item.title }}</h6>
+      <h6 class="c-card__title">{{ item?.title }}</h6>
       <img
         class="c-card__image"
-        [src]="item.mobile_url || 'assets/img/no-image.png'"
-        [alt]="item.title"
+        [src]="item?.mobile_url || 'assets/img/no-image.png'"
+        [alt]="item?.title"
       />
     </div>
   </a>
@@ -38,12 +38,12 @@
   position="top"
   [modal]="true"
   [baseZIndex]="10000"
-  *ngIf="item.tracked_site"
-  [header]="item.tracked_site.category_id.title"
+  *ngIf="item?.tracked_site"
+  [header]="item?.tracked_site.category_id.title"
   [(visible)]="display"
   appendTo="body"
 >
-  <h6 class="c-card__title">{{ item.tracked_site.site_id.title }}</h6>
+  <h6 class="c-card__title">{{ item?.tracked_site.site_id.title }}</h6>
   <div class="cover">
     <img [src]="item.desktop_url || 'assets/img/no-image.png'" />
   </div>

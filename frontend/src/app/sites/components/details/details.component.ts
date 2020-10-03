@@ -61,7 +61,7 @@ export class DetailsComponent extends BaseComponent implements OnInit {
 
   getAllScreenshots(): void {
     this.loading = true;
-    this.filtersService.filterBySites(this.id.toString()).subscribe((data) => {
+    this.filtersService.filterBySites(this.id?.toString()).subscribe((data) => {
       this.loading = false;
       this.screenshots = data;
     });
