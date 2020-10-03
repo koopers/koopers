@@ -44,7 +44,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  filterAll(site, categories, startDate, endDate): void {
+  filterAll(site: string, categories: string, startDate: number, endDate: number): void {
     this.loading = true;
     this.filtersService
       .filterOptions(site, categories, startDate, endDate)
@@ -61,13 +61,12 @@ export class SearchComponent implements OnInit {
 
   search(event: Event): void {
     event.preventDefault();
+    const value = this.form.value;
+    let sitesId = value.site;
+    let categoriesId = value.categories;
+    const startDate = this.formatedDate(value.startDate);
+    const endDate = this.formatedDate(value.endDate);
     if (this.form.valid) {
-      const value = this.form.value;
-      let sitesId = value.site;
-      let categoriesId = value.categories;
-      const startDate = this.formatedDate(value.startDate);
-      const endDate = this.formatedDate(value.endDate);
-
       if (sitesId) {
         sitesId = sitesId.map((data: any) => data.id).toString();
       }
