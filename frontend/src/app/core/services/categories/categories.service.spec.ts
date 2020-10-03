@@ -22,6 +22,11 @@ describe('CategoriesService', () => {
     httpTestingController.verify();
   });
 
+  afterAll(() => {
+    service = null;
+    httpTestingController = null;
+  });
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
