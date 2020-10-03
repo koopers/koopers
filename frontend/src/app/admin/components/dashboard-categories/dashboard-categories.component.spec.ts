@@ -121,5 +121,4 @@ describe('DashboardCategoriesComponent', () => {
     expect((<any>component).getData).toHaveBeenCalled();
   });
 
-
 });

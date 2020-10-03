@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Editar Propuesta</h1>
+  <h1 id="title-header">Editar Propuesta</h1>
 
   <form [formGroup]="suggestedForm">
     <div class="form-group">
@@ -14,7 +14,7 @@
 
     <div class="form-group-row mb-0">
       <label class="form-group-row__label mr-1">Categorías</label>
-      <app-button isIcon btn='primary' (click)="addCategory()">
+      <app-button id="add-category-btn" isIcon btn='primary' (click)="addCategory()">
         <fa-icon icon="plus"></fa-icon>
       </app-button>
     </div>
@@ -31,8 +31,8 @@
   </form>
 
   <div class="flex-justify-end">
-    <app-button label='Cancelar' btn='default' (click)="goBack()"></app-button>
-    <app-button label='Guardar' btn='primary' (click)="onSave()"></app-button>
+    <app-button id="cancel-btn" label='Cancelar' btn='default' (click)="goBack()"></app-button>
+    <app-button id="save-btn" label='Guardar' btn='primary' (click)="onSave()"></app-button>
   </div>
 </div>
 

@@ -90,7 +90,7 @@ describe('FormCategoryComponent', () => {
     expect(el).not.toBeNull();
   });
 
-  it('should categoryForm', () => {
+  it('should have categoryForm', () => {
     expect(Object.keys(component.categoryForm.controls)).toEqual(['title']);
   });
 

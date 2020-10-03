@@ -2,7 +2,7 @@
   <h1>Sitios</h1>
 
   <div class="flex-justify-end">
-    <app-button label='Nuevo' btn='primary' [routerLink]="['/admin/sites/new']"></app-button>
+    <app-button id="new-site-btn" label='Nuevo' btn='primary' [routerLink]="['/admin/sites/new']"></app-button>
   </div>
 
   <p-table
@@ -41,11 +41,11 @@
         </td>
         <td>
           <span class="p-column-title">{{ACTIONS_HEADER}}</span>
-          <app-button btn='secondary' isIcon [routerLink]="['/admin/sites', site.id]">
+          <app-button class="edit-btn" btn='secondary' isIcon [routerLink]="['/admin/sites', site.id]">
             <fa-icon icon="edit"></fa-icon>
           </app-button>
 
-          <app-button btn='danger' isIcon (click)="confirmDelete(site)">
+          <app-button class="delete-btn" btn='danger' isIcon (click)="confirmDelete(site)">
             <fa-icon icon="trash"></fa-icon>
           </app-button>
       </tr>

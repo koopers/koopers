@@ -2,7 +2,7 @@
   <h1>Secciones</h1>
 
   <div class="flex-justify-end">
-    <app-button label='Nueva' btn='primary' [routerLink]="['/admin/sections/new']"></app-button>
+    <app-button id="new-tracked-site-btn"label='Nueva' btn='primary' [routerLink]="['/admin/sections/new']"></app-button>
   </div>
 
   <p-table
@@ -42,11 +42,11 @@
         </td>
         <td>
           <span class="p-column-title">{{ACTIONS_HEADER}}</span>
-          <app-button btn='secondary' isIcon [routerLink]="['/admin/sections', trackedSite.id]">
+          <app-button class="edit-btn" btn='secondary' isIcon [routerLink]="['/admin/sections', trackedSite.id]">
             <fa-icon icon="edit"></fa-icon>
           </app-button>
 
-          <app-button btn='danger' isIcon (click)="confirmDelete(trackedSite)">
+          <app-button class="delete-btn" btn='danger' isIcon (click)="confirmDelete(trackedSite)">
             <fa-icon icon="trash"></fa-icon>
           </app-button>
       </tr>
