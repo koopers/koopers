@@ -1,3 +1,4 @@
+'''
 from django.contrib import admin
 from .models import * 
 # Register your models here.
@@ -21,4 +22,4 @@ class SuggestedSiteAdmin(admin.ModelAdmin):
 @admin.register(Site)
 class SiteAdmin(admin.ModelAdmin):
     pass
-
+'''
