@@ -173,4 +173,6 @@ export class LocationStub {
 
 export class AlertsServiceStub {
   handleSuccessAlert() {}
+
+  handleErrorAlert(message: string): void {}
 }

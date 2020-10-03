@@ -112,13 +112,14 @@ describe('FormCategoryComponent', () => {
     expect(location.back).toHaveBeenCalled();
   });
 
-  it('when router has id should call getOne', () => {
+  it('when router has id should call getOne', (done) => {
     spyOn(categoriesService, 'getOne').and.callThrough();
     activatedRoute.params = of({id: 3});
     component.ngOnInit();
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       expect(categoriesService.getOne).toHaveBeenCalledWith(3);
+      done();
     });
   });
 
