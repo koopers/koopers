@@ -1,37 +1,30 @@
 # Koopers
-![Koopers](https://img.shields.io/badge/status-in%20progress-yellow)
+![Koopers](https://img.shields.io/badge/build-passing-green)
+![Koopers](https://img.shields.io/badge/coverage-90%-green)
+![Koopers](https://img.shields.io/badge/license-MIT-blue)
 
-<< Descripción: Esta sección debe ser breve, pero también responder la siguiente pregunta ¿Qué problema resuelve este proyecto? >>
+This project create a historical register of most popular newspapers covers on internet. The users can suggest theirs favorite newspaper website and the project will track the cover and/or other sections.
 
 # Install
-1. Paso 1
-2. Paso 2
-3. Paso 3
-4. Paso 4
+This project is divided in two parts. The Frontend instructions can be viewed  [here](frontend/README.md) and the Backend instructions [here](api-rest/README.md).
 
-# Deploy
-<< Indica cómo podemos preparar el proyecto para producción >>
-
-# Usage
-<< Explicar las configuraciones necesarias para correr el proyecto tanto backend como frontend >>
 
 # Demo
-<< Link para ver la demostración de todo funcionando en internet >>
+Visit [https://koopers.press](https://koopers.press)
 
-# Test
-<< Cómo hacer las pruebas >>
 
 # Contribute
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-# Authors
-1. Fulanito
-2. de
-3. tal
+# Team
+1. Carol Masmela [(@masmelacarol)](https://github.com/masmelacarol)
+2. David Guerra [(@ingenio-se)](https://github.com/ingenio-se)
+3. Germán Téllez [(@germantellezv)](https://github.com/germantellezv)
+4. Josué Fuentes [(@alienxtrix)](https://github.com/alienxtrix)
+5. Oscar Pérez [(@OscarPay)](https://github.com/OscarPay)
+6. Zomar López [(@zomars)](https://github.com/zomars)
+7. David Bocarejo
 
 # License
 The MIT license (MIT)
-
-# Thanks (optional)
-<< Thanks to ... >>
