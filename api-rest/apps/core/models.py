@@ -66,7 +66,7 @@ class TrackedSite(models.Model):
         verbose_name_plural = 'TrackedSites'
     def __str__(self):
         """Unicode representation of TrackedSite."""
-        return '{0} - {1}'.format(self.site_id,self.category_id,self.path_url)
+        return "Tracked-{0}-{1}".format(self.site_id,self.category_id)
 
 def upload_screenshot(instance, filename):
     filename_base, filename_ext = os.path.splitext(filename)
@@ -87,4 +87,4 @@ class Screenshot(models.Model):
         verbose_name_plural = 'Screenshots'
     def __str__(self):
         """Unicode representation of Screenshot."""
-        return self.tracked_site
+        return "Screenshot created {0}".format(self.created)
