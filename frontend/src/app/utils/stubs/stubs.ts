@@ -1,11 +1,13 @@
 import { Category } from '@core/models/categories';
 import { SuggestedSite } from '@core/models/suggested-sites';
-import { Site } from '@core/models/sites';
+import { Site, SiteDetails } from '@core/models/sites';
 import { Screenshot } from '@core/models/screenshots';
 import { TrackedSite } from '@core/models/tracked-sites';
 import { User } from '@core/models/users';
 import { of, Observable } from 'rxjs';
 import {categories, suggestedSites, sites, users, trackedSites, screenshots} from '../mocks/mocks';
+import { EventEmitter } from '@angular/core';
+import { Alert, SUCCESS_TYPE, INFO_TYPE } from '@core/models/alerts';
 
 export class CategoriesServiceStub {
 
@@ -67,6 +69,20 @@ export class SitesServiceStub {
 
   getOne(id: number): Observable<Site> {
     return of(sites[0]);
+  }
+
+  getOneWithDetails(id: number): Observable<SiteDetails> {
+    return of({
+      site: {title: '', url: '', avaliable: true},
+      categories: [
+        {
+          category_id: {
+            id: 1,
+            title: ''
+          }
+        }
+      ]
+    });
   }
 
   update(id: number, body: {title: string, url: string, Available: boolean}): Observable<Site> {
@@ -145,6 +161,10 @@ export class FiltersServiceStub {
     return of({});
   }
 
+  filterOptions() {
+    return of({});
+  }
+
 }
 
 export class AuthServiceStub {
@@ -167,10 +187,44 @@ export class AuthServiceStub {
   }
 }
 
+export class TokenServiceStub {
+  saveToken(token: string): void {}
+
+  saveRefreshToken(tokenRefresh: string): void {}
+
+  getToken(): string {
+    return '';
+  }
+
+  getRefreshToken(): string {
+    return '';
+  }
+
+  deleteTokens(): void {}
+}
+
 export class LocationStub {
   back(): void {}
 }
 
 export class AlertsServiceStub {
+  showAlert = new EventEmitter<Alert[]>();
+
   handleSuccessAlert() {}
+
+  handleErrorAlert(message: string): void {}
+
+  onAlertClosed(alert: Alert): void {}
+
+  checkClass(alert: Alert): string {
+    if (alert.type === SUCCESS_TYPE) {
+      return 'Alert__div--success';
+    }
+
+    if (alert.type === INFO_TYPE) {
+      return 'Alert__div--info';
+    }
+
+    return 'Alert__div--error';
+  }
 }

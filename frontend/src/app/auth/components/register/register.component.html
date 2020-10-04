@@ -1,5 +1,5 @@
 <section class="register container">
-  <h2>Registro</h2>
+  <h2 id="title-header">Registro</h2>
   <div class="register__container">
     <form class="form" [formGroup]="form" (ngSubmit)="register($event)">
       <div class="form-group">
@@ -12,14 +12,14 @@
       </div>
       <div class="form-group isAdmin">
         <label class="form-group__label" for="isAdmin">Admin</label>
-        <p-inputSwitch formControlName="isAdmin"></p-inputSwitch>
+        <p-inputSwitch formControlName="isAdmin" id="isAdmin"></p-inputSwitch>
       </div>
       <div class="form-group text">
         <p>Si ya tiene cuenta, inicie sesión <a [routerLink]="['/auth/login']" routerLinkActive="active">aquí</a> </p>
       </div>
       <div class="button-group">
-        <app-button label='Cancelar' type='button' btn="danger" (click)="goBack()"></app-button>
-        <app-button label='Registrarse' [disabled]="this.form.invalid" type='submit' btn="success"></app-button>
+        <app-button id="cancel-btn" label='Cancelar' type='button' btn="danger" (click)="goBack()"></app-button>
+        <app-button id="register-btn" label='Registrarse' [disabled]="this.form.invalid" type='submit' btn="success"></app-button>
       </div>
     </form>
   </div>

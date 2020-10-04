@@ -24,4 +24,19 @@ describe('CardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should init with display false', () => {
+    expect(component.display).toBeFalse();
+  });
+
+  it('should showDialog', () => {
+    component.showDialog();
+    expect(component.display).toBeTrue();
+  });
+
+  it('onClickCard should emit', () => {
+    spyOn(component.clickCard, 'emit');
+    component.onClickCard({});
+    expect(component.clickCard.emit).toHaveBeenCalled();
+  });
 });

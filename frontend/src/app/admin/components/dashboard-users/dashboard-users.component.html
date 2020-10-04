@@ -3,7 +3,7 @@
   <p-progressSpinner *ngIf="loading"></p-progressSpinner>
 
   <div class="flex-justify-end">
-    <app-button label='Nuevo' btn='primary' [routerLink]="['/admin/users/new']"></app-button>
+    <app-button id="new-user-btn" label='Nuevo' btn='primary' [routerLink]="['/admin/users/new']"></app-button>
   </div>
 
   <p-table 
@@ -40,11 +40,11 @@
         </td>
         <td>
           <span class="p-column-title">{{ACTIONS_HEADER}}</span>
-          <app-button btn='secondary' isIcon [routerLink]="['/admin/users', user.id]">
+          <app-button class="edit-btn" btn='secondary' isIcon [routerLink]="['/admin/users', user.id]">
             <fa-icon icon="edit"></fa-icon>
           </app-button>
 
-          <app-button btn='danger' isIcon (click)="confirmDelete(user)">
+          <app-button class="delete-btn" btn='danger' isIcon (click)="confirmDelete(user)">
             <fa-icon icon="trash"></fa-icon>
           </app-button>
       </tr>
