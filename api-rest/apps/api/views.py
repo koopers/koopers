@@ -247,6 +247,7 @@ def customSites(request):
     
         aux['id'] = site.id
         aux['title'] = site.title
+        aux['available'] = site.available
         aux['created'] = site.created
         if len(last_screenshot) > 0: 
             aux['last_sshot_mobile'] = last_screenshot[0].mobile_url
