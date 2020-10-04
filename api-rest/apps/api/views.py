@@ -260,6 +260,4 @@ def customSites(request):
 
         result.append(aux)
 
-    return Response({
-        "response": result
-    })
+    return Response(result)
