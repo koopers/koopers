@@ -13,7 +13,7 @@ export class SuggestedSitesService {
 
   getAll(): Observable<SuggestedSite[]> {
     return this.http
-      .get<SuggestedSite[]>(`${environment.url_api}/suggested-sites`)
+      .get<SuggestedSite[]>(`${environment.url_api}/suggested-sites/`)
       .pipe(catchError(this.handleError));
   }
 

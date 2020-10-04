@@ -33,14 +33,14 @@ describe('SuggestedSitesService', () => {
 
   it('should getAll call get', () => {
     service.getAll().subscribe();
-    const req = httpTestingController.expectOne(`${environment.url_api}/suggested-sites`);
+    const req = httpTestingController.expectOne(`${environment.url_api}/suggested-sites/`);
     expect(req.request.method).toBe('GET');
   });
 
   it('should getAll use the right url', () => {
     service.getAll().subscribe();
-    const req = httpTestingController.expectOne(`${environment.url_api}/suggested-sites`);
-    expect(req.request.url).toBe(`${environment.url_api}/suggested-sites`);
+    const req = httpTestingController.expectOne(`${environment.url_api}/suggested-sites/`);
+    expect(req.request.url).toBe(`${environment.url_api}/suggested-sites/`);
   });
 
   it('should getAll return the right data', () => {
@@ -48,7 +48,7 @@ describe('SuggestedSitesService', () => {
     service.getAll().subscribe(data => {
       expect(data).toEqual(mockData);
     });
-    const req = httpTestingController.expectOne(`${environment.url_api}/suggested-sites`);
+    const req = httpTestingController.expectOne(`${environment.url_api}/suggested-sites/`);
     req.flush(mockData);
   });
 
