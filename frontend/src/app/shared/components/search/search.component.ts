@@ -66,17 +66,16 @@ export class SearchComponent implements OnInit {
     let categoriesId = value.categories;
     const startDate = this.formatedDate(value.startDate);
     const endDate = this.formatedDate(value.endDate);
-    if (this.form.valid) {
-      if (sitesId) {
-        sitesId = sitesId.map((data: any) => data.id).toString();
-      }
-
-      if (categoriesId) {
-        categoriesId = categoriesId.map((data: any) => data.id).toString();
-      }
-      this.filterAll(sitesId, categoriesId, startDate, endDate);
+    if (sitesId) {
+      sitesId = sitesId.map((data: any) => data.id).toString();
     }
+
+    if (categoriesId) {
+      categoriesId = categoriesId.map((data: any) => data.id).toString();
+    }
+    this.filterAll(sitesId, categoriesId, startDate, endDate);
   }
+
   private builderForm(): void {
     this.form = this.formBuilder.group({
       site: ['', [Validators.minLength(1)]],

@@ -22,4 +22,14 @@ describe('TeamDescriptionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should init display false', () => {
+    expect(component.display).toBeFalse();
+  });
+
+  it('should change display to true', () => {
+    component.showModal();
+    fixture.detectChanges();
+    expect(component.display).toBeTrue();
+  });
 });

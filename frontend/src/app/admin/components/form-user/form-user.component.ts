@@ -50,6 +50,18 @@ export class FormUserComponent extends BaseComponent implements OnInit {
     });
   }
 
+  get username(): FormControl {
+    return this.userForm.get('username') as FormControl;
+  }
+  
+  get password(): FormControl {
+    return this.userForm.get('password') as FormControl;
+  }
+
+  invalidControl(control: FormControl): boolean {
+    return control.invalid && (control.dirty || control.touched);
+  }
+
   onSave(): void {
     if (this.currentUser) {
       const values = this.userForm.value;

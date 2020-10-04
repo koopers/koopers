@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '@core/interfaces/base.component';
 import { Site } from '@core/models/sites';
@@ -16,6 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 export class FormSiteComponent extends BaseComponent implements OnInit {
   siteForm: FormGroup;
   currentSite: Site;
+  regURL = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
   constructor(
     private fb: FormBuilder,
@@ -30,7 +31,7 @@ export class FormSiteComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.siteForm = this.fb.group({
       title: ['', Validators.required],
-      url: ['', Validators.required],
+      url: ['', [Validators.required, Validators.pattern(this.regURL)]],
       available: false,
     });
 
@@ -46,6 +47,18 @@ export class FormSiteComponent extends BaseComponent implements OnInit {
         });
       }
     });
+  }
+
+  get title(): FormControl {
+    return this.siteForm.get('title') as FormControl;
+  }
+
+  get url(): FormControl {
+    return this.siteForm.get('url') as FormControl;
+  }
+
+  invalidControl(control: FormControl): boolean {
+    return control.invalid && (control.dirty || control.touched);
   }
 
   onSave(): void {

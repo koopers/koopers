@@ -134,7 +134,7 @@ describe('LoginComponent', () => {
     });
 
     it('when login should call service login and return error 1', (done) => {
-      const message = 'No pudimos encontrar la cuenta. Por favor revise el correo y la contraseña e intentelo de nuevo.';
+      const message = 'Por favor revise el correo y la contraseña e intentelo de nuevo.';
       spyOn(authService, 'login').and.returnValue(throwError(null));
       spyOn(alertsService, 'handleErrorAlert');
       const e = jasmine.createSpyObj('e', [ 'preventDefault' ]);
@@ -147,7 +147,7 @@ describe('LoginComponent', () => {
     });
 
     it('when login should call service login and return error 2', (done) => {
-      const message = 'No pudimos encontrar la cuenta. Por favor revise el correo y la contraseña e intentelo de nuevo.';
+      const message = 'Por favor revise el correo y la contraseña e intentelo de nuevo.';
       spyOn(authService, 'login').and.returnValue(throwError({error: 404}));
       spyOn(alertsService, 'handleErrorAlert');
       const e = jasmine.createSpyObj('e', [ 'preventDefault' ]);

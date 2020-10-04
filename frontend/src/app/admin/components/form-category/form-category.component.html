@@ -7,12 +7,17 @@
   <form [formGroup]="categoryForm">
     <div class="form-group">
       <label class="form-group__label" for="title">Título</label>
-      <input class="form-group__input" type="text" id="title" formControlName="title">
+      <input class="form-group__input" [ngClass]="{'input-error': invalidControl(title)}" type="text" id="title" formControlName="title">
+      <div class="error-msg" *ngIf="invalidControl(title)">
+        <span *ngIf="title.errors.required">
+          Campo obligtorio
+        </span>
+      </div>
     </div>
   </form>
 
   <div class="flex-justify-end">
     <app-button id="cancel-btn" label='Cancelar' btn='default' (click)="goBack()"></app-button>
-    <app-button id="save-btn" label='Guardar' btn='primary' (click)="onSave()"></app-button>
+    <app-button [disabled]="!categoryForm.valid" id="save-btn" label='Guardar' btn='primary' (click)="onSave()"></app-button>
   </div>
 </div>
