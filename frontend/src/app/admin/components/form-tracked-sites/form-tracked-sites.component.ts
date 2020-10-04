@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '@core/interfaces/base.component';
 import { TrackedSite } from '@core/models/tracked-sites';
@@ -21,6 +21,7 @@ export class FormTrackedSitesComponent extends BaseComponent implements OnInit {
   currentTrackedSite: TrackedSite;
   categories: SelectItem[] = [];
   sites: SelectItem[] = [];
+  regURL = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
   constructor(
     private fb: FormBuilder,
@@ -36,7 +37,7 @@ export class FormTrackedSitesComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.trackedSiteForm = this.fb.group({
-      path_url: ['', Validators.required],
+      path_url: ['', [Validators.required, Validators.pattern(this.regURL)]],
       site_id: 1,
       category_id: 1
     });
@@ -68,6 +69,14 @@ export class FormTrackedSitesComponent extends BaseComponent implements OnInit {
         });
       }
     });
+  }
+
+  get path_url(): FormControl {
+    return this.trackedSiteForm.get('path_url') as FormControl;
+  }
+
+  invalidControl(control: FormControl): boolean {
+    return control.invalid && (control.dirty || control.touched);
   }
 
   onSave(): void {

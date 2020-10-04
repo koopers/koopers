@@ -13,14 +13,27 @@
       <div class="form-group">
         <label class="form-group__label" for="email">Email</label>
         <input class="form-group__input" type="text" id="email" formControlName="email">
+        <div class="error-msg" *ngIf="invalidControl(email)">
+          <span *ngIf="email.errors.required">
+            Campo obligtorio
+          </span>
+          <span *ngIf="email.errors.email">
+            Debe ser una email válido
+          </span>
+        </div>
       </div>
       <div class="form-group">
         <label class="form-group__label" for="password">Password</label>
         <input class="form-group__input" type="password" id="password" formControlName="password">
+        <div class="error-msg" *ngIf="invalidControl(password)">
+          <span *ngIf="password.errors.required">
+            Campo obligtorio
+          </span>
+        </div>
       </div>
       <div class="button-group">
         <app-button id="cancel-btn" label='Cancelar' type='button' btn="danger" (click)="goBack()"></app-button>
-        <app-button id="login-btn" label='Iniciar Sesión' type='submit' btn="success"></app-button>
+        <app-button id="login-btn" [disabled]="!form.valid" label='Iniciar Sesión' type='submit' btn="success"></app-button>
       </div>
     </form>
   </div>

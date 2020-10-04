@@ -7,7 +7,12 @@
   <form [formGroup]="userForm">
     <div class="form-group">
       <label class="form-group__label" for="username">Usuario</label>
-      <input class="form-group__input" type="text" id="username" formControlName="username">
+      <input class="form-group__input" [ngClass]="{'input-error': invalidControl(username)}" type="text" id="username" formControlName="username">
+      <div class="error-msg" *ngIf="invalidControl(username)">
+        <span *ngIf="username.errors.required">
+          Campo obligtorio
+        </span>
+      </div>
     </div>
 
     <div *ngIf="currentUser" class="check-box-inline">
@@ -17,7 +22,12 @@
 
     <div *ngIf="userForm.get('password')" class="form-group">
       <label class="form-group__label" for="password">Password</label>
-      <input class="form-group__input" type="password" id="password" formControlName="password">
+      <input class="form-group__input" [ngClass]="{'input-error': invalidControl(password)}" type="password" id="password" formControlName="password">
+      <div class="error-msg" *ngIf="invalidControl(password)">
+        <span *ngIf="password.errors.required">
+          Campo obligtorio
+        </span>
+      </div>
     </div>
 
     <div class="form-group">
@@ -28,7 +38,7 @@
 
   <div class="flex-justify-end">
     <app-button id="cancel-btn" label='Cancelar' btn='default' (click)="goBack()"></app-button>
-    <app-button id="save-btn" label='Guardar' btn='primary' (click)="onSave()"></app-button>
+    <app-button id="save-btn" [disabled]="!userForm.valid" label='Guardar' btn='primary' (click)="onSave()"></app-button>
   </div>
 </div>
 

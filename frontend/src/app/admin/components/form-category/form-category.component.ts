@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ControlContainer } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '@core/interfaces/base.component';
 import { Category } from '@core/models/categories';
@@ -72,6 +72,14 @@ export class FormCategoryComponent extends BaseComponent implements OnInit {
         this.goBack();
       });
     }
+  }
+
+  get title(): FormControl {
+    return this.categoryForm.get('title') as FormControl;
+  }
+
+  invalidControl(control: FormControl): boolean {
+    return control.invalid && (control.dirty || control.touched);
   }
 
   goBack(): void {

@@ -14,6 +14,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class FormSuggestedSitesComponent extends BaseComponent implements OnInit {
   suggestedForm: FormGroup;
+  regURL = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
   constructor(
     private fb: FormBuilder,
@@ -28,13 +29,13 @@ export class FormSuggestedSitesComponent extends BaseComponent implements OnInit
   ngOnInit(): void {
     this.suggestedForm = this.fb.group({
       title: ['', Validators.required],
-      url: ['', Validators.required],
+      url: ['', [Validators.required, Validators.pattern(this.regURL)]],
       categories: this.fb.array([])
     });
   }
 
   addCategory(value = ''): void {
-    this.categories.push(new FormControl(value));
+    this.categories.push(new FormControl(value, Validators.required));
   }
 
   removeCategory(index: number): void {
@@ -43,6 +44,18 @@ export class FormSuggestedSitesComponent extends BaseComponent implements OnInit
 
   get categories(): FormArray {
     return this.suggestedForm.get('categories') as FormArray;
+  }
+
+  get title(): FormControl {
+    return this.suggestedForm.get('title') as FormControl;
+  }
+
+  get url(): FormControl {
+    return this.suggestedForm.get('url') as FormControl;
+  }
+
+  invalidControl(control: FormControl): boolean {
+    return control.invalid && (control.dirty || control.touched);
   }
 
   onSave(): void {

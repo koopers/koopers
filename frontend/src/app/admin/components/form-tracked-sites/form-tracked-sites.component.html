@@ -7,7 +7,15 @@
   <form [formGroup]="trackedSiteForm">
     <div class="form-group">
       <label class="form-group__label" for="path_url">URL</label>
-      <input class="form-group__input" type="text" id="path_url" formControlName="path_url">
+      <input class="form-group__input" [ngClass]="{'input-error': invalidControl(path_url)}" type="text" id="path_url" formControlName="path_url">
+      <div class="error-msg" *ngIf="invalidControl(path_url)">
+        <span *ngIf="path_url.errors.required">
+          Campo obligtorio
+        </span>
+        <span *ngIf="path_url.errors.pattern">
+          Debe ser una url válida
+        </span>
+      </div>
     </div>
 
     <div class="form-group">
@@ -23,7 +31,7 @@
 
   <div class="flex-justify-end">
     <app-button id="cancel-btn" label='Cancelar' btn='default' (click)="goBack()"></app-button>
-    <app-button id="save-btn" label='Guardar' btn='primary' (click)="onSave()"></app-button>
+    <app-button id="save-btn" [disabled]="!trackedSiteForm.valid" label='Guardar' btn='primary' (click)="onSave()"></app-button>
   </div>
 </div>
 
