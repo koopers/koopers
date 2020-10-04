@@ -15,12 +15,14 @@
       .form
         display: flex
         flex-direction: column
+        align-items: center
         @media screen and ( max-width: 768px  )
           flex-direction: row
           align-items: center
           justify-content: space-evenly
           flex-wrap: wrap
-        &-group    
+        &-group
+          display: block 
           margin-left: 10px      
           label
             display: block
@@ -29,4 +31,4 @@
           p-dropdown
             margin: auto
         app-button
-          margin: 10px auto
+          margin: auto
