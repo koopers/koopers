@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Usuarios</h1>
+  <p-progressSpinner *ngIf="loading"></p-progressSpinner>
 
   <div class="flex-justify-end">
     <app-button id="new-user-btn" label='Nuevo' btn='primary' [routerLink]="['/admin/users/new']"></app-button>

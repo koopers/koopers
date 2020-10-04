@@ -18,6 +18,7 @@ export class DashboardSitesComponent extends BaseComponent implements OnInit {
   URL_HEADER = 'URL';
   AVAILABLE_HEADER = 'Disponible';
   ACTIONS_HEADER = 'Acciones';
+  loading = false;
 
   constructor(
     private sitesService: SitesService,
@@ -32,6 +33,7 @@ export class DashboardSitesComponent extends BaseComponent implements OnInit {
   }
 
   confirmDelete(site: Site): void {
+    this.loading = true;
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
@@ -39,6 +41,7 @@ export class DashboardSitesComponent extends BaseComponent implements OnInit {
           .delete(site.id)
           .pipe(takeUntil(this.unsubscribe$))
           .subscribe((response) => {
+            this.loading = false;
             this.alertsService.handleSuccessAlert(
               'Sitio eliminado exitosamente!'
             );
@@ -49,9 +52,13 @@ export class DashboardSitesComponent extends BaseComponent implements OnInit {
   }
 
   private getData(): void {
+    this.loading = true;
     this.sitesService
       .getAll()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((sites) => (this.sites = sites));
+      .subscribe((sites) => {
+        this.loading = false;
+        return (this.sites = sites);
+      });
   }
 }

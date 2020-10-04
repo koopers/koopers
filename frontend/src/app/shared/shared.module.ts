@@ -9,12 +9,14 @@ import {
 import {
   faCheckCircle,
   faEdit,
+  faHeart,
   faInfoCircle,
   faPlus,
   faSearch,
   faTimes,
   faTimesCircle,
-  faTrash
+  faTrash,
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
@@ -25,10 +27,9 @@ import { SidebarModule } from 'primeng/sidebar';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
-
-
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SearchComponent } from './components/search/search.component';
     CardComponent,
     HeaderComponent,
     SearchComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,7 @@ import { SearchComponent } from './components/search/search.component';
     CalendarModule,
     MultiSelectModule,
     DialogModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
   ],
   exports: [
     AlertsComponent,
@@ -56,6 +58,7 @@ import { SearchComponent } from './components/search/search.component';
     CardComponent,
     HeaderComponent,
     SearchComponent,
+    FooterComponent,
   ],
 })
 export class SharedModule {
@@ -68,7 +71,9 @@ export class SharedModule {
       faTrash,
       faTimesCircle,
       faTimes,
-      faInfoCircle
+      faInfoCircle,
+      faHeart,
+      faUser
     );
   }
 }

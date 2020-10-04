@@ -27,7 +27,7 @@
   <p-progressSpinner *ngIf="loading"></p-progressSpinner>
   <div class="search__data" *ngIf="foundSites">
     <h5>Sitios encontrados</h5>
-    <p *ngIf="foundSites.length === 0">No encontramos ningún resultado.</p>
+    <p class="no-result" *ngIf="foundSites.length === 0">No encontramos ningún resultado con la busqueda.</p>
     <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
       <div class="search__data--content">
         <div *cdkVirtualFor="let site of foundSites">
