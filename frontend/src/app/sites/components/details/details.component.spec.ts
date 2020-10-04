@@ -45,4 +45,19 @@ describe('DetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have valid form', () => {
+    expect(component.form.valid).toEqual(true);
+  });
+
+  it('should format date', () => {
+    expect(component.formatedDate('10/03/20')).toBe(1601701200);
+  });
+
+  it('when search should preventDefault', () => {
+    const e = jasmine.createSpyObj('e', [ 'preventDefault' ]);
+    component.search(e);
+    fixture.detectChanges();
+    expect(e.preventDefault).toHaveBeenCalled();
+  });
 });

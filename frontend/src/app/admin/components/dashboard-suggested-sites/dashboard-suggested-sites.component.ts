@@ -53,7 +53,7 @@ export class DashboardSuggestedSitesComponent
     });
   }
 
-  categoriesLabel(categories): void {
+  categoriesLabel(categories): string {
     try {
       return JSON.parse(categories).join(', ');
     } catch (e) {

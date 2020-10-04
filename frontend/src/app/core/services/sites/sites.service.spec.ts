@@ -52,6 +52,20 @@ describe('SitesService', () => {
     req.flush(mockData);
   });
 
+  it('should getOneWithDetails return the right data', () => {
+    const id = 1;
+    service.getOneWithDetails(id).subscribe();
+    const req = httpTestingController.expectOne(`${environment.url_api}/site-details/${id}`);
+    expect(req.request.method).toBe(`GET`);
+  });
+
+  it('should getOneWithDetails use the right url', () => {
+    const id = 1;
+    service.getOneWithDetails(id).subscribe();
+    const req = httpTestingController.expectOne(`${environment.url_api}/site-details/${id}`);
+    expect(req.request.url).toBe(`${environment.url_api}/site-details/${id}`);
+  });
+
   it('should create call post', () => {
     const body = {title: 'Test', url: 'test.com', Available: true};
     service.create(body).subscribe();

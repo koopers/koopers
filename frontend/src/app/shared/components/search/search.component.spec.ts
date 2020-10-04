@@ -48,54 +48,30 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should have invalid form', () => {
-  //   expect(component.form.valid).toEqual(false);
-  // });
+  it('should have valid form', () => {
+    expect(component.form.valid).toEqual(true);
+  });
 
-  // it('filterSites should call service filterBySites', () => {
-  //   spyOn(filterService, 'filterBySites').and.callThrough();
-  //   const siteId = '1';
-  //   component.filterSites(siteId);
-  //   expect(filterService.filterBySites).toHaveBeenCalledWith(siteId);
-  // });
-
-  // it('filterDate should call service filterByDates', () => {
-  //   spyOn(filterService, 'filterByDates').and.callThrough();
-  //   const siteId = '1';
-  //   const startDate = 123123;
-  //   const endDate = 123124;
-  //   component.filterDate(siteId, startDate, endDate);
-  //   expect(filterService.filterByDates).toHaveBeenCalledWith(siteId, startDate, endDate);
-  // });
-
-  // it('filterCategories should call service filterByCategories', () => {
-  //   spyOn(filterService, 'filterByCategories').and.callThrough();
-  //   const siteId = '1';
-  //   const categories = '';
-  //   component.filterCategories(siteId, categories);
-  //   expect(filterService.filterByCategories).toHaveBeenCalledWith(siteId, categories);
-  // });
-
-  // it('filterAll should call service filterByAll', () => {
-  //   spyOn(filterService, 'filterByAll').and.callThrough();
-  //   const siteId = '1';
-  //   const categories = '';
-  //   const startDate = 123123;
-  //   const endDate = 123124;
-  //   component.filterAll(siteId, categories, startDate, endDate);
-  //   expect(filterService.filterByAll).toHaveBeenCalledWith(siteId, categories, startDate, endDate);
-  // });
+  it('filterAll should call service filterByAll', () => {
+    spyOn(filterService, 'filterOptions').and.callThrough();
+    const siteId = '1';
+    const categories = 'test';
+    const startDate = 123123;
+    const endDate = 123124;
+    component.filterAll(siteId, categories, startDate, endDate);
+    expect(filterService.filterOptions).toHaveBeenCalledWith(siteId, categories, startDate, endDate);
+  });
 
   it('should format date', () => {
     expect(component.formatedDate('10/03/20')).toBe(1601701200);
   });
 
-  // it('when search should preventDefault', () => {
-  //   const e = jasmine.createSpyObj('e', [ 'preventDefault' ]);
-  //   component.search(e);
-  //   fixture.detectChanges();
-  //   expect(e.preventDefault).toHaveBeenCalled();
-  // });
+  it('when search should preventDefault', () => {
+    const e = jasmine.createSpyObj('e', [ 'preventDefault' ]);
+    component.search(e);
+    fixture.detectChanges();
+    expect(e.preventDefault).toHaveBeenCalled();
+  });
 
   describe('when valid form', () => {
 
@@ -114,25 +90,25 @@ describe('SearchComponent', () => {
       expect(component.form.valid).toEqual(true);
     });
 
-    // it('when search should preventDefault', () => {
-    //   const e = jasmine.createSpyObj('e', [ 'preventDefault' ]);
-    //   component.search(e);
-    //   fixture.detectChanges();
-    //   expect(e.preventDefault).toHaveBeenCalled();
-    // });
+    it('when search should preventDefault', () => {
+      const e = jasmine.createSpyObj('e', [ 'preventDefault' ]);
+      component.search(e);
+      fixture.detectChanges();
+      expect(e.preventDefault).toHaveBeenCalled();
+    });
 
   });
 
-  // it('if only sites when search should preventDefault', () => {
-  //   spyOn(component, 'filterSites');
-  //   const data = {
-  //     site: [sites[0]]
-  //   };
-  //   component.form.patchValue(data);
-  //   fixture.detectChanges();
-  //   const e = jasmine.createSpyObj('e', [ 'preventDefault' ]);
-  //   component.search(e);
-  //   fixture.detectChanges();
-  //   expect(component.filterSites).toHaveBeenCalled();
-  // });
+  it('if only sites when search should preventDefault', () => {
+    spyOn(component, 'filterAll');
+    const data = {
+      site: [sites[0]]
+    };
+    component.form.patchValue(data);
+    fixture.detectChanges();
+    const e = jasmine.createSpyObj('e', [ 'preventDefault' ]);
+    component.search(e);
+    fixture.detectChanges();
+    expect(component.filterAll).toHaveBeenCalled();
+  });
 });
