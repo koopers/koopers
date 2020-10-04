@@ -22,3 +22,9 @@ export interface SiteDetails {
     }
   ];
 }
+
+export interface CustomSite {
+  last_sshot_mobile: string;
+  last_sshot_desktop: string;
+  last_sshot_tablet: string;
+}

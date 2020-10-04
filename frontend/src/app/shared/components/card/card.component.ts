@@ -5,7 +5,7 @@ import {
 } from '@angular/cdk/layout';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Screenshot } from '@core/models/screenshots';
-import { Site } from '@core/models/sites';
+import { CustomSite, Site } from '@core/models/sites';
 
 @Component({
   selector: 'app-card',
@@ -13,7 +13,7 @@ import { Site } from '@core/models/sites';
   styleUrls: ['./card.component.sass'],
 })
 export class CardComponent implements OnInit {
-  @Input() item: Site & Screenshot;
+  @Input() item: Site & Screenshot & CustomSite;
   @Output() clickCard?: EventEmitter<string> = new EventEmitter();
 
   display = false;
