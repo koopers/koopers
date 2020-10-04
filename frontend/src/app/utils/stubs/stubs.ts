@@ -1,6 +1,6 @@
 import { Category } from '@core/models/categories';
 import { SuggestedSite } from '@core/models/suggested-sites';
-import { Site } from '@core/models/sites';
+import { Site, SiteDetails } from '@core/models/sites';
 import { Screenshot } from '@core/models/screenshots';
 import { TrackedSite } from '@core/models/tracked-sites';
 import { User } from '@core/models/users';
@@ -69,6 +69,20 @@ export class SitesServiceStub {
 
   getOne(id: number): Observable<Site> {
     return of(sites[0]);
+  }
+
+  getOneWithDetails(id: number): Observable<SiteDetails> {
+    return of({
+      site: {title: '', url: '', avaliable: true},
+      categories: [
+        {
+          category_id: {
+            id: 1,
+            title: ''
+          }
+        }
+      ]
+    });
   }
 
   update(id: number, body: {title: string, url: string, Available: boolean}): Observable<Site> {
@@ -144,6 +158,10 @@ export class FiltersServiceStub {
   }
 
   filterByAll(siteId: string, categories: string, startDate: number, endDate: number): Observable<{}> {
+    return of({});
+  }
+
+  filterOptions() {
     return of({});
   }
 

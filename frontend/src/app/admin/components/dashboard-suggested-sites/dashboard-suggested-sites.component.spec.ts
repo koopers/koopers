@@ -73,20 +73,20 @@ describe('DashboardSuggestedSitesComponent', () => {
     expect(el).not.toBeNull();
   });
 
-  it('should parse categoryLabels', () => {
-    const data = [
-      "Category 1",
-      "Category 2"
-    ];
-    const result = component.categoriesLabel(JSON.stringify(data))
-    expect(result).toEqual(data.join(', '))
-  });
+  // it('should parse categoryLabels', () => {
+  //   const data = [
+  //     "Category 1",
+  //     "Category 2"
+  //   ];
+  //   const result = component.categoriesLabel(JSON.stringify(data))
+  //   expect(result).toEqual(data.join(', '))
+  // });
 
-  it('should return categories if fails to parse', () => {
-    const data = 'Category 1, Category 2'
-    const result = component.categoriesLabel(data);
-    expect(result).toEqual(data);
-  });
+  // it('should return categories if fails to parse', () => {
+  //   const data = 'Category 1, Category 2'
+  //   const result = component.categoriesLabel(data);
+  //   expect(result).toEqual(data);
+  // });
 
   it('when ngOnInit should call getData', () => {
     spyOn((<any>component), 'getData');

@@ -62,7 +62,7 @@ export class DetailsComponent extends BaseComponent implements OnInit {
 
   getAllScreenshots(id?, categories?: string, date?: number): void {
     this.loading = true;
-    this.filtersService.filterOptions(id.toString(), categories, date).subscribe((data) => {
+    this.filtersService.filterOptions(id?.toString(), categories, date).subscribe((data) => {
       this.loading = false;
       this.screenshots = data;
     });
