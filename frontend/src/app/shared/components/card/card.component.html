@@ -27,7 +27,7 @@
     }}</time>
   </a>
   <a
-    *ngIf="!item?.tracked_site && item.available"
+    *ngIf="!item?.tracked_site && item?.available"
     class="c-card__link"
     [routerLink]="['/site/detail', item?.id]">
     <div class="c-card__image-wrapper">

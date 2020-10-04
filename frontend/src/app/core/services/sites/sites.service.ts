@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
-import { Site, SiteDetails } from '../../models/sites';
+import { CustomSite, Site, SiteDetails } from '../../models/sites';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +17,10 @@ export class SitesService {
       .pipe(catchError(this.handleError));
   }
 
-  getCustomSites(): Observable<{}> {
-    return this.http.get(`${environment.url_api}/custom-sites/`).pipe(
-      catchError(this.handleError),
-      map((data: { response: any }) => data.response)
-    );
+  getCustomSites(): Observable<Site[] & CustomSite[]> {
+    return this.http
+      .get<Site[] & CustomSite[]>(`${environment.url_api}/custom-sites/`)
+      .pipe(catchError(this.handleError));
   }
 
   create(body: {
