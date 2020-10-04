@@ -17,7 +17,7 @@
 
     <div *ngIf="currentUser" class="check-box-inline">
       <p-checkbox class="passwordCheckbox" inputId="updatePassword" (onChange)="addPasswordField($event.checked)"></p-checkbox>
-      <label class="form-group__label" for="updatePassword">Update password</label>
+      <label class="form-group__label m-0" for="updatePassword">Update password</label>
     </div>
 
     <div *ngIf="userForm.get('password')" class="form-group">

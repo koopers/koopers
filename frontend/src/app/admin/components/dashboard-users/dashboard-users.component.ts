@@ -51,6 +51,10 @@ export class DashboardUsersComponent extends BaseComponent implements OnInit {
     });
   }
 
+  getType(isStaff: boolean): string {
+    return isStaff ? 'Administrador' : 'Editor';
+  }
+
   private getData(): void {
     this.loading = true;
     this.usersService
