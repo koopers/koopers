@@ -24,7 +24,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 4. Germán Téllez [(@germantellezv)](https://github.com/germantellezv)
 5. Josué Fuentes [(@alienxtrix)](https://github.com/alienxtrix)
 6. Oscar Pérez [(@OscarPay)](https://github.com/OscarPay)
-7. Zomar López [(@zomars)](https://github.com/zomars)
+7. Omar López [(@zomars)](https://github.com/zomars)
 
 # License
 The MIT license (MIT)
