@@ -38,11 +38,11 @@
         </td>
         <td>
           <span class="p-column-title">{{ACTIONS_HEADER}}</span>
-          <app-button btn='secondary' isIcon [routerLink]="['/admin/proposals', suggestedSite.id]">
+          <app-button class="edit-btn" btn='secondary' isIcon [routerLink]="['/admin/proposals', suggestedSite.id]">
             <fa-icon icon="edit"></fa-icon>
           </app-button>
 
-          <app-button btn='danger' isIcon (click)="confirmDelete(suggestedSite)">
+          <app-button class="delete-btn" btn='danger' isIcon (click)="confirmDelete(suggestedSite)">
             <fa-icon icon="trash"></fa-icon>
           </app-button>
       </tr>

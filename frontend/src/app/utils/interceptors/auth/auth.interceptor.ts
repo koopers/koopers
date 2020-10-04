@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (request.url.includes('refresh-token')) {
+    if (request.url.includes('refresh')) {
       return next.handle(this.addRefreshToken(request));
     }
     request = this.addToken(request);
