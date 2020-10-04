@@ -20,11 +20,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 # Team
 1. Carol Masmela [(@masmelacarol)](https://github.com/masmelacarol)
 2. David Guerra [(@ingenio-se)](https://github.com/ingenio-se)
-3. Germán Téllez [(@germantellezv)](https://github.com/germantellezv)
-4. Josué Fuentes [(@alienxtrix)](https://github.com/alienxtrix)
-5. Oscar Pérez [(@OscarPay)](https://github.com/OscarPay)
-6. Zomar López [(@zomars)](https://github.com/zomars)
-7. David Bocarejo
+3. David Bocarejo [(@DavidStevenBocarejo)](https://github.com/DavidStevenBocarejo)
+4. Germán Téllez [(@germantellezv)](https://github.com/germantellezv)
+5. Josué Fuentes [(@alienxtrix)](https://github.com/alienxtrix)
+6. Oscar Pérez [(@OscarPay)](https://github.com/OscarPay)
+7. Zomar López [(@zomars)](https://github.com/zomars)
 
 # License
 The MIT license (MIT)
