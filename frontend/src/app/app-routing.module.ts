@@ -15,17 +15,24 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+        loadChildren: () =>
+          import('./home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'site',
-        loadChildren: () => import('./sites/sites.module').then((m) => m.SitesModule),
+        loadChildren: () =>
+          import('./sites/sites.module').then((m) => m.SitesModule),
       },
       {
         path: 'admin',
         canActivate: [AuthGuard],
         loadChildren: () =>
           import('./admin/admin.module').then((m) => m.AdminModule),
+      },
+      {
+        path: 'aboutus',
+        loadChildren: () =>
+          import('./about-us/about-us.module').then((m) => m.AboutUsModule),
       },
     ],
   },

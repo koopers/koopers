@@ -1,0 +1,23 @@
+<section class="team container">
+  <header class="team__head">
+    <h1>Quienes somos</h1>
+  </header>
+  <div class="team__who">
+    <div class="light-side">
+      <h2>Ligth Side</h2>
+      <div class="team__who--image">
+        <div *ngFor="let partner of partners.lightSide">
+          <app-team-description [partner]="partner"></app-team-description>
+        </div>
+      </div>
+    </div>
+    <div class="dark-side">
+      <h2>Dark Side</h2>
+      <div class="team__who--image">
+        <div *ngFor="let partner of partners.darkSide">
+          <app-team-description [partner]="partner"></app-team-description>          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -32,14 +32,13 @@ export class FiltersService {
       params += `&start_date=${startDate}`;
     }
 
-    console.log(params);
+    if (endDate) {
+      params += `&end_date=${endDate}`;
+    }
 
     return this.http.get(`${environment.url_api}/search/?${params}`).pipe(
       catchError(this.handleError),
-      map((data: { result: Screenshot }) => {
-        console.log('FiltersService -> constructor -> result', data.result);
-        return data.result;
-      })
+      map((data: { result: Screenshot }) => data.result)
     );
   }
 
