@@ -1,0 +1,23 @@
+@import "../../../../variables"
+  
+.footer
+    text-align: center
+    background-color: $light-color
+    border-top: 1px solid #ccc
+    padding: 15px 30px
+    color:  $dark-color
+    &__container 
+        display: flex
+        justify-content: space-evenly
+        align-items: center
+        flex-wrap: wrap
+        fa-icon
+            &.team
+                color: $secondary-color
+                &-two
+                    color: $success-color
+                &-three
+                    color: $danger-color
+
+            &.btn-heart
+                color: $primary-color

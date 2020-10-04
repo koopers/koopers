@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Secciones</h1>
+  <p-progressSpinner *ngIf="loading"></p-progressSpinner>
 
   <div class="flex-justify-end">
     <app-button label='Nueva' btn='primary' [routerLink]="['/admin/sections/new']"></app-button>

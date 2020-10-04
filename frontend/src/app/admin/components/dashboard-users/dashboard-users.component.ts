@@ -18,6 +18,7 @@ export class DashboardUsersComponent extends BaseComponent implements OnInit {
   TYPE_HEADER = 'Tipo';
   DATE_HEADER = 'Fecha de creación';
   ACTIONS_HEADER = 'Acciones';
+  loading = false;
 
   constructor(
     private usersService: UsersService,
@@ -32,6 +33,7 @@ export class DashboardUsersComponent extends BaseComponent implements OnInit {
   }
 
   confirmDelete(user: User): void {
+    this.loading = true;
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
@@ -39,6 +41,7 @@ export class DashboardUsersComponent extends BaseComponent implements OnInit {
           .delete(user.id)
           .pipe(takeUntil(this.unsubscribe$))
           .subscribe((response) => {
+            this.loading = false;
             this.alertsService.handleSuccessAlert(
               'Usuario eliminado exitosamente!'
             );
@@ -49,9 +52,13 @@ export class DashboardUsersComponent extends BaseComponent implements OnInit {
   }
 
   private getData(): void {
+    this.loading = true;
     this.usersService
       .getAll()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((users) => (this.users = users));
+      .subscribe((users) => {
+        this.loading = false;
+        return (this.users = users);
+      });
   }
 }

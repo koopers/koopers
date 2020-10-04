@@ -20,6 +20,7 @@ export class DashboardSuggestedSitesComponent
   CATEGORIES_HEADER = 'Categorias';
   URL_HEADER = 'URL';
   ACTIONS_HEADER = 'Acciones';
+  loading = false;
 
   constructor(
     private sSitesService: SuggestedSitesService,
@@ -34,6 +35,7 @@ export class DashboardSuggestedSitesComponent
   }
 
   confirmDelete(tSite: SuggestedSite): void {
+    this.loading = true;
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
@@ -41,6 +43,7 @@ export class DashboardSuggestedSitesComponent
           .delete(tSite.id)
           .pipe(takeUntil(this.unsubscribe$))
           .subscribe((response) => {
+            this.loading = false;
             this.alertsService.handleSuccessAlert(
               'Propuesta eliminada exitosamente!'
             );
@@ -50,18 +53,22 @@ export class DashboardSuggestedSitesComponent
     });
   }
 
-  categoriesLabel(categories) {
+  categoriesLabel(categories): void {
     try {
       return JSON.parse(categories).join(', ');
-    } catch(e) {
+    } catch (e) {
       return categories;
     }
   }
 
   private getData(): void {
+    this.loading = true;
     this.sSitesService
       .getAll()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((suggestedSites) => (this.suggestedSites = suggestedSites));
+      .subscribe((suggestedSites) => {
+        this.loading = false;
+        return (this.suggestedSites = suggestedSites);
+      });
   }
 }

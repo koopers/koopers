@@ -19,6 +19,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ActiveColumnComponent } from './components/active-column/active-column.component';
@@ -58,6 +59,7 @@ import { FormUserComponent } from './components/form-user/form-user.component';
     AdminRoutingModule,
     SharedModule,
     FontAwesomeModule,
+    ProgressSpinnerModule
   ],
 })
 export class AdminModule {
