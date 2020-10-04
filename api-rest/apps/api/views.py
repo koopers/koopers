@@ -234,3 +234,31 @@ def SiteMoreDetailView(request, pk):
         },
         'categories': data_categories,
     })
+
+@api_view(['GET'])
+def customSites(request):
+    # Covers
+    result = []
+    sites = Site.objects.all()
+    
+    for site in sites:
+        aux = {}
+        last_screenshot = Screenshot.objects.filter(tracked_site__site_id=site.pk).order_by('-created')
+    
+        aux['id'] = site.id
+        aux['title'] = site.title
+        aux['created'] = site.created
+        if len(last_screenshot) > 0: 
+            aux['last_sshot_mobile'] = last_screenshot[0].mobile_url
+            aux['last_sshot_desktop'] = last_screenshot[0].desktop_url
+            aux['last_sshot_tablet'] = last_screenshot[0].tablet_url
+        else:
+            aux['last_sshot_mobile'] = None
+            aux['last_sshot_desktop'] = None
+            aux['last_sshot_tablet'] = None
+
+        result.append(aux)
+
+    return Response({
+        "response": result
+    })
