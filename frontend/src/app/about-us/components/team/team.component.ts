@@ -47,7 +47,7 @@ export class TeamComponent implements OnInit {
         name: 'David Guerra',
         url_image: 'assets/img/avatar_five.png',
         url_imageHover: 'assets/img/avatar_five-hover.png',
-        description: '',
+        description: 'Web Scrapping',
         role: 'Data Science',
       },
       {
