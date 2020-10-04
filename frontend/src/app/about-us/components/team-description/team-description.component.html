@@ -1,0 +1,38 @@
+<a class="image-content" (click)="showModal()">
+  <img class="avatar" [src]="partner.url_image" [alt]="partner.name" />
+  <img
+    class="avatar hover"
+    [src]="partner.url_imageHover"
+    [alt]="partner.name"
+  />
+</a>
+
+<p-dialog
+  styleClass="modal"
+  position="top"
+  [modal]="true"
+  [baseZIndex]="10000"
+  [header]="partner.name"
+  [(visible)]="display"
+  appendTo="body"
+>
+  <div class="team-description">
+    <div class="team-description__image">
+      <img [src]="partner.url_imageHover" [alt]="partner.name" />
+    </div>
+    <div class="team-description__main">
+      <div class="item">
+        <h6>Character: </h6>
+        <p>{{ partner.name }}</p>
+      </div>     
+      <div class="item">
+        <h6>Force powers: </h6>
+        <p>{{ partner.description }}</p>
+      </div>
+      <div class="item">
+        <h6>Side: </h6>
+        <p>{{ partner.role }}</p>
+      </div>
+    </div>
+  </div>
+</p-dialog>
