@@ -2,10 +2,19 @@
   <a *ngIf="item?.tracked_site" class="c-card__link" (click)="showDialog()">
     <div class="c-card__image-wrapper cover">
       <h6 class="c-card__title">{{ item?.tracked_site.site_id.title }}</h6>
-
-      <img
+      <img *ngIf="desktopSize"
         class="c-card__image"
         [src]="item.desktop_url || 'assets/img/no-image.png'"
+        [alt]="item?.title"
+      />
+      <img *ngIf="tabletSize"
+        class="c-card__image"
+        [src]="item.tablet_url || 'assets/img/no-image.png'"
+        [alt]="item?.title"
+      />
+      <img *ngIf="mobileSize"
+        class="c-card__image"
+        [src]="item.mobile_url || 'assets/img/no-image.png'"
         [alt]="item?.title"
       />
     </div>
