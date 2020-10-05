@@ -20,18 +20,18 @@
 
     <div class="form-group">
       <label class="form-group__label" for="site_id">Sitio</label>
-      <p-dropdown [options]="sites" formControlName="site_id" id="site_id"></p-dropdown>
+      <p-dropdown styleClass="sm-full-width" [options]="sites" formControlName="site_id" id="site_id"></p-dropdown>
     </div>
 
     <div class="form-group">
       <label class="form-group__label" for="category_id">Categoría</label>
-      <p-dropdown [options]="categories" formControlName="category_id" id="category_id"></p-dropdown>
+      <p-dropdown styleClass="sm-full-width" [options]="categories" formControlName="category_id" id="category_id"></p-dropdown>
     </div>
   </form>
 
-  <div class="flex-justify-end">
-    <app-button id="cancel-btn" label='Cancelar' btn='default' (click)="goBack()"></app-button>
-    <app-button id="save-btn" [disabled]="!trackedSiteForm.valid" label='Guardar' btn='primary' (click)="onSave()"></app-button>
+  <div class="flex-justify-end sm-flex-column-reverse">
+    <app-button class="sm-full-width mb-1" id="cancel-btn" label='Cancelar' btn='default sm-full-width' (click)="goBack()"></app-button>
+    <app-button class="sm-full-width mb-1" id="save-btn" [disabled]="!trackedSiteForm.valid" label='Guardar' btn='primary sm-full-width' (click)="onSave()"></app-button>
   </div>
 </div>
 

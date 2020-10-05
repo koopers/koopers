@@ -28,6 +28,11 @@ export class HeaderComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
+  changePage(route: string): void {
+    this.visible = false;
+    this.router.navigate([route]);
+  }
+
   logout(): void {
     this.authService.logout();
     this.user = false;

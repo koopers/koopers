@@ -126,7 +126,7 @@
           role="link"
           aria-label="Link a sitios"
           *ngIf="user"
-          [routerLink]="['/admin/sites']"
+          (click)="changePage('/admin/sites')"
           [routerLinkActive]="['selected']"
         >
           Sitios
@@ -137,7 +137,7 @@
           role="link"
           aria-label="Link a secciones"
           *ngIf="user"
-          [routerLink]="['/admin/sections']"
+          (click)="changePage('/admin/sections')"
           [routerLinkActive]="['selected']"
         >
           Secciones
@@ -148,7 +148,7 @@
           role="link"
           aria-label="Link a categorias"
           *ngIf="user"
-          [routerLink]="['/admin/categories']"
+          (click)="changePage('/admin/categories')"
           [routerLinkActive]="['selected']"
         >
           Categorías
@@ -159,7 +159,7 @@
           role="link"
           aria-label="Link a propuestas"
           *ngIf="user"
-          [routerLink]="['/admin/proposals']"
+          (click)="changePage('/admin/proposals')"
           [routerLinkActive]="['selected']"
         >
           Propuestas
@@ -170,7 +170,7 @@
           role="link"
           aria-label="Link a usuarios"
           *ngIf="user && manteiner"
-          [routerLink]="['/admin/users']"
+          (click)="changePage('/admin/users')"
           [routerLinkActive]="['selected']"
         >
           Usuarios
@@ -181,7 +181,7 @@
         <a
           role="link"
           aria-label="Link a inicio"
-          [routerLink]="['/']"
+          (click)="changePage('/')"
           [routerLinkActive]="['selected']"
           [routerLinkActiveOptions]="{ exact: true }"
         >
@@ -192,7 +192,7 @@
         <a
           role="link"
           aria-label="Link a Buscar"
-          [routerLink]="['/site/search']"
+          (click)="changePage('/site/search')"
           >Buscar</a
         >
       </li>
@@ -200,7 +200,7 @@
         <a
           role="link"
           aria-label="Link a nueva propuesta"
-          [routerLink]="['/site/proposal']"
+          (click)="changePage('/site/proposal')"
           [routerLinkActive]="['selected']"
         >
           Propuesta

@@ -6,11 +6,12 @@ import { AuthServiceStub } from '@utils/stubs/stubs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  let authService;
+  let authService, router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -30,11 +31,13 @@ describe('HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
   afterAll(() => {
     authService = null;
+    router = null;
   });
 
   it('should create', () => {
@@ -43,6 +46,21 @@ describe('HeaderComponent', () => {
 
   it('should init manteiner in false', () => {
     expect(component.manteiner).toBeFalse();
+  });
+
+  it('should init visible in false', () => {
+    expect(component.visible).toBeUndefined();
+  });
+
+  it('changePage should change visible', () => {
+    component.changePage('/');
+    expect(component.visible).toBeFalse();
+  });
+
+  it('changePage should change route', () => {
+    spyOn(router, 'navigate').and.callThrough();
+    component.changePage('/');
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
   it('should service call getUser', () => {

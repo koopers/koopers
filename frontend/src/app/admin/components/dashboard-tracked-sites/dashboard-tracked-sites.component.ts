@@ -38,11 +38,12 @@ export class DashboardTrackedSitesComponent
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
+        this.loading = true;
         this.tSitesService
           .delete(tSite.id)
           .pipe(takeUntil(this.unsubscribe$))
           .subscribe(() => {
-            this.loading = true;
+            this.loading = false;
             this.alertsService.handleSuccessAlert(
               'Sección eliminada exitosamente!'
             );

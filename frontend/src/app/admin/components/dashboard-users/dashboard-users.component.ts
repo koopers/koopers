@@ -33,10 +33,10 @@ export class DashboardUsersComponent extends BaseComponent implements OnInit {
   }
 
   confirmDelete(user: User): void {
-    this.loading = true;
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
+        this.loading = true;
         this.usersService
           .delete(user.id)
           .pipe(takeUntil(this.unsubscribe$))
