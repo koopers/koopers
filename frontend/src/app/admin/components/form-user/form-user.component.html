@@ -36,9 +36,9 @@
     </div>
   </form>
 
-  <div class="flex-justify-end">
-    <app-button id="cancel-btn" label='Cancelar' btn='default' (click)="goBack()"></app-button>
-    <app-button id="save-btn" [disabled]="!userForm.valid" label='Guardar' btn='primary' (click)="onSave()"></app-button>
+  <div class="flex-justify-end sm-flex-column-reverse">
+    <app-button class="sm-full-width mb-1" id="cancel-btn" label='Cancelar' btn='default sm-full-width' (click)="goBack()"></app-button>
+    <app-button class="sm-full-width mb-1" id="save-btn" [disabled]="!userForm.valid" label='Guardar' btn='primary sm-full-width' (click)="onSave()"></app-button>
   </div>
 </div>
 

@@ -25,9 +25,9 @@
       </div>
     </div>
 
-    <div class="form-group-row mb-0">
+    <div class="form-group-row sm-flex-column sm-align-items-start mb-1">
       <label class="form-group-row__label mr-1">Categorías</label>
-      <app-button id="add-category-btn" isIcon btn='primary' (click)="addCategory()">
+      <app-button class="sm-full-width" id="add-category-btn" isIcon btn='primary sm-full-width' (click)="addCategory()">
         <fa-icon icon="plus"></fa-icon>
       </app-button>
     </div>
@@ -50,9 +50,9 @@
 
   </form>
 
-  <div class="flex-justify-end">
-    <app-button id="cancel-btn" label='Cancelar' btn='default' (click)="goBack()"></app-button>
-    <app-button id="save-btn" [disabled]="!suggestedForm.valid" label='Guardar' btn='primary' (click)="onSave()"></app-button>
+  <div class="flex-justify-end sm-flex-column-reverse">
+    <app-button class="sm-full-width mb-1" id="cancel-btn" label='Cancelar' btn='default sm-full-width' (click)="goBack()"></app-button>
+    <app-button class="sm-full-width mb-1" id="save-btn" [disabled]="!suggestedForm.valid" label='Guardar' btn='primary sm-full-width' (click)="onSave()"></app-button>
   </div>
 </div>
 
