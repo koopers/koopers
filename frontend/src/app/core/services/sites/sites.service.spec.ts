@@ -1,9 +1,9 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { environment } from '@environments/environment';
-import { SitesService } from './sites.service';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { customSites, sites } from '@utils/mocks/mocks';
 import { cold } from 'jasmine-marbles';
-import { sites } from '@utils/mocks/mocks';
+import { SitesService } from './sites.service';
 
 describe('SitesService', () => {
   let httpTestingController: HttpTestingController;
@@ -49,6 +49,27 @@ describe('SitesService', () => {
       expect(data).toEqual(mockData);
     });
     const req = httpTestingController.expectOne(`${environment.url_api}/sites/`);
+    req.flush(mockData);
+  });
+
+  it('should getCustomSites call get', () => {
+    service.getCustomSites().subscribe();
+    const req = httpTestingController.expectOne(`${environment.url_api}/custom-sites/`);
+    expect(req.request.method).toBe('GET');
+  });
+
+  it('should getCustomSites use the right url', () => {
+    service.getCustomSites().subscribe();
+    const req = httpTestingController.expectOne(`${environment.url_api}/custom-sites/`);
+    expect(req.request.url).toBe(`${environment.url_api}/custom-sites/`);
+  });
+
+  it('should getCustomSites return the right data', () => {
+    const mockData = customSites;
+    service.getCustomSites().subscribe(data => {
+      expect(data).toEqual(mockData);
+    });
+    const req = httpTestingController.expectOne(`${environment.url_api}/custom-sites/`);
     req.flush(mockData);
   });
 

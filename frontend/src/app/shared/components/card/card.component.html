@@ -27,15 +27,24 @@
     }}</time>
   </a>
   <a
-    *ngIf="!item?.tracked_site"
+    *ngIf="!item?.tracked_site && item?.available"
     class="c-card__link"
-    [routerLink]="['/site/detail', item?.id]"
-  >
+    [routerLink]="['/site/detail', item?.id]">
     <div class="c-card__image-wrapper">
       <h6 class="c-card__title">{{ item?.title }}</h6>
-      <img
+      <img *ngIf="desktopSize"
         class="c-card__image"
-        [src]="item?.mobile_url || 'assets/img/no-image.png'"
+        [src]="item.last_sshot_desktop || 'assets/img/no-image.png'"
+        [alt]="item?.title"
+      />
+      <img *ngIf="tabletSize"
+        class="c-card__image"
+        [src]="item.last_sshot_tablet || 'assets/img/no-image.png'"
+        [alt]="item?.title"
+      />
+      <img *ngIf="mobileSize"
+        class="c-card__image"
+        [src]="item.last_sshot_mobile || 'assets/img/no-image.png'"
         [alt]="item?.title"
       />
     </div>

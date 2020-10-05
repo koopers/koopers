@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '@core/interfaces/base.component';
-import { Site } from '@core/models/sites';
 import { ScreenshotsService } from '@core/services/screenshots/screenshots.service';
 import { SitesService } from '@core/services/sites/sites.service';
 
@@ -10,7 +9,7 @@ import { SitesService } from '@core/services/sites/sites.service';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent extends BaseComponent implements OnInit {
-  sites: Site[];
+  sites;
   screenshots = {};
   loading = false;
 
@@ -23,7 +22,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.sitesService.getAll().subscribe((data) => {
+    this.sitesService.getCustomSites().subscribe((data) => {
       this.loading = false;
       this.sites = data;
     });

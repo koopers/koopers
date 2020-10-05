@@ -1,7 +1,7 @@
 import { Category } from '@core/models/categories';
-import { SuggestedSite } from '@core/models/suggested-sites';
-import { Site } from '@core/models/sites';
 import { Screenshot } from '@core/models/screenshots';
+import { CustomSite, Site } from '@core/models/sites';
+import { SuggestedSite } from '@core/models/suggested-sites';
 import { TrackedSite } from '@core/models/tracked-sites';
 import { User } from '@core/models/users';
 
@@ -57,6 +57,32 @@ export const sites: Site[] = [
     available: true,
     created: "2020-09-27",
     updated: "2020-09-28"
+  }
+];
+
+// tslint:disable-next-line:no-bitwise
+export const customSites: Site[] & CustomSite[] = [
+  {
+    id: 1,
+    title: "El universal",
+    url: "https://www.eluniversal.com.co/",
+    available: true,
+    created: "2020-09-27",
+    updated: "2020-09-28",
+    last_sshot_mobile: 'https://static01.nyt.com/images/2020/05/24/reader-center/NYT-front-page-05-24-20/NYT-front-page-05-24-20-videoSixteenByNineJumbo1600-v2.jpg',
+    last_sshot_tablet: 'https://static01.nyt.com/images/2020/05/24/reader-center/NYT-front-page-05-24-20/NYT-front-page-05-24-20-videoSixteenByNineJumbo1600-v2.jpg',
+    last_sshot_desktop: 'https://static01.nyt.com/images/2020/05/24/reader-center/NYT-front-page-05-24-20/NYT-front-page-05-24-20-videoSixteenByNineJumbo1600-v2.jpg',
+  },
+  {
+    id: 2,
+    title: "New York Times",
+    url: "https://www.nytimes.com/es/",
+    available: true,
+    created: "2020-09-27",
+    updated: "2020-09-28",
+    last_sshot_mobile: 'https://static01.nyt.com/images/2020/05/24/reader-center/NYT-front-page-05-24-20/NYT-front-page-05-24-20-videoSixteenByNineJumbo1600-v2.jpg',
+    last_sshot_tablet: 'https://static01.nyt.com/images/2020/05/24/reader-center/NYT-front-page-05-24-20/NYT-front-page-05-24-20-videoSixteenByNineJumbo1600-v2.jpg',
+    last_sshot_desktop: 'https://static01.nyt.com/images/2020/05/24/reader-center/NYT-front-page-05-24-20/NYT-front-page-05-24-20-videoSixteenByNineJumbo1600-v2.jpg',
   }
 ];
 

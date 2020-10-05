@@ -1,13 +1,13 @@
+import { EventEmitter } from '@angular/core';
+import { Alert, INFO_TYPE, SUCCESS_TYPE } from '@core/models/alerts';
 import { Category } from '@core/models/categories';
-import { SuggestedSite } from '@core/models/suggested-sites';
-import { Site, SiteDetails } from '@core/models/sites';
 import { Screenshot } from '@core/models/screenshots';
+import { CustomSite, Site, SiteDetails } from '@core/models/sites';
+import { SuggestedSite } from '@core/models/suggested-sites';
 import { TrackedSite } from '@core/models/tracked-sites';
 import { User } from '@core/models/users';
-import { of, Observable } from 'rxjs';
-import {categories, suggestedSites, sites, users, trackedSites, screenshots} from '../mocks/mocks';
-import { EventEmitter } from '@angular/core';
-import { Alert, SUCCESS_TYPE, INFO_TYPE } from '@core/models/alerts';
+import { Observable, of } from 'rxjs';
+import { categories, customSites, screenshots, sites, suggestedSites, trackedSites, users } from '../mocks/mocks';
 
 export class CategoriesServiceStub {
 
@@ -57,6 +57,10 @@ export class SuggestedSitesServiceStub {
 export class SitesServiceStub {
   getAll(): Observable<Site[]> {
     return of(sites);
+  }
+
+  getCustomSites(): Observable<Site[] & CustomSite[]> {
+    return of(customSites);
   }
 
   delete(): Observable<Site> {
