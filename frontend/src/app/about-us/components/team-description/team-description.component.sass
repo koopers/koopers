@@ -22,6 +22,14 @@
   padding: 20px
   display: flex
   align-items: center
+  @media screen and ( max-width: 500px  )
+    padding: 0
+    width: 100%
+    justify-content: center
+  @media screen and ( max-width: 375px  )
+    width: 100%
+    flex-wrap: wrap
+    
   &__image
     img
       border-radius: 20px
@@ -30,5 +38,7 @@
     .item
       display: flex
       margin: 10px
+      @media screen and ( max-width: 600px  )
+        flex-wrap: wrap
       p
         margin-left: 10px
