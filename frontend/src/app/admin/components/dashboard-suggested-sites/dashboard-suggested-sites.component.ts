@@ -35,10 +35,10 @@ export class DashboardSuggestedSitesComponent
   }
 
   confirmDelete(tSite: SuggestedSite): void {
-    this.loading = true;
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
+        this.loading = true;
         this.sSitesService
           .delete(tSite.id)
           .pipe(takeUntil(this.unsubscribe$))

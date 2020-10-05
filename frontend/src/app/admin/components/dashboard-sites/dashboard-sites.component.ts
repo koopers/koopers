@@ -33,10 +33,10 @@ export class DashboardSitesComponent extends BaseComponent implements OnInit {
   }
 
   confirmDelete(site: Site): void {
-    this.loading = true;
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
+        this.loading = true;
         this.sitesService
           .delete(site.id)
           .pipe(takeUntil(this.unsubscribe$))

@@ -34,10 +34,10 @@ export class DashboardCategoriesComponent
   }
 
   confirmDelete(category: Category): void {
-    this.loading = true;
     this.confirmationService.confirm({
       message: '¿Seguro que deseas realizar esta acción?',
       accept: () => {
+        this.loading = true;
         this.categoriesService
           .delete(category.id)
           .pipe(takeUntil(this.unsubscribe$))
