@@ -56,7 +56,7 @@ export class TeamComponent implements OnInit {
         url_image: 'assets/img/avatar_six.png',
         url_imageHover: 'assets/img/avatar_six-hover.png',
         description: 'Django',
-        role: 'Backend Developer',
+        role: 'Backend Developer and Data Architect',
       },
       {
         id: 7,
