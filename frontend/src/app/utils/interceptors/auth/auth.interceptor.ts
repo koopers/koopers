@@ -23,6 +23,9 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    const route = this.router.routerState.snapshot.url;
+    const regexRoute = new RegExp('/admin\/*');
+
     if (request.url.includes('refresh')) {
       return next.handle(this.addRefreshToken(request));
     }
@@ -30,14 +33,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((response) => {
-        if (response.status === 401) {
+        if (response.status === 401 && route.match(regexRoute)) {
           return this.authService.refreshToken().pipe(
             switchMap(() => next.handle(this.addToken(request))),
             catchError((msg) => {
-              const route = this.router.routerState.snapshot.url;
               if (
-                msg.error.refresh[0] === 'This field may not be null.' &&
-                route === '/admin/sites'
+                msg.error.refresh[0] === 'This field may not be null.' && route.match(regexRoute)
               ) {
                 this.authService.logout();
                 this.router.navigate(['/auth/login']);
