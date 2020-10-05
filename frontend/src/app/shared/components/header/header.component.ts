@@ -19,12 +19,16 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.getUser().subscribe((user) => {
-      if (user.admin === true) {
-        this.manteiner = true;
-      }
-      this.user = true;
-    });
+    const route = this.router.routerState.snapshot.url;
+    const regexRoute = new RegExp('/admin/*');
+    if (route.match(regexRoute)) {
+      this.authService.getUser().subscribe((user) => {
+        if (user.admin === true) {
+          this.manteiner = true;
+        }
+        this.user = true;
+      });
+    }
     this.primengConfig.ripple = true;
   }
 
@@ -39,5 +43,4 @@ export class HeaderComponent implements OnInit {
     this.visible = false;
     this.router.navigate(['/']);
   }
-
 }
